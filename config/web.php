@@ -18,6 +18,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+            'sessionTable' => 'yii_session',
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
