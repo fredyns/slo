@@ -1,7 +1,6 @@
 <?php
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+require __DIR__ . '/host_config.php';
 
 $config = [
     'id' => 'basic-console',
@@ -17,17 +16,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'log' => [
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-        'db' => $db,
+        'log' => host_config('log.php'),
+        'db' => host_config('db.php'),
     ],
-    'params' => $params,
+    'params' => host_config('params.php'),
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
