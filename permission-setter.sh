@@ -1,9 +1,20 @@
 #!/bin/bash
 
-sudo echo "change ownership as yours & add to www-data group"
-sudo chown -R $USER:www-data ..
+echo "==============================="
+echo "change ownership as yours"
+echo "add group www-data"
+echo "change permission to 775"
+sudo echo "==============================="
 
-echo "change permission"
-sudo chmod -R 775 ..
+for foldername in ./*; do
+    if [ $foldername != './vendor' ]
+    then
+        echo "configuring $foldername"
+        sudo chown -R $USER:www-data $foldername
+        sudo chmod -R 775 $foldername
+    fi
+done
 
+echo "==============================="
 echo "done."
+echo "==============================="
