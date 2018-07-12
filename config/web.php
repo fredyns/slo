@@ -32,14 +32,12 @@ $config = [
         'mailer' => host_config('mailer.php'),
         'log' => host_config('log.php'),
         'db' => host_config('db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
     ],
     'modules' => [
         'user' => [
