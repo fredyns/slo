@@ -18,6 +18,9 @@ $config = [
         ],
         'log' => host_config('log.php'),
         'db' => host_config('db.php'),
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager'
+        ],
     ],
     'params' => host_config('params.php'),
     /*
