@@ -41,6 +41,17 @@ $config = [
         ],
         */
     ],
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableRegistration' => true,
+            'admins' => ['admin'],
+            'modelMap' => [
+                'User' => 'app\models\User',
+                'Profile' => 'app\models\Profile',
+            ],
+        ],
+    ],
     'params' => host_config('params.php'),
 ];
 
