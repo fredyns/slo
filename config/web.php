@@ -4,6 +4,8 @@ require __DIR__ . '/host_config.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'Yii2 Web-Application',
+    'timeZone' => 'Asia/Jakarta',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
