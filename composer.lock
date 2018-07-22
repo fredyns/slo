@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "092db3cc9c918fdf5ff3add08775f3ec",
+    "content-hash": "a09b0d5793c5ffd1217edd30d48b01cd",
     "packages": [
+        {
+            "name": "2amigos/yii2-translateable-behavior",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-translateable-behavior.git",
+                "reference": "2e759b792b1d7a9dd98225546d50708d839e82ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-translateable-behavior/zipball/2e759b792b1d7a9dd98225546d50708d839e82ff",
+                "reference": "2e759b792b1d7a9dd98225546d50708d839e82ff",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\translateable\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "ramirez.cobos@gmail.com",
+                    "homepage": "http://2amigos.us"
+                }
+            ],
+            "description": "ActiveRecord attributes translations for Yii2.",
+            "keywords": [
+                "Behavior",
+                "extension",
+                "translation",
+                "yii"
+            ],
+            "time": "2018-07-03T20:27:34+00:00"
+        },
         {
             "name": "almasaeed2010/adminlte",
             "version": "v2.x-dev",
@@ -6887,7 +6933,8 @@
         "fredyns/yii2-daerah-indonesia": 20,
         "dmstr/yii2-bootstrap": 20,
         "dmstr/yii2-helpers": 20,
-        "schmunk42/yii2-giiant": 20
+        "schmunk42/yii2-giiant": 20,
+        "2amigos/yii2-translateable-behavior": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

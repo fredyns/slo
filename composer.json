@@ -29,7 +29,8 @@
         "fredyns/yii2-daerah-indonesia": "@dev",
         "dmstr/yii2-bootstrap": "dev-master",
         "dmstr/yii2-helpers": "dev-master",
-        "schmunk42/yii2-giiant": "@dev"
+        "schmunk42/yii2-giiant": "@dev",
+        "2amigos/yii2-translateable-behavior": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
