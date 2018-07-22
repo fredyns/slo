@@ -15,7 +15,7 @@ use Yii;
  * @property \app\modules\location\models\Place $place
  * @property string $aliasModel
  */
-abstract class PlaceLang extends \yii\db\ActiveRecord
+class PlaceLang extends \yii\db\ActiveRecord
 {
 
     /**

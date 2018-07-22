@@ -24,7 +24,7 @@ use yii\behaviors\BlameableBehavior;
  * @property \app\modules\location\models\SublocationCounter[] $locationSublocationCounters
  * @property string $aliasModel
  */
-abstract class Type extends \yii\db\ActiveRecord
+class Type extends \yii\db\ActiveRecord
 {
 
     /**

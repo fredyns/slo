@@ -16,7 +16,7 @@ use Yii;
  * @property \app\modules\location\models\Type $type
  * @property string $aliasModel
  */
-abstract class SublocationCounter extends \yii\db\ActiveRecord
+class SublocationCounter extends \yii\db\ActiveRecord
 {
 
     /**

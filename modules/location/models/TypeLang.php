@@ -16,7 +16,7 @@ use Yii;
  * @property \app\modules\location\models\Type $type
  * @property string $aliasModel
  */
-abstract class TypeLang extends \yii\db\ActiveRecord
+class TypeLang extends \yii\db\ActiveRecord
 {
 
     /**

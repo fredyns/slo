@@ -29,7 +29,7 @@ use yii\behaviors\BlameableBehavior;
  * @property \app\modules\location\models\SublocationCounter[] $sublocationCounters
  * @property string $aliasModel
  */
-abstract class Place extends \yii\db\ActiveRecord
+class Place extends \yii\db\ActiveRecord
 {
 
     /**
