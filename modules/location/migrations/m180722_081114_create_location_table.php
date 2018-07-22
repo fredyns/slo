@@ -17,6 +17,11 @@ class m180722_081114_create_location_table extends Migration
         /**
          * create table structures
          */
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
         $this->createTable('location_place', [
             'id' => Schema::TYPE_UBIGPK,
             'type_id' => $this->integer(10)->unsigned()->defaultValue(NULL),
@@ -27,27 +32,27 @@ class m180722_081114_create_location_table extends Migration
             'created_by' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'updated_at' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'updated_by' => $this->integer(10)->unsigned()->defaultValue(NULL),
-        ]);
+        ], $tableOptions);
         $this->createTable('location_place_lang', [
             'id' => Schema::TYPE_UBIGPK,
             'place_id' => $this->bigInteger(20)->unsigned(),
             'language' => $this->string(16)->null(),
             'name' => $this->string(1024)->null(),
-        ]);
+        ], $tableOptions);
         $this->createTable('location_type', [
             'id' => Schema::TYPE_UPK,
             'created_at' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'created_by' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'updated_at' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'updated_by' => $this->integer(10)->unsigned()->defaultValue(NULL),
-        ]);
+        ], $tableOptions);
         $this->createTable('location_type_lang', [
             'id' => Schema::TYPE_UPK,
             'type_id' => $this->integer(10)->unsigned(),
             'language' => $this->string(16)->null(),
             'name' => $this->string(1024)->null(),
             'abbreviation' => $this->string(32)->null(),
-        ]);
+        ], $tableOptions);
         $this->createTable('location_sublocation_counter', [
             'id' => Schema::TYPE_UBIGPK,
             'place_id' => $this->bigInteger(20)->unsigned(),
