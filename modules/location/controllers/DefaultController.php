@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\region\controllers;
+namespace app\modules\location\controllers;
 
 use yii\web\Controller;
 
 /**
- * Default controller for the `region` module
+ * Default controller for the `location` module
  */
 class DefaultController extends Controller
 {
