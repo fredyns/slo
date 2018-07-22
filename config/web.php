@@ -65,6 +65,9 @@ $config = [
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
         ],
+        'region' => [
+            'class' => 'app\modules\region\Module',
+        ],
     ],
     'params' => host_config('params.php'),
     'as access' => host_config('as_access.php'),
