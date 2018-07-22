@@ -43,6 +43,28 @@ $config = [
             'rules' => [
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+                'giiant*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+                'cruds*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+                'models*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+                'user*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+                'location-model*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'user' => [
