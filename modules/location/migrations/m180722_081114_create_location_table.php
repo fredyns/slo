@@ -2,6 +2,11 @@
 
 use yii\db\Migration;
 use yii\db\Schema;
+use app\modules\location\models\Place;
+use app\modules\location\models\PlaceLang;
+use app\modules\location\models\Type;
+use app\modules\location\models\TypeLang;
+use app\modules\location\models\SublocationCounter;
 
 /**
  * Handles the creation of tables location module.
@@ -22,7 +27,7 @@ class m180722_081114_create_location_table extends Migration
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-        $this->createTable('location_place', [
+        $this->createTable(Place::tableName(), [
             'id' => Schema::TYPE_UBIGPK,
             'type_id' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'sublocation_of' => $this->bigInteger(20)->unsigned()->defaultValue(NULL),
@@ -33,27 +38,27 @@ class m180722_081114_create_location_table extends Migration
             'updated_at' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'updated_by' => $this->integer(10)->unsigned()->defaultValue(NULL),
         ], $tableOptions);
-        $this->createTable('location_place_lang', [
+        $this->createTable(PlaceLang::tableName(), [
             'id' => Schema::TYPE_UBIGPK,
             'place_id' => $this->bigInteger(20)->unsigned(),
             'language' => $this->string(16)->null(),
             'name' => $this->string(1024)->null(),
         ], $tableOptions);
-        $this->createTable('location_type', [
+        $this->createTable(Type::tableName(), [
             'id' => Schema::TYPE_UPK,
             'created_at' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'created_by' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'updated_at' => $this->integer(10)->unsigned()->defaultValue(NULL),
             'updated_by' => $this->integer(10)->unsigned()->defaultValue(NULL),
         ], $tableOptions);
-        $this->createTable('location_type_lang', [
+        $this->createTable(TypeLang::tableName(), [
             'id' => Schema::TYPE_UPK,
             'type_id' => $this->integer(10)->unsigned(),
             'language' => $this->string(16)->null(),
             'name' => $this->string(1024)->null(),
             'abbreviation' => $this->string(32)->null(),
         ], $tableOptions);
-        $this->createTable('location_sublocation_counter', [
+        $this->createTable(SublocationCounter::tableName(), [
             'id' => Schema::TYPE_UBIGPK,
             'place_id' => $this->bigInteger(20)->unsigned(),
             'type_id' => $this->integer(10)->unsigned(),
@@ -63,22 +68,22 @@ class m180722_081114_create_location_table extends Migration
         /**
          * create indexes
          */
-        $this->createIndex('type', 'location_place', ['type_id']);
-        $this->createIndex('sub_of', 'location_place', ['sublocation_of']);
-        $this->createIndex('place', 'location_place_lang', ['place_id']);
-        $this->createIndex('type', 'location_type_lang', ['type_id']);
-        $this->createIndex('place', 'location_sublocation_counter', ['place_id']);
-        $this->createIndex('type', 'location_sublocation_counter', ['type_id']);
+        $this->createIndex('type', Place::tableName(), ['type_id']);
+        $this->createIndex('sub_of', Place::tableName(), ['sublocation_of']);
+        $this->createIndex('place', PlaceLang::tableName(), ['place_id']);
+        $this->createIndex('type', TypeLang::tableName(), ['type_id']);
+        $this->createIndex('place', SublocationCounter::tableName(), ['place_id']);
+        $this->createIndex('type', SublocationCounter::tableName(), ['type_id']);
         
         /**
          * create foreign keys
          */
-        $this->addForeignKey('fk_location_place_type', 'location_place', 'type_id', 'location_type', 'id');
-        $this->addForeignKey('fk_location_place_sub_of', 'location_place', 'sublocation_of', 'location_place', 'id');
-        $this->addForeignKey('fk_location_place_lang_place', 'location_place_lang', 'place_id', 'location_place', 'id');   
-        $this->addForeignKey('fk_location_type_lang_type', 'location_type_lang', 'type_id', 'location_type', 'id');        
-        $this->addForeignKey('fk_location_sublocation_counter_place', 'location_sublocation_counter', 'place_id', 'location_place', 'id');
-        $this->addForeignKey('fk_location_sublocation_counter_type', 'location_sublocation_counter', 'type_id', 'location_type', 'id');        
+        $this->addForeignKey('fk_location_place_type', Place::tableName(), 'type_id', Type::tableName(), 'id');
+        $this->addForeignKey('fk_location_place_sub_of', Place::tableName(), 'sublocation_of', Place::tableName(), 'id');
+        $this->addForeignKey('fk_location_place_lang_place', PlaceLang::tableName(), 'place_id', Place::tableName(), 'id');   
+        $this->addForeignKey('fk_location_type_lang_type', TypeLang::tableName(), 'type_id', Type::tableName(), 'id');        
+        $this->addForeignKey('fk_location_sublocation_counter_place', SublocationCounter::tableName(), 'place_id', Place::tableName(), 'id');
+        $this->addForeignKey('fk_location_sublocation_counter_type', SublocationCounter::tableName(), 'type_id', Type::tableName(), 'id');        
     }
 
     /**
@@ -89,31 +94,31 @@ class m180722_081114_create_location_table extends Migration
         /**
          * destroy foreign keys
          */
-        $this->dropForeignKey('fk_location_sublocation_counter_type', 'location_sublocation_counter');
-        $this->dropForeignKey('fk_location_sublocation_counter_place', 'location_sublocation_counter');
-        $this->dropForeignKey('fk_location_type_lang_type', 'location_type_lang');
-        $this->dropForeignKey('fk_location_place_lang_place', 'location_place_lang');
-        $this->dropForeignKey('fk_location_place_sub_of', 'location_place');
-        $this->dropForeignKey('fk_location_place_type', 'location_place');
+        $this->dropForeignKey('fk_location_sublocation_counter_type', SublocationCounter::tableName());
+        $this->dropForeignKey('fk_location_sublocation_counter_place', SublocationCounter::tableName());
+        $this->dropForeignKey('fk_location_type_lang_type', TypeLang::tableName());
+        $this->dropForeignKey('fk_location_place_lang_place', PlaceLang::tableName());
+        $this->dropForeignKey('fk_location_place_sub_of', Place::tableName());
+        $this->dropForeignKey('fk_location_place_type', Place::tableName());
         
         /**
          * destroy indexes
          */
-        $this->dropIndex('type', 'location_sublocation_counter');
-        $this->dropIndex('place', 'location_sublocation_counter');
-        $this->dropIndex('type', 'location_type_lang');
-        $this->dropIndex('place', 'location_place_lang');
-        $this->dropIndex('sub_of', 'location_place');
-        $this->dropIndex('type', 'location_place');
+        $this->dropIndex('type', SublocationCounter::tableName());
+        $this->dropIndex('place', SublocationCounter::tableName());
+        $this->dropIndex('type', TypeLang::tableName());
+        $this->dropIndex('place', PlaceLang::tableName());
+        $this->dropIndex('sub_of', Place::tableName());
+        $this->dropIndex('type', Place::tableName());
         
         /**
          * destroy tables
          */
-        $this->dropTable('location_sublocation_counter');
-        $this->dropTable('location_type_lang');
-        $this->dropTable('location_type');
-        $this->dropTable('location_place_lang');
-        $this->dropTable('location_place');
+        $this->dropTable(SublocationCounter::tableName());
+        $this->dropTable(TypeLang::tableName());
+        $this->dropTable(Type::tableName());
+        $this->dropTable(PlaceLang::tableName());
+        $this->dropTable(Place::tableName());
     }
 
 }
