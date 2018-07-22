@@ -10,4 +10,13 @@ use \app\modules\location\models\base\LocationPlace as BaseLocationPlace;
  */
 class LocationPlace extends BaseLocationPlace
 {
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%location_place}}';
+    }
+
 }

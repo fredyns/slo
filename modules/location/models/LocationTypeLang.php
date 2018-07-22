@@ -10,4 +10,13 @@ use \app\modules\location\models\base\LocationTypeLang as BaseLocationTypeLang;
  */
 class LocationTypeLang extends BaseLocationTypeLang
 {
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%location_type_lang}}';
+    }
+
 }

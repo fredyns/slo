@@ -10,4 +10,13 @@ use \app\modules\location\models\base\LocationType as BaseLocationType;
  */
 class LocationType extends BaseLocationType
 {
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%location_type}}';
+    }
+
 }

@@ -10,4 +10,13 @@ use \app\modules\location\models\base\LocationSublocationCounter as BaseLocation
  */
 class LocationSublocationCounter extends BaseLocationSublocationCounter
 {
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%location_sublocation_counter}}';
+    }
+
 }
