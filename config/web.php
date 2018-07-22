@@ -65,6 +65,9 @@ $config = [
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
         ],
+        'daerah-indonesia' => [
+            'class' => 'fredyns\daerahIndonesia\Module',
+        ],
         'region' => [
             'class' => 'app\modules\region\Module',
         ],

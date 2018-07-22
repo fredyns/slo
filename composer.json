@@ -25,7 +25,8 @@
         "kartik-v/yii2-mpdf": "^1.0",
         "dmstr/yii2-adminlte-asset": "^2.6",
         "mootensai/yii2-enhanced-gii": "^1.0",
-        "yiisoft/yii2-queue": "^2.1"
+        "yiisoft/yii2-queue": "^2.1",
+        "fredyns/yii2-daerah-indonesia": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
