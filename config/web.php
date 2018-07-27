@@ -60,9 +60,6 @@ $config = [
                 'user*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
-                'location-model*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                ],
             ],
         ],
     ],
