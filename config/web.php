@@ -90,8 +90,8 @@ $config = [
         'daerah-indonesia' => [
             'class' => 'fredyns\daerahIndonesia\Module',
         ],
-        'region' => [
-            'class' => 'app\modules\region\Module',
+        'location' => [
+            'class' => 'app\modules\location\Module',
         ],
     ],
     'params' => host_config('params.php'),
