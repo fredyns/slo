@@ -35,9 +35,9 @@ class SublocationCounter extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Yii::t('location-model', 'Sublocation').' '.Yii::t('location-model', 'Counters');
+            return Yii::t('modules/location/model', 'Sublocation').' '.Yii::t('modules/location/model', 'Counters');
         } else{
-            return Yii::t('location-model', 'Sublocation').' '.Yii::t('location-model', 'Counter');
+            return Yii::t('modules/location/model', 'Sublocation').' '.Yii::t('modules/location/model', 'Counter');
         }
     }
 
@@ -59,10 +59,10 @@ class SublocationCounter extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('location-model', 'ID'),
-            'place_id' => Yii::t('location-model', 'Place'),
-            'type_id' => Yii::t('location-model', 'Type'),
-            'quantity' => Yii::t('location-model', 'Quantity'),
+            'id' => Yii::t('modules/location/model', 'ID'),
+            'place_id' => Yii::t('modules/location/model', 'Place'),
+            'type_id' => Yii::t('modules/location/model', 'Type'),
+            'quantity' => Yii::t('modules/location/model', 'Quantity'),
         ];
     }
 
@@ -73,10 +73,10 @@ class SublocationCounter extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Yii::t('location-model', 'ID'),
-            'place_id' => Yii::t('location-model', 'Place'),
-            'type_id' => Yii::t('location-model', 'Type'),
-            'quantity' => Yii::t('location-model', 'Quantity'),
+            'id' => Yii::t('modules/location/model', 'ID'),
+            'place_id' => Yii::t('modules/location/model', 'Place'),
+            'type_id' => Yii::t('modules/location/model', 'Type'),
+            'quantity' => Yii::t('modules/location/model', 'Quantity'),
         ]);
     }
 

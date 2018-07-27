@@ -35,9 +35,9 @@ class TypeLang extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Yii::t('location-model', 'Type').' '.Yii::t('location-model', 'Langs');
+            return Yii::t('modules/location/model', 'Type').' '.Yii::t('modules/location/model', 'Langs');
         } else{
-            return Yii::t('location-model', 'Type').' '.Yii::t('location-model', 'Lang');
+            return Yii::t('modules/location/model', 'Type').' '.Yii::t('modules/location/model', 'Lang');
         }
     }
 
@@ -61,11 +61,11 @@ class TypeLang extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('location-model', 'ID'),
-            'type_id' => Yii::t('location-model', 'Type'),
-            'language' => Yii::t('location-model', 'Language'),
-            'name' => Yii::t('location-model', 'Name'),
-            'abbreviation' => Yii::t('location-model', 'Abbreviation'),
+            'id' => Yii::t('modules/location/model', 'ID'),
+            'type_id' => Yii::t('modules/location/model', 'Type'),
+            'language' => Yii::t('modules/location/model', 'Language'),
+            'name' => Yii::t('modules/location/model', 'Name'),
+            'abbreviation' => Yii::t('modules/location/model', 'Abbreviation'),
         ];
     }
 
@@ -76,11 +76,11 @@ class TypeLang extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Yii::t('location-model', 'ID'),
-            'type_id' => Yii::t('location-model', 'Type'),
-            'language' => Yii::t('location-model', 'Language'),
-            'name' => Yii::t('location-model', 'Name'),
-            'abbreviation' => Yii::t('location-model', 'Abbreviation'),
+            'id' => Yii::t('modules/location/model', 'ID'),
+            'type_id' => Yii::t('modules/location/model', 'Type'),
+            'language' => Yii::t('modules/location/model', 'Language'),
+            'name' => Yii::t('modules/location/model', 'Name'),
+            'abbreviation' => Yii::t('modules/location/model', 'Abbreviation'),
         ]);
     }
 
