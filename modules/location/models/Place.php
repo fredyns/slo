@@ -27,6 +27,7 @@ use yii\behaviors\BlameableBehavior;
  * @property \app\modules\location\models\Place[] $sublocations
  * @property \app\modules\location\models\Type $type
  * @property \app\modules\location\models\SublocationCounter[] $sublocationCounters
+ * @property \app\modules\location\models\PlaceLang[] $translations
  * @property string $aliasModel
  */
 class Place extends \yii\db\ActiveRecord
