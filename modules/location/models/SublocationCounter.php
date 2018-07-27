@@ -3,6 +3,7 @@
 namespace app\modules\location\models;
 
 use Yii;
+use app\modules\location\Module;
 
 /**
  * This is the base-model class for table "location_sublocation_counter".
@@ -35,9 +36,9 @@ class SublocationCounter extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Yii::t('modules/location/model', 'Sublocation').' '.Yii::t('modules/location/model', 'Counters');
+            return Module::t('model', 'Sublocation').' '.Module::t('model', 'Counters');
         } else{
-            return Yii::t('modules/location/model', 'Sublocation').' '.Yii::t('modules/location/model', 'Counter');
+            return Module::t('model', 'Sublocation').' '.Module::t('model', 'Counter');
         }
     }
 
@@ -59,10 +60,10 @@ class SublocationCounter extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'place_id' => Yii::t('modules/location/model', 'Place'),
-            'type_id' => Yii::t('modules/location/model', 'Type'),
-            'quantity' => Yii::t('modules/location/model', 'Quantity'),
+            'id' => Module::t('model', 'ID'),
+            'place_id' => Module::t('model', 'Place'),
+            'type_id' => Module::t('model', 'Type'),
+            'quantity' => Module::t('model', 'Quantity'),
         ];
     }
 
@@ -73,10 +74,10 @@ class SublocationCounter extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'place_id' => Yii::t('modules/location/model', 'Place'),
-            'type_id' => Yii::t('modules/location/model', 'Type'),
-            'quantity' => Yii::t('modules/location/model', 'Quantity'),
+            'id' => Module::t('model', 'ID'),
+            'place_id' => Module::t('model', 'Place'),
+            'type_id' => Module::t('model', 'Type'),
+            'quantity' => Module::t('model', 'Quantity'),
         ]);
     }
 

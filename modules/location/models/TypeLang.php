@@ -3,6 +3,7 @@
 namespace app\modules\location\models;
 
 use Yii;
+use app\modules\location\Module;
 
 /**
  * This is the base-model class for table "location_type_lang".
@@ -35,9 +36,9 @@ class TypeLang extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Yii::t('modules/location/model', 'Type').' '.Yii::t('modules/location/model', 'Langs');
+            return Module::t('model', 'Type').' '.Module::t('model', 'Langs');
         } else{
-            return Yii::t('modules/location/model', 'Type').' '.Yii::t('modules/location/model', 'Lang');
+            return Module::t('model', 'Type').' '.Module::t('model', 'Lang');
         }
     }
 
@@ -61,11 +62,11 @@ class TypeLang extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'type_id' => Yii::t('modules/location/model', 'Type'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
-            'abbreviation' => Yii::t('modules/location/model', 'Abbreviation'),
+            'id' => Module::t('model', 'ID'),
+            'type_id' => Module::t('model', 'Type'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
+            'abbreviation' => Module::t('model', 'Abbreviation'),
         ];
     }
 
@@ -76,11 +77,11 @@ class TypeLang extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'type_id' => Yii::t('modules/location/model', 'Type'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
-            'abbreviation' => Yii::t('modules/location/model', 'Abbreviation'),
+            'id' => Module::t('model', 'ID'),
+            'type_id' => Module::t('model', 'Type'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
+            'abbreviation' => Module::t('model', 'Abbreviation'),
         ]);
     }
 

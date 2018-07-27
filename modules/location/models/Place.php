@@ -6,6 +6,7 @@ use Yii;
 use dosamigos\translateable\TranslateableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use app\modules\location\Module;
 
 /**
  * This is the base-model class for table "location_place".
@@ -49,9 +50,9 @@ class Place extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Yii::t('modules/location/model', 'Places');
+            return Module::t('model', 'Places');
         } else{
-            return Yii::t('modules/location/model', 'Place');
+            return Module::t('model', 'Place');
         }
     }
 
@@ -104,17 +105,17 @@ class Place extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'type_id' => Yii::t('modules/location/model', 'Type'),
-            'sublocation_of' => Yii::t('modules/location/model', 'Sublocation Of'),
-            'latitude' => Yii::t('modules/location/model', 'Latitude'),
-            'longitude' => Yii::t('modules/location/model', 'Longitude'),
-            'created_at' => Yii::t('modules/location/model', 'Created At'),
-            'created_by' => Yii::t('modules/location/model', 'Created By'),
-            'updated_at' => Yii::t('modules/location/model', 'Updated At'),
-            'updated_by' => Yii::t('modules/location/model', 'Updated By'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
+            'id' => Module::t('model', 'ID'),
+            'type_id' => Module::t('model', 'Type'),
+            'sublocation_of' => Module::t('model', 'Sublocation Of'),
+            'latitude' => Module::t('model', 'Latitude'),
+            'longitude' => Module::t('model', 'Longitude'),
+            'created_at' => Module::t('model', 'Created At'),
+            'created_by' => Module::t('model', 'Created By'),
+            'updated_at' => Module::t('model', 'Updated At'),
+            'updated_by' => Module::t('model', 'Updated By'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
         ];
     }
 
@@ -125,17 +126,17 @@ class Place extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'type_id' => Yii::t('modules/location/model', 'Type'),
-            'sublocation_of' => Yii::t('modules/location/model', 'Sublocation Of'),
-            'latitude' => Yii::t('modules/location/model', 'Latitude'),
-            'longitude' => Yii::t('modules/location/model', 'Longitude'),
-            'created_at' => Yii::t('modules/location/model', 'Created At'),
-            'created_by' => Yii::t('modules/location/model', 'Created By'),
-            'updated_at' => Yii::t('modules/location/model', 'Updated At'),
-            'updated_by' => Yii::t('modules/location/model', 'Updated By'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
+            'id' => Module::t('model', 'ID'),
+            'type_id' => Module::t('model', 'Type'),
+            'sublocation_of' => Module::t('model', 'Sublocation Of'),
+            'latitude' => Module::t('model', 'Latitude'),
+            'longitude' => Module::t('model', 'Longitude'),
+            'created_at' => Module::t('model', 'Created At'),
+            'created_by' => Module::t('model', 'Created By'),
+            'updated_at' => Module::t('model', 'Updated At'),
+            'updated_by' => Module::t('model', 'Updated By'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
         ]);
     }
 

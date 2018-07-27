@@ -3,6 +3,7 @@
 namespace app\modules\location\models;
 
 use Yii;
+use app\modules\location\Module;
 
 /**
  * This is the base-model class for table "location_place_lang".
@@ -34,9 +35,9 @@ class PlaceLang extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Yii::t('modules/location/model', 'Place').' '.Yii::t('modules/location/model', 'Langs');
+            return Module::t('model', 'Place').' '.Module::t('model', 'Langs');
         } else{
-            return Yii::t('modules/location/model', 'Place').' '.Yii::t('modules/location/model', 'Lang');
+            return Module::t('model', 'Place').' '.Module::t('model', 'Lang');
         }
     }
 
@@ -59,10 +60,10 @@ class PlaceLang extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'place_id' => Yii::t('modules/location/model', 'Place'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
+            'id' => Module::t('model', 'ID'),
+            'place_id' => Module::t('model', 'Place'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
         ];
     }
 
@@ -73,10 +74,10 @@ class PlaceLang extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'place_id' => Yii::t('modules/location/model', 'Place'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
+            'id' => Module::t('model', 'ID'),
+            'place_id' => Module::t('model', 'Place'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
         ]);
     }
 

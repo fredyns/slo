@@ -6,6 +6,7 @@ use Yii;
 use dosamigos\translateable\TranslateableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use app\modules\location\Module;
 
 /**
  * This is the base-model class for table "location_type".
@@ -43,9 +44,9 @@ class Type extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Yii::t('modules/location/model', 'Types');
+            return Module::t('model', 'Types');
         } else{
-            return Yii::t('modules/location/model', 'Type');
+            return Module::t('model', 'Type');
         }
     }
 
@@ -96,14 +97,14 @@ class Type extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'created_at' => Yii::t('modules/location/model', 'Created At'),
-            'created_by' => Yii::t('modules/location/model', 'Created By'),
-            'updated_at' => Yii::t('modules/location/model', 'Updated At'),
-            'updated_by' => Yii::t('modules/location/model', 'Updated By'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
-            'abbreviation' => Yii::t('modules/location/model', 'Abbreviation'),
+            'id' => Module::t('model', 'ID'),
+            'created_at' => Module::t('model', 'Created At'),
+            'created_by' => Module::t('model', 'Created By'),
+            'updated_at' => Module::t('model', 'Updated At'),
+            'updated_by' => Module::t('model', 'Updated By'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
+            'abbreviation' => Module::t('model', 'Abbreviation'),
         ];
     }
 
@@ -114,14 +115,14 @@ class Type extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Yii::t('modules/location/model', 'ID'),
-            'created_at' => Yii::t('modules/location/model', 'Created At'),
-            'created_by' => Yii::t('modules/location/model', 'Created By'),
-            'updated_at' => Yii::t('modules/location/model', 'Updated At'),
-            'updated_by' => Yii::t('modules/location/model', 'Updated By'),
-            'language' => Yii::t('modules/location/model', 'Language'),
-            'name' => Yii::t('modules/location/model', 'Name'),
-            'abbreviation' => Yii::t('modules/location/model', 'Abbreviation'),
+            'id' => Module::t('model', 'ID'),
+            'created_at' => Module::t('model', 'Created At'),
+            'created_by' => Module::t('model', 'Created By'),
+            'updated_at' => Module::t('model', 'Updated At'),
+            'updated_by' => Module::t('model', 'Updated By'),
+            'language' => Module::t('model', 'Language'),
+            'name' => Module::t('model', 'Name'),
+            'abbreviation' => Module::t('model', 'Abbreviation'),
         ]);
     }
 
