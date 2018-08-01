@@ -13,6 +13,7 @@ use app\modules\location\Module;
  *
  * @property string $id
  * @property integer $type_id
+ * @property string $search_name
  * @property string $sublocation_of
  * @property double $latitude
  * @property double $longitude
@@ -95,6 +96,7 @@ class Place extends \yii\db\ActiveRecord
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
             [['language'], 'string', 'max' => 16],
             [['name'], 'string', 'max' => 1024],
+            [['search_name'], 'string'],
             ['language', 'in', 'range' => (array) ResourceBundle::getLocales('')],
         ];
     }
@@ -107,6 +109,7 @@ class Place extends \yii\db\ActiveRecord
         return [
             'id' => Module::t('model', 'ID'),
             'type_id' => Module::t('model', 'Type'),
+            'search_name' => Module::t('model', 'Search Name'),
             'sublocation_of' => Module::t('model', 'Sublocation Of'),
             'latitude' => Module::t('model', 'Latitude'),
             'longitude' => Module::t('model', 'Longitude'),
