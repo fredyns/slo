@@ -123,27 +123,6 @@ class Place extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
-     */
-    public function attributeHints()
-    {
-        return array_merge(
-            parent::attributeHints(), [
-            'id' => Module::t('model', 'ID'),
-            'type_id' => Module::t('model', 'Type'),
-            'sublocation_of' => Module::t('model', 'Sublocation Of'),
-            'latitude' => Module::t('model', 'Latitude'),
-            'longitude' => Module::t('model', 'Longitude'),
-            'created_at' => Module::t('model', 'Created At'),
-            'created_by' => Module::t('model', 'Created By'),
-            'updated_at' => Module::t('model', 'Updated At'),
-            'updated_by' => Module::t('model', 'Updated By'),
-            'language' => Module::t('model', 'Language'),
-            'name' => Module::t('model', 'Name'),
-        ]);
-    }
-
-    /**
      * @return \yii\db\ActiveQuery
      */
     public function getSublocationOf()
