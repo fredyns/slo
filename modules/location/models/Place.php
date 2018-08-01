@@ -7,6 +7,7 @@ use dosamigos\translateable\TranslateableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use app\modules\location\Module;
+use mootensai\behaviors\UUIDBehavior;
 
 /**
  * This is the base-model class for table "location_place".
@@ -34,6 +35,7 @@ use app\modules\location\Module;
  */
 class Place extends \yii\db\ActiveRecord
 {
+    use \mootensai\relation\RelationTrait;
 
     /**
      * @inheritdoc
@@ -41,6 +43,17 @@ class Place extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%location_place}}';
+    }
+
+    /**
+     * 
+     * @return string
+     * overwrite function optimisticLock
+     * return string name of field are used to stored optimistic lock 
+     * 
+     */
+    public function optimisticLock() {
+        return 'lock';
     }
 
     /**
@@ -80,6 +93,10 @@ class Place extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
+            ],
+            'uuid' => [
+                'class' => UUIDBehavior::className(),
+                'column' => 'id',
             ],
         ];
     }
