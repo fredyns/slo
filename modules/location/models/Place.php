@@ -3,11 +3,9 @@
 namespace app\modules\location\models;
 
 use Yii;
-use dosamigos\translateable\TranslateableBehavior;
-use yii\behaviors\TimestampBehavior;
-use yii\behaviors\BlameableBehavior;
+use yii\helpers\ArrayHelper;
 use app\modules\location\Module;
-use mootensai\behaviors\UUIDBehavior;
+use app\modules\location\models\base\Place as BasePlace;
 
 /**
  * This is the base-model class for table "location_place".
@@ -33,9 +31,8 @@ use mootensai\behaviors\UUIDBehavior;
  * @property \app\modules\location\models\PlaceLang[] $translations
  * @property string $aliasModel
  */
-class Place extends \yii\db\ActiveRecord
+class Place extends BasePlace
 {
-    use \mootensai\relation\RelationTrait;
 
     /**
      * @inheritdoc
@@ -43,17 +40,6 @@ class Place extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%location_place}}';
-    }
-
-    /**
-     * 
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock 
-     * 
-     */
-    public function optimisticLock() {
-        return 'lock';
     }
 
     /**
@@ -73,37 +59,6 @@ class Place extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'translatable' => [
-                'class' => TranslateableBehavior::className(),
-                // in case you renamed your relation, you can setup its name
-                // 'relation' => 'translations',
-                'translationAttributes' => [
-                    'name'
-                ]
-            ],
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-            'uuid' => [
-                'class' => UUIDBehavior::className(),
-                'column' => 'id',
-            ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -114,7 +69,7 @@ class Place extends \yii\db\ActiveRecord
             [['language'], 'string', 'max' => 16],
             [['name'], 'string', 'max' => 1024],
             [['search_name'], 'string'],
-            ['language', 'in', 'range' => (array) ResourceBundle::getLocales('')],
+            ['language', 'in', 'range' => (array) \ResourceBundle::getLocales('')],
         ];
     }
 
@@ -124,6 +79,7 @@ class Place extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            // native
             'id' => Module::t('model', 'ID'),
             'type_id' => Module::t('model', 'Type'),
             'search_name' => Module::t('model', 'Search Name'),
@@ -135,6 +91,7 @@ class Place extends \yii\db\ActiveRecord
             'updated_at' => Module::t('model', 'Updated At'),
             'updated_by' => Module::t('model', 'Updated By'),
             'language' => Module::t('model', 'Language'),
+            // translatable
             'name' => Module::t('model', 'Name'),
         ];
     }

@@ -3,7 +3,9 @@
 namespace app\modules\location\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use app\modules\location\Module;
+use app\modules\location\models\base\TypeLang as BaseTypeLang;
 
 /**
  * This is the base-model class for table "location_type_lang".
@@ -17,7 +19,7 @@ use app\modules\location\Module;
  * @property \app\modules\location\models\Type $type
  * @property string $aliasModel
  */
-class TypeLang extends \yii\db\ActiveRecord
+class TypeLang extends BaseTypeLang
 {
 
     /**
@@ -68,21 +70,6 @@ class TypeLang extends \yii\db\ActiveRecord
             'name' => Module::t('model', 'Name'),
             'abbreviation' => Module::t('model', 'Abbreviation'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeHints()
-    {
-        return array_merge(
-            parent::attributeHints(), [
-            'id' => Module::t('model', 'ID'),
-            'type_id' => Module::t('model', 'Type'),
-            'language' => Module::t('model', 'Language'),
-            'name' => Module::t('model', 'Name'),
-            'abbreviation' => Module::t('model', 'Abbreviation'),
-        ]);
     }
 
     /**

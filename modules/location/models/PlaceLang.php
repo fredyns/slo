@@ -3,7 +3,10 @@
 namespace app\modules\location\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use app\modules\location\Module;
+use app\modules\location\models\base\PlaceLang as BasePlaceLang;
+
 
 /**
  * This is the base-model class for table "location_place_lang".
@@ -16,7 +19,7 @@ use app\modules\location\Module;
  * @property \app\modules\location\models\Place $place
  * @property string $aliasModel
  */
-class PlaceLang extends \yii\db\ActiveRecord
+class PlaceLang extends BasePlaceLang
 {
 
     /**
@@ -65,20 +68,6 @@ class PlaceLang extends \yii\db\ActiveRecord
             'language' => Module::t('model', 'Language'),
             'name' => Module::t('model', 'Name'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeHints()
-    {
-        return array_merge(
-            parent::attributeHints(), [
-            'id' => Module::t('model', 'ID'),
-            'place_id' => Module::t('model', 'Place'),
-            'language' => Module::t('model', 'Language'),
-            'name' => Module::t('model', 'Name'),
-        ]);
     }
 
     /**

@@ -3,10 +3,9 @@
 namespace app\modules\location\models;
 
 use Yii;
-use dosamigos\translateable\TranslateableBehavior;
-use yii\behaviors\TimestampBehavior;
-use yii\behaviors\BlameableBehavior;
+use yii\helpers\ArrayHelper;
 use app\modules\location\Module;
+use app\modules\location\models\base\Type as BaseType;
 
 /**
  * This is the base-model class for table "location_type".
@@ -21,11 +20,11 @@ use app\modules\location\Module;
  * @property string $name
  * @property string $abbreviation
  *
- * @property \app\modules\location\models\Place[] $locationPlaces
- * @property \app\modules\location\models\SublocationCounter[] $locationSublocationCounters
+ * @property \app\modules\location\models\Place[] $places
+ * @property \app\modules\location\models\SublocationCounter[] $sublocationCounters
  * @property string $aliasModel
  */
-class Type extends \yii\db\ActiveRecord
+class Type extends BaseType
 {
 
     /**
@@ -53,41 +52,13 @@ class Type extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'translatable' => [
-                'class' => TranslateableBehavior::className(),
-                // in case you renamed your relation, you can setup its name
-                // 'relation' => 'translations',
-                'translationAttributes' => [
-                    'name',
-                    'abbreviation'
-                ],
-            ],
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [['language'], 'string', 'max' => 16],
             [['name'], 'string', 'max' => 1024],
             [['abbreviation'], 'string', 'max' => 32],
-            ['language', 'in', 'range' => (array) ResourceBundle::getLocales('')],
+            ['language', 'in', 'range' => (array) \ResourceBundle::getLocales('')],
         ];
     }
 
@@ -97,33 +68,17 @@ class Type extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            // native
             'id' => Module::t('model', 'ID'),
             'created_at' => Module::t('model', 'Created At'),
             'created_by' => Module::t('model', 'Created By'),
             'updated_at' => Module::t('model', 'Updated At'),
             'updated_by' => Module::t('model', 'Updated By'),
+            // translatable
             'language' => Module::t('model', 'Language'),
             'name' => Module::t('model', 'Name'),
             'abbreviation' => Module::t('model', 'Abbreviation'),
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeHints()
-    {
-        return array_merge(
-            parent::attributeHints(), [
-            'id' => Module::t('model', 'ID'),
-            'created_at' => Module::t('model', 'Created At'),
-            'created_by' => Module::t('model', 'Created By'),
-            'updated_at' => Module::t('model', 'Updated At'),
-            'updated_by' => Module::t('model', 'Updated By'),
-            'language' => Module::t('model', 'Language'),
-            'name' => Module::t('model', 'Name'),
-            'abbreviation' => Module::t('model', 'Abbreviation'),
-        ]);
     }
 
     /**
@@ -148,6 +103,30 @@ class Type extends \yii\db\ActiveRecord
     public function getTranslations()
     {
         return $this->hasMany(\app\modules\location\models\TypeLang::className(), ['type_id' => 'id']);
+    }
+
+    /**
+     * get type options
+     * 
+     * @param array $condition
+     * @param string|array $order
+     * @return array
+     */
+    public static function asOptions($condition = null, $order = null)
+    {
+        $query = static::find()->with('translations');
+
+        if ($condition) {
+            $query->where($condition);
+        }
+
+        if ($order) {
+            $query->orderBy($order);
+        }
+
+        $items = $query->all();
+
+        return ArrayHelper::map($items, 'id', 'name');
     }
 
 }
