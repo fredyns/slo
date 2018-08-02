@@ -15,29 +15,6 @@ class Module extends \yii\base\Module
     public $controllerNamespace = 'app\modules\location\controllers';
 
     /**
-     * {@inheritdoc}
-     */
-    public function init()
-    {
-        parent::init();
-
-        // custom initialization code goes here
-        $this->registerTranslations();
-    }
-
-    public function registerTranslations()
-    {
-        Yii::$app->i18n->translations['modules/location/models'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@app/modules/location/messages',
-        ];
-        Yii::$app->i18n->translations['modules/location/cruds'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@app/modules/location/messages',
-        ];
-    }
-
-    /**
      * Translates a message to the specified language.
      *
      * This is a shortcut method of [[\yii\i18n\I18N::translate()]].
