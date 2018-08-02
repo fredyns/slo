@@ -38,9 +38,9 @@ class PlaceLang extends BasePlaceLang
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Module::t('models', 'Place').' '.Module::t('models', 'Langs');
+            return Module::t('models', 'Place').' '.Module::t('models', 'Translations');
         } else{
-            return Module::t('models', 'Place').' '.Module::t('models', 'Lang');
+            return Module::t('models', 'Place').' '.Module::t('models', 'Translation');
         }
     }
 

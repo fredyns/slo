@@ -38,9 +38,9 @@ class TypeLang extends BaseTypeLang
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Module::t('models', 'Type').' '.Module::t('models', 'Langs');
+            return Module::t('models', 'Type').' '.Module::t('models', 'Translations');
         } else{
-            return Module::t('models', 'Type').' '.Module::t('models', 'Lang');
+            return Module::t('models', 'Type').' '.Module::t('models', 'Translation');
         }
     }
 
