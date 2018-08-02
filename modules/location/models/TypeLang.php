@@ -38,9 +38,9 @@ class TypeLang extends BaseTypeLang
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Module::t('model', 'Type').' '.Module::t('model', 'Langs');
+            return Module::t('models', 'Type').' '.Module::t('models', 'Langs');
         } else{
-            return Module::t('model', 'Type').' '.Module::t('model', 'Lang');
+            return Module::t('models', 'Type').' '.Module::t('models', 'Lang');
         }
     }
 
@@ -64,11 +64,11 @@ class TypeLang extends BaseTypeLang
     public function attributeLabels()
     {
         return [
-            'id' => Module::t('model', 'ID'),
-            'type_id' => Module::t('model', 'Type'),
-            'language' => Module::t('model', 'Language'),
-            'name' => Module::t('model', 'Name'),
-            'abbreviation' => Module::t('model', 'Abbreviation'),
+            'id' => Module::t('models', 'ID'),
+            'type_id' => Module::t('models', 'Type'),
+            'language' => Module::t('models', 'Language'),
+            'name' => Module::t('models', 'Name'),
+            'abbreviation' => Module::t('models', 'Abbreviation'),
         ];
     }
 

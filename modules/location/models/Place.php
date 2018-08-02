@@ -50,9 +50,9 @@ class Place extends BasePlace
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Module::t('model', 'Places');
+            return Module::t('models', 'Places');
         } else{
-            return Module::t('model', 'Place');
+            return Module::t('models', 'Place');
         }
     }
 
@@ -80,19 +80,19 @@ class Place extends BasePlace
     {
         return [
             // native
-            'id' => Module::t('model', 'ID'),
-            'type_id' => Module::t('model', 'Type'),
-            'search_name' => Module::t('model', 'Search Name'),
-            'sublocation_of' => Module::t('model', 'Sublocation Of'),
-            'latitude' => Module::t('model', 'Latitude'),
-            'longitude' => Module::t('model', 'Longitude'),
-            'created_at' => Module::t('model', 'Created At'),
-            'created_by' => Module::t('model', 'Created By'),
-            'updated_at' => Module::t('model', 'Updated At'),
-            'updated_by' => Module::t('model', 'Updated By'),
-            'language' => Module::t('model', 'Language'),
+            'id' => Module::t('models', 'ID'),
+            'type_id' => Module::t('models', 'Type'),
+            'search_name' => Module::t('models', 'Search Name'),
+            'sublocation_of' => Module::t('models', 'Sublocation Of'),
+            'latitude' => Module::t('models', 'Latitude'),
+            'longitude' => Module::t('models', 'Longitude'),
+            'created_at' => Module::t('models', 'Created At'),
+            'created_by' => Module::t('models', 'Created By'),
+            'updated_at' => Module::t('models', 'Updated At'),
+            'updated_by' => Module::t('models', 'Updated By'),
+            'language' => Module::t('models', 'Language'),
             // translatable
-            'name' => Module::t('model', 'Name'),
+            'name' => Module::t('models', 'Name'),
         ];
     }
 

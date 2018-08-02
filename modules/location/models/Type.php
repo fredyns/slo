@@ -43,9 +43,9 @@ class Type extends BaseType
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Module::t('model', 'Types');
+            return Module::t('models', 'Types');
         } else{
-            return Module::t('model', 'Type');
+            return Module::t('models', 'Type');
         }
     }
 
@@ -69,15 +69,15 @@ class Type extends BaseType
     {
         return [
             // native
-            'id' => Module::t('model', 'ID'),
-            'created_at' => Module::t('model', 'Created At'),
-            'created_by' => Module::t('model', 'Created By'),
-            'updated_at' => Module::t('model', 'Updated At'),
-            'updated_by' => Module::t('model', 'Updated By'),
+            'id' => Module::t('models', 'ID'),
+            'created_at' => Module::t('models', 'Created At'),
+            'created_by' => Module::t('models', 'Created By'),
+            'updated_at' => Module::t('models', 'Updated At'),
+            'updated_by' => Module::t('models', 'Updated By'),
             // translatable
-            'language' => Module::t('model', 'Language'),
-            'name' => Module::t('model', 'Name'),
-            'abbreviation' => Module::t('model', 'Abbreviation'),
+            'language' => Module::t('models', 'Language'),
+            'name' => Module::t('models', 'Name'),
+            'abbreviation' => Module::t('models', 'Abbreviation'),
         ];
     }
 

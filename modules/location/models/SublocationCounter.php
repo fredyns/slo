@@ -36,9 +36,9 @@ class SublocationCounter extends \yii\db\ActiveRecord
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Module::t('model', 'Sublocation').' '.Module::t('model', 'Counters');
+            return Module::t('models', 'Sublocation').' '.Module::t('models', 'Counters');
         } else{
-            return Module::t('model', 'Sublocation').' '.Module::t('model', 'Counter');
+            return Module::t('models', 'Sublocation').' '.Module::t('models', 'Counter');
         }
     }
 
@@ -60,10 +60,10 @@ class SublocationCounter extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Module::t('model', 'ID'),
-            'place_id' => Module::t('model', 'Place'),
-            'type_id' => Module::t('model', 'Type'),
-            'quantity' => Module::t('model', 'Quantity'),
+            'id' => Module::t('models', 'ID'),
+            'place_id' => Module::t('models', 'Place'),
+            'type_id' => Module::t('models', 'Type'),
+            'quantity' => Module::t('models', 'Quantity'),
         ];
     }
 
@@ -74,10 +74,10 @@ class SublocationCounter extends \yii\db\ActiveRecord
     {
         return array_merge(
             parent::attributeHints(), [
-            'id' => Module::t('model', 'ID'),
-            'place_id' => Module::t('model', 'Place'),
-            'type_id' => Module::t('model', 'Type'),
-            'quantity' => Module::t('model', 'Quantity'),
+            'id' => Module::t('models', 'ID'),
+            'place_id' => Module::t('models', 'Place'),
+            'type_id' => Module::t('models', 'Type'),
+            'quantity' => Module::t('models', 'Quantity'),
         ]);
     }
 

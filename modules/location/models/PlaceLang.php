@@ -38,9 +38,9 @@ class PlaceLang extends BasePlaceLang
     public function getAliasModel($plural = false)
     {
         if ($plural){
-            return Module::t('model', 'Place').' '.Module::t('model', 'Langs');
+            return Module::t('models', 'Place').' '.Module::t('models', 'Langs');
         } else{
-            return Module::t('model', 'Place').' '.Module::t('model', 'Lang');
+            return Module::t('models', 'Place').' '.Module::t('models', 'Lang');
         }
     }
 
@@ -63,10 +63,10 @@ class PlaceLang extends BasePlaceLang
     public function attributeLabels()
     {
         return [
-            'id' => Module::t('model', 'ID'),
-            'place_id' => Module::t('model', 'Place'),
-            'language' => Module::t('model', 'Language'),
-            'name' => Module::t('model', 'Name'),
+            'id' => Module::t('models', 'ID'),
+            'place_id' => Module::t('models', 'Place'),
+            'language' => Module::t('models', 'Language'),
+            'name' => Module::t('models', 'Name'),
         ];
     }
 
