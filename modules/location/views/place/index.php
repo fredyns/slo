@@ -44,6 +44,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <hr />
 
+    <?php
+    \yii\widgets\Pjax::begin([
+        'id' => 'pjax-main',
+        'enableReplaceState' => false,
+        'linkSelector' => '#pjax-main ul.pagination a, th a',
+        'clientOptions' => ['pjax:success' => 'function(){alert("yo")}'],
+    ])
+    ?>
+
     <?=
     ListView::widget([
         'dataProvider' => $dataProvider,
@@ -53,5 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
         },
     ]);
     ?>
+
+    <?php \yii\widgets\Pjax::end() ?>
 
 </div>
