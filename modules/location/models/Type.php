@@ -55,10 +55,8 @@ class Type extends BaseType
     public function rules()
     {
         return [
-            [['language'], 'string', 'max' => 16],
             [['name'], 'string', 'max' => 1024],
             [['abbreviation'], 'string', 'max' => 32],
-            ['language', 'in', 'range' => (array) \ResourceBundle::getLocales('')],
         ];
     }
 

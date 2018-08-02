@@ -66,10 +66,8 @@ class Place extends BasePlace
             [['latitude', 'longitude'], 'number'],
             [['sublocation_of'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['sublocation_of' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
-            [['language'], 'string', 'max' => 16],
             [['name'], 'string', 'max' => 1024],
             [['search_name'], 'string'],
-            ['language', 'in', 'range' => (array) \ResourceBundle::getLocales('')],
         ];
     }
 
