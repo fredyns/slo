@@ -12,6 +12,14 @@ use app\modules\location\Module;
 $this->title = $searchModel->getAliasModel(TRUE);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<style>
+    .item {
+        margin: 10px 15px;
+        font-size: 1.2em;
+    }
+</style>
+
 <div class="giiant-crud place-index">
 
     <h1>
@@ -41,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
+            return '<span class="glyphicon glyphicon-chevron-right"></span> '.Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
         },
     ]);
     ?>
