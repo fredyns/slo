@@ -139,7 +139,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
                 [
                     'content' => $this->blocks['Translations'],
                     'label' => '<small>'.Module::t('models', 'Translations').' <span class="badge badge-default">'.$model->getTranslations()->count().'</span></small>',
-                    'active' => false,
+                    'active' => true,
                 ],
             ]
         ]
