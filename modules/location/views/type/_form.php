@@ -48,7 +48,6 @@ use app\modules\location\models\Type;
 
         <?php echo $form->errorSummary($model); ?>
 
-        <!-- display label for attribute sublocation_of -->
         <div class="form-group field-type-submit">
             <label class="control-label col-sm-2" for="save-type">&nbsp;</label>
             <div class="col-sm-8">
