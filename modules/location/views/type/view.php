@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
         <div class='pull-right'>
             <?php
             $_label = '<span class="glyphicon glyphicon-plus"></span>'.Module::t('cruds', 'New').' '.Module::t('app', 'Translation');
-            $_url = ['location/type-lang/create', 'TypeLang' => ['type_id' => $model->id]];
+            $_url = ['type-lang/create', 'TypeLang' => ['type_id' => $model->id]];
 
             echo Html::a($_label, $_url, ['class' => 'btn btn-success btn-xs']);
             ?>
