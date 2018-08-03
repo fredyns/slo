@@ -6,6 +6,7 @@ use yii\bootstrap\ActiveForm;
 use \dmstr\bootstrap\Tabs;
 use yii\helpers\StringHelper;
 use app\modules\location\Module;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\location\models\TypeLang */
@@ -59,7 +60,23 @@ use app\modules\location\Module;
         </div>
 
         <!-- attribute language -->
-        <?= $form->field($model, 'language')->textInput(['maxlength' => true]) ?>
+        <?=
+            $form
+            ->field($model, 'language')
+            ->widget(Select2::classname(), [
+                'data' => [
+                    'en-US' => 'English - US.',
+                    'id-ID' => 'Indonesia',
+                ],
+                'options' => [
+                    'placeholder' => Module::t('app', 'Select'),
+                ],
+                'pluginOptions' => [
+                    'allowClear' => false,
+                    'tags' => true,
+                ],
+        ]);
+        ?>
 
         <!-- attribute name -->
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
