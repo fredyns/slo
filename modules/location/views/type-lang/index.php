@@ -61,8 +61,8 @@ $actionColumnTemplateString = '<div class="action-buttons">{view} {update} {dele
                     'buttons' => [
                         'view' => function ($url, $model, $key) {
                             $options = [
-                                'title' => Yii::t('cruds', 'View'),
-                                'aria-label' => Yii::t('cruds', 'View'),
+                                'title' => Module::t('cruds', 'View'),
+                                'aria-label' => Module::t('cruds', 'View'),
                                 'data-pjax' => '0',
                             ];
                             return Html::a('<span class="glyphicon glyphicon-file"></span>', $url, $options);
