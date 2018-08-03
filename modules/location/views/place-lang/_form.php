@@ -38,7 +38,7 @@ use kartik\select2\Select2;
     <div class="">
 
         <!-- attribute place_id -->
-        <?= $form->field($model, 'place_id')->textInput()->label('Place ID') ?>
+        <?= $form->field($model, 'place_id')->textInput(['readonly' => "readonly"])->label('Place ID') ?>
 
         <!-- current label for attribute place_id -->
         <div class="form-group field-place-label">

@@ -38,7 +38,7 @@ use kartik\select2\Select2;
     <div class="">
 
         <!-- attribute type_id -->
-        <?= $form->field($model, 'type_id')->textInput()->label('Type ID') ?>
+        <?= $form->field($model, 'type_id')->textInput(['readonly' => "readonly"])->label('Type ID') ?>
 
         <!-- current label for attribute type_id -->
         <div class="form-group field-type-label">
