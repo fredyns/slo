@@ -4,6 +4,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use dmstr\bootstrap\Tabs;
+use kartik\select2\Select2;
 use yii\helpers\StringHelper;
 use app\modules\location\Module;
 use app\modules\location\models\Type;
@@ -50,11 +51,18 @@ use app\modules\location\models\Type;
 
         <!-- attribute type_id -->
         <?=
-        $form->field($model, 'type_id')->dropDownList(
-            Type::asOptions(), [
-            'prompt' => Module::t('cruds', 'Select'),
-            ]
-        );
+            $form
+            ->field($model, 'type_id')
+            ->widget(Select2::classname(), [
+                'data' => Type::asOptions(),
+                'options' => [
+                    'placeholder' => Module::t('app', 'Select'),
+                ],
+                'pluginOptions' => [
+                    'allowClear' => false,
+                    'tags' => true,
+                ],
+        ]);
         ?>
 
         <!-- display label for attribute sublocation_of -->

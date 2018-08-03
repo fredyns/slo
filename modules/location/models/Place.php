@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use app\modules\location\Module;
 use app\modules\location\models\base\Place as BasePlace;
+use app\modules\location\behaviors\PlaceTypeBehavior;
 
 /**
  * This is the base-model class for table "location_place".
@@ -59,15 +60,59 @@ class Place extends BasePlace
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        $parent = parent::behaviors();
+        $addition = [
+            /* automatically add new place type */
+            'place_type' => [
+                'class' => PlaceTypeBehavior::className(),
+            ],
+        ];
+        return ArrayHelper::merge($parent, $addition);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['type_id', 'sublocation_of'], 'integer'],
+            /* filter */
+            /* defaults */
+            /* required */
+            [['name'], 'required'],
+            /* safe */
+            /* type */
+            [['sublocation_of'], 'integer'],
+            [['type_id'], 'string', 'max' => 1024],
             [['latitude', 'longitude'], 'number'],
-            [['sublocation_of'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['sublocation_of' => 'id']],
-            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']],
             [['name'], 'string', 'max' => 1024],
-            [['search_name'], 'string'],
+            /* limitations */
+            /* references */
+            [
+                ['type_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Type::className(),
+                'targetAttribute' => ['type_id' => 'id'],
+                'when' => function ($model, $attribute) {
+                    return (is_numeric($model->$attribute));
+                },
+                'whenClient' => '
+                    function (attribute, value) {
+                        type_value = $(\'#'.$this->formName().'-type_id\').val();
+
+                        return (type_value && isNaN(type_value));
+                    }',
+            ],
+            [
+                ['sublocation_of'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Place::className(),
+                'targetAttribute' => ['sublocation_of' => 'id'],
+            ],
         ];
     }
 
