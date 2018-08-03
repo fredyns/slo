@@ -17,9 +17,22 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Translation' => 'Terjemah',
-    'Type any place' => 'Ketik suatu tempat',
+    'Are you sure to delete this item?' => 'Apakah Anda yakin hendak menghapus item ini?',
+    'Cancel' => 'Batal',
+    'Create' => 'Tambah',
+    'Delete' => 'Hapus',
+    'Edit' => 'Ubah',
+    'First' => 'Pertama',
+    'Full list' => 'Semua data',
+    'Last' => 'Terakhir',
+    'New' => 'Baru',
+    'New Place' => 'Tempat Baru',
+    'New Place Translation' => 'Terjemahan-Tempat Baru',
+    'New Type' => 'Tipe Baru',
+    'New Type Translation' => 'Terjemahan-Tipe Baru',
+    'Reset' => 'Reset',
+    'Save' => 'Simpan',
     'Search' => 'Cari',
     'Select' => 'Pilih',
-    'Sublocation' => 'Sublokasi',
+    'View' => 'Lihat',
 ];
