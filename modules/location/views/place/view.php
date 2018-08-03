@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
         <div class='pull-right'>
             <?php
             $_label = '<span class="glyphicon glyphicon-plus"></span>'.Module::t('cruds', 'New').' '.Module::t('app', 'Sublocation');
-            $_url = ['location/place/create', 'Place' => ['sublocation_of' => $model->id]];
+            $_url = ['place/create', 'Place' => ['sublocation_of' => $model->id]];
 
             echo Html::a($_label, $_url, ['class' => 'btn btn-success btn-xs']);
             ?>
@@ -136,12 +136,12 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
                 'urlCreator' => function ($action, $model, $key, $index) {
                     // using the column name as key, not mapping to 'id' like the standard generator
                     $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
-                    $params[0] = 'location/place'.'/'.$action;
+                    $params[0] = 'place'.'/'.$action;
                     $params['Place'] = ['sublocation_of' => $model->primaryKey()[0]];
                     return $params;
                 },
                 'buttons' => [],
-                'controller' => 'location/place'
+                'controller' => 'place'
             ],
         ]
     ])
@@ -192,7 +192,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
         <div class='pull-right'>
             <?php
             $_label = '<span class="glyphicon glyphicon-plus"></span>'.Module::t('cruds', 'New').' '.Module::t('app', 'Translation');
-            $_url = ['location/place-lang/create', 'PlaceLang' => ['place_id' => $model->id]];
+            $_url = ['place-lang/create', 'PlaceLang' => ['place_id' => $model->id]];
 
             echo Html::a($_label, $_url, ['class' => 'btn btn-success btn-xs']);
             ?>
