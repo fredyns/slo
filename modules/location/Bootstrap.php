@@ -20,18 +20,9 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        $app->i18n->translations['modules/location/app'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@app/modules/location/messages',
-        ];
-        $app->i18n->translations['modules/location/models'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@app/modules/location/messages',
-        ];
-        $app->i18n->translations['modules/location/cruds'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@app/modules/location/messages',
-        ];
+        /* @var $locationModule \app\modules\location\Module */
+        $locationModule = $app->getModule('location');
+        $locationModule->registerTranslations();
     }
 
 }
