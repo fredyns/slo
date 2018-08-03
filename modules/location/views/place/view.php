@@ -59,7 +59,9 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
 
     </div>
 
-    <hr/>
+    <br/>
+    <br/>
+    <br/>
 
     <div>
 
@@ -93,16 +95,15 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
 
     </div>
 
-    <hr/>
-
-
+    <br/>
+    <br/>
 
     <?php $this->beginBlock('Sublocations'); ?>
     <div class="clearfix crud-navigation" style="margin-top: 2px;">
         <!-- sublocation buttons -->
         <div class='pull-right'>
             <?php
-            $_label = '<span class="glyphicon glyphicon-plus"></span>'.Module::t('cruds', 'New').' '.Module::t('app', 'Sublocation');
+            $_label = '<span class="glyphicon glyphicon-plus"></span>'.Module::t('cruds', 'New Sublocation');
             $_url = ['place/create', 'Place' => ['sublocation_of' => $model->id]];
 
             echo Html::a($_label, $_url, ['class' => 'btn btn-success btn-xs']);
@@ -198,7 +199,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
         <!-- sublocation buttons -->
         <div class='pull-right'>
             <?php
-            $_label = '<span class="glyphicon glyphicon-plus"></span>'.Module::t('cruds', 'New').' '.Module::t('app', 'Translation');
+            $_label = '<span class="glyphicon glyphicon-plus"></span>'.Module::t('cruds', 'New Translation');
             $_url = ['place-lang/create', 'PlaceLang' => ['place_id' => $model->id]];
 
             echo Html::a($_label, $_url, ['class' => 'btn btn-success btn-xs']);
@@ -273,6 +274,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
     );
     ?>
 
+    <br/>
     <hr/>
 
     <?=
