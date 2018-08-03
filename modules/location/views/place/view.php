@@ -126,7 +126,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
                 'value' => function ($model) {
                     $_label = ArrayHelper::getValue($model, 'type.name').' '.$model->name;
 
-                    return Html::a($_label, ['location/place/view', 'id' => $model->id], ['data-pjax' => 0]);
+                    return Html::a($_label, ['view', 'id' => $model->id], ['data-pjax' => 0]);
                 },
             ],
             [
