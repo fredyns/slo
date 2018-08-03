@@ -45,6 +45,19 @@ class TypeLang extends BaseTypeLang
     }
 
     /**
+     * get type abbreviation
+     * display full name when abbreviation is empty
+     * 
+     * @return string
+     */
+    public function getAbbreviation()
+    {
+        $value = $this->getAttribute('abbreviation');
+
+        return $value ? $value : $this->name;
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()
