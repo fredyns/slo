@@ -17,8 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Type ID' => 'ID Tipe',
-    'Type Label' => 'Label Tipe',
     'Abbreviation' => 'Singkatan',
     'Counter' => 'Penghitung',
     'Counters' => 'Hitungan',
@@ -42,6 +40,8 @@ return [
     'Translation' => 'Terjemahan',
     'Translations' => 'Terjemahan',
     'Type' => 'Tipe',
+    'Type ID' => 'ID Tipe',
+    'Type Label' => 'Label Tipe',
     'Types' => 'Tipe',
     'Updated At' => 'Diperbarui Pada',
     'Updated By' => 'Diperbarui Oleh',

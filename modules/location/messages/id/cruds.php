@@ -28,6 +28,8 @@ return [
     'New' => 'Baru',
     'New Place' => 'Tempat Baru',
     'New Place Translation' => 'Terjemahan-Tempat Baru',
+    'New Sublocation' => 'Sublokasi Baru',
+    'New Translation' => 'Terjemahan Baru',
     'New Type' => 'Tipe Baru',
     'New Type Translation' => 'Terjemahan-Tipe Baru',
     'Reset' => 'Reset',
