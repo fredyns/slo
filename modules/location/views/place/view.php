@@ -121,7 +121,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
         ],
         'columns' => [
             [
-                'label' => 'Name',
+                'label' => Module::t('models', 'Name'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     $_label = ArrayHelper::getValue($model, 'type.name').' '.$model->name;
@@ -171,7 +171,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
         ],
         'columns' => [
             [
-                'label' => 'Type',
+                'label' => Module::t('models', 'Type'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArrayHelper::getValue($model, 'type.name');
