@@ -112,25 +112,14 @@ class TypeLangController extends Controller
     public function actionDelete($id)
     {
         try {
-            $this->findModel($id)->delete();
+            $model = $this->findModel($id);
+            $type_id = $model->type_id;
+            $model->delete();
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             \Yii::$app->getSession()->addFlash('error', $msg);
-            return $this->redirect(Url::previous());
-        }
-
-        // TODO: improve detection
-        $isPivot = strstr('$id', ',');
-        if ($isPivot == true) {
-            return $this->redirect(Url::previous());
-        } elseif (isset(\Yii::$app->session['__crudReturnUrl']) && \Yii::$app->session['__crudReturnUrl'] != '/') {
-            Url::remember(null);
-            $url = \Yii::$app->session['__crudReturnUrl'];
-            \Yii::$app->session['__crudReturnUrl'] = null;
-
-            return $this->redirect($url);
-        } else {
-            return $this->redirect(['index']);
+        } finally {
+            return $this->redirect(['type/view', 'id' => $type_id]);
         }
     }
 
