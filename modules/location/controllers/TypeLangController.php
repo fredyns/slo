@@ -73,7 +73,7 @@ class TypeLangController extends Controller
 
         try {
             if ($model->load($_POST) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['type/view', 'id' => $model->type_id]);
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
             }
@@ -95,7 +95,7 @@ class TypeLangController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load($_POST) && $model->save()) {
-            return $this->redirect(Url::previous());
+            return $this->redirect(['type/view', 'id' => $model->type_id]);
         } else {
             return $this->render('update', [
                     'model' => $model,
