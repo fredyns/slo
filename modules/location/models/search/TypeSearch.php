@@ -26,6 +26,14 @@ class TypeSearch extends Type
     /**
      * @inheritdoc
      */
+    public function formName()
+    {
+        return '';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
