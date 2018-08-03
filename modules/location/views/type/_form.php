@@ -10,7 +10,7 @@ use app\modules\location\models\Type;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\location\models\Type */
-/* @var yii\widgets\ActiveForm $form */
+/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="type-form">
