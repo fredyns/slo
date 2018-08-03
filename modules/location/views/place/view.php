@@ -223,12 +223,12 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
                 'urlCreator' => function ($action, $model, $key, $index) {
                     // using the column name as key, not mapping to 'id' like the standard generator
                     $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
-                    $params[0] = 'location/place-lang'.'/'.$action;
+                    $params[0] = 'place-lang'.'/'.$action;
                     $params['PlaceLang'] = ['place_id' => $model->primaryKey()[0]];
                     return $params;
                 },
                 'buttons' => [],
-                'controller' => 'location/place-lang'
+                'controller' => 'place-lang'
             ],
             'language',
             'name',
