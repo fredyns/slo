@@ -63,14 +63,21 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
 
     <div>
 
-        <?=
-        DetailView::widget([
+        <?php
+        $place_name = $model->name;
+        $place_type = ArrayHelper::getValue($model, 'type.name');
+
+        if ($place_type) {
+            $place_name .= " ({$place_type})";
+        }
+
+        echo DetailView::widget([
             'model' => $model,
             'attributes' => [
                 [
                     'format' => 'html',
                     'attribute' => 'name',
-                    'value' => ArrayHelper::getValue($model, 'type.name').' '.$model->name,
+                    'value' => $place_name,
                 ],
                 [
                     'format' => 'html',
