@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Type ID' => 'ID Tipe',
+    'Type Label' => 'Label Tipe',
     'Abbreviation' => 'Singkatan',
     'Counter' => 'Penghitung',
     'Counters' => 'Hitungan',
@@ -28,11 +30,13 @@ return [
     'Longitude' => 'Longitude',
     'Name' => 'Nama',
     'Place' => 'Lokasi',
+    'Place ID' => 'ID Lokasi',
+    'Place Label' => 'Label Lokasi',
     'Places' => 'Lokasi',
     'Quantity' => 'Cacah',
     'Search Name' => 'Cari Nama',
     'Sublocation' => 'Sublokasi',
-    'Sublocation Of' => 'Sublokasi dari',
+    'Sublocation Of' => 'Bagian dari',
     'Sublocations' => 'Sublokasi',
     'Sublocations Counters' => 'Penghitung Sublokasi',
     'Translation' => 'Terjemahan',

@@ -38,11 +38,11 @@ use kartik\select2\Select2;
     <div class="">
 
         <!-- attribute place_id -->
-        <?= $form->field($model, 'place_id')->textInput(['readonly' => "readonly"])->label('Place ID') ?>
+        <?= $form->field($model, 'place_id')->textInput(['readonly' => "readonly"])->label(Module::t('models', 'Place ID')) ?>
 
         <!-- current label for attribute place_id -->
         <div class="form-group field-place-label">
-            <label class="control-label col-sm-2" for="place_name">Place Label</label>
+            <label class="control-label col-sm-2" for="place_name"><?= Module::t('models', 'Place Label') ?></label>
             <div class="col-sm-8">
                 <?php
                 $place_name = ArrayHelper::getValue($model, 'place.name');

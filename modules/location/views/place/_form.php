@@ -59,7 +59,7 @@ use app\modules\location\models\Type;
 
         <!-- display label for attribute sublocation_of -->
         <div class="form-group field-place-sublocation_of">
-            <label class="control-label col-sm-2" for="place-sublocation_of-label">Sublocation Of</label>
+            <label class="control-label col-sm-2" for="place-sublocation_of-label"><?= Module::t('models', 'Sublocation Of') ?></label>
             <div class="col-sm-8">
                 <?php
                 $superlocation_name = ArrayHelper::getValue($model, 'sublocationOf.name', '-');
