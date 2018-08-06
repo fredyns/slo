@@ -55,7 +55,11 @@ class PlaceController extends Controller
         Tabs::rememberActiveState();
 
         $model = $this->findModel($id);
-        $model->recountSublocations();
+        
+        /**
+         * uncomment line below to force recounting all sublocations
+         */
+        //$model->recountSublocations();
 
         return $this->render('view', ['model' => $model]);
     }
