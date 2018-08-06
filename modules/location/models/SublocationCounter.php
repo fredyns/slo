@@ -57,22 +57,17 @@ class SublocationCounter extends \yii\db\ActiveRecord
     /**
      * recount sublocations for any place
      * 
-     * @param array $params container list of pair to define which place-type in a superlocation to count. 
-     * Every pair consist of 'sublocation_of` and 'type_id' key
+     * @param array $pair is filter to define which place-type in a superlocation to count. 
+     * Consist of 'sublocation_of` and 'type_id' key
      */
-    public static function recount($params)
+    public static function recount($pair)
     {
-        foreach ($params as $_pair) {
-            if (!is_array($_pair)) {
-                continue;
-            }
-            $sublocationCounter = static::findOne($_pair);
-            if (empty($sublocationCounter)) {
-                $sublocationCounter = new static($_pair);
-            }
-            $sublocationCounter->quantity = Place::find()->where($_pair)->count();
-            $sublocationCounter->save(FALSE);
+        $sublocationCounter = static::findOne($pair);
+        if (empty($sublocationCounter)) {
+            $sublocationCounter = new static($pair);
         }
+        $sublocationCounter->quantity = Place::find()->where($pair)->count();
+        $sublocationCounter->save(FALSE);
     }
 
     /**
