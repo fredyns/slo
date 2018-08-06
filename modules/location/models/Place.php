@@ -119,6 +119,55 @@ class Place extends BasePlace
     /**
      * @inheritdoc
      */
+    public function afterSave($insert, $changedAttributes)
+    {
+        $oldSuperlocation = ArrayHelper::getValue($changedAttributes, 'sublocation_of');
+        $oldType = ArrayHelper::getValue($changedAttributes, 'type_id');
+        $newSuperlocation = $this->sublocation_of;
+        $newType = $this->type_id;
+
+        // when any update
+        if ($oldSuperlocation OR $oldType) {
+
+            // if both updated
+            if ($oldSuperlocation && $oldType) {
+                // recount old clasification
+                SublocationCounter::recount([
+                    'sublocation_of' => $oldSuperlocation,
+                    'type_id' => $oldType,
+                ]);
+            }
+            // if any update and both column filled
+            if ($newSuperlocation && $newType) {
+                // recount new classification
+                SublocationCounter::recount([
+                    'sublocation_of' => $newSuperlocation,
+                    'type_id' => $newType,
+                ]);
+            }
+        }
+
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterDelete()
+    {
+        if ($this->sublocation_of > 0 && $this->type_id > 0) {
+            SublocationCounter::recount([
+                'sublocation_of' => $this->sublocation_of,
+                'type_id' => $this->type_id,
+            ]);
+        }
+
+        return parent::afterDelete();
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
