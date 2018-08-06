@@ -168,7 +168,7 @@ class Place extends BasePlace
      */
     public function getSublocationCounters()
     {
-        return $this->hasMany(\app\modules\location\models\SublocationCounter::className(), ['place_id' => 'id']);
+        return $this->hasMany(\app\modules\location\models\SublocationCounter::className(), ['sublocation_of' => 'id']);
     }
 
     /**

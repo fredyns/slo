@@ -9,11 +9,11 @@ use app\modules\location\Module;
  * This is the base-model class for table "location_sublocation_counter".
  *
  * @property string $id
- * @property string $place_id
+ * @property string $sublocation_of
  * @property integer $type_id
  * @property integer $quantity
  *
- * @property \app\modules\location\models\Place $place
+ * @property \app\modules\location\models\Place $sublocationOf
  * @property \app\modules\location\models\Type $type
  * @property string $aliasModel
  */
@@ -48,8 +48,8 @@ class SublocationCounter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['place_id', 'type_id', 'quantity'], 'integer'],
-            [['place_id'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['place_id' => 'id']],
+            [['sublocation_of', 'type_id', 'quantity'], 'integer'],
+            [['sublocation_of'], 'exist', 'skipOnError' => true, 'targetClass' => Place::className(), 'targetAttribute' => ['sublocation_of' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']]
         ];
     }
@@ -82,7 +82,7 @@ class SublocationCounter extends \yii\db\ActiveRecord
     {
         return [
             'id' => Module::t('models', 'ID'),
-            'place_id' => Module::t('models', 'Place'),
+            'sublocation_of' => Module::t('models', 'Place'),
             'type_id' => Module::t('models', 'Type'),
             'quantity' => Module::t('models', 'Quantity'),
         ];
@@ -96,7 +96,7 @@ class SublocationCounter extends \yii\db\ActiveRecord
         return array_merge(
             parent::attributeHints(), [
             'id' => Module::t('models', 'ID'),
-            'place_id' => Module::t('models', 'Place'),
+            'sublocation_of' => Module::t('models', 'Place'),
             'type_id' => Module::t('models', 'Type'),
             'quantity' => Module::t('models', 'Quantity'),
         ]);
@@ -105,9 +105,9 @@ class SublocationCounter extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlace()
+    public function getSublocationOf()
     {
-        return $this->hasOne(\app\modules\location\models\Place::className(), ['id' => 'place_id']);
+        return $this->hasOne(\app\modules\location\models\Place::className(), ['id' => 'sublocation_of']);
     }
 
     /**

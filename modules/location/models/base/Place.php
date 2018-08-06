@@ -127,7 +127,7 @@ abstract class Place extends \yii\db\ActiveRecord
      */
     public function getLocationSublocationCounters()
     {
-        return $this->hasMany(\app\modules\location\models\LocationSublocationCounter::className(), ['place_id' => 'id']);
+        return $this->hasMany(\app\modules\location\models\LocationSublocationCounter::className(), ['sublocation_of' => 'id']);
     }
 
     /**
