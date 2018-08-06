@@ -34,6 +34,7 @@ use app\modules\location\behaviors\PlaceTypeBehavior;
  */
 class Place extends BasePlace
 {
+    public $qty;
 
     /**
      * @inheritdoc
@@ -114,6 +115,67 @@ class Place extends BasePlace
                 'targetAttribute' => ['sublocation_of' => 'id'],
             ],
         ];
+    }
+
+    /**
+     * recount all sublocation type
+     * 
+     * @param integer $sublocation_id
+     */
+    public function recountSublocations()
+    {
+        $prelistedType = [0];
+
+        // recount all prelisted sublocation type
+        foreach ($this->sublocationCounters as $_counter) {
+            $prelistedType[] = $_counter->type_id;
+            $_counter->quantity = static::find()
+                ->where([
+                    'sublocation_of' => $_counter->sublocation_of,
+                    'type_id' => $_counter->type_id,
+                ])
+                ->count();
+            $_counter->save(FALSE);
+
+        }
+
+        // search new types
+        $sql = <<<SQL
+            SELECT 
+                type_id, 
+                COUNT(*) as qty 
+            
+            FROM 
+                location_place
+            
+            WHERE
+                sublocation_of = :superlocation
+            AND
+                type_id > 0
+            AND
+                type_id NOT IN (:prelisted_types)
+            
+            GROUP BY 
+                type_id
+SQL;
+        $params = [
+            ':superlocation' => $this->id,
+            ':prelisted_types' => implode(',', $prelistedType),
+        ];
+        $dbCommand = Yii::$app->db->createCommand($sql, $params);
+        $newTypes = $dbCommand->queryAll();
+
+        // recount new types
+        if ($newTypes) {
+            foreach ($newTypes as $_type) {
+                $_counter = new SublocationCounter([
+                    'sublocation_of' => $this->id,
+                    'type_id' => $_type['type_id'],
+                    'quantity' => $_type['qty'],
+                ]);
+                $_counter->save(FALSE);
+            }
+        }
     }
 
     /**
