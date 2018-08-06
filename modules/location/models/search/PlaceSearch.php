@@ -82,7 +82,11 @@ class PlaceSearch extends Place
             'longitude' => $this->longitude,
         ]);
 
-        $query->andFilterWhere(['like', 'search_name', $this->search_name]);
+        $query->andFilterWhere([
+            'or',
+            ['like', 'search_name', $this->search_name],
+            ['like', 'region_code', $this->search_name],            
+        ]);
 
         return $dataProvider;
     }

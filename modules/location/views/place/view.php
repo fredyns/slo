@@ -87,6 +87,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
                     'value' => ArrayHelper::getValue($model, 'sublocationOf.type.name').' '.ArrayHelper::getValue($model, 'sublocationOf.name'),
                     'visible' => ($model->sublocation_of > 0),
                 ],
+                'region_code',
                 'latitude',
                 'longitude',
             ],
@@ -142,6 +143,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
                     return $_value;
                 },
             ],
+            'region_code',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update}',

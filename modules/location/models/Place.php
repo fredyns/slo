@@ -89,6 +89,7 @@ class Place extends BasePlace
             [['type_id'], 'string', 'max' => 1024],
             [['latitude', 'longitude'], 'number'],
             [['name'], 'string', 'max' => 1024],
+            [['region_code'], 'string', 'max' => 32],
             /* limitations */
             /* references */
             [
@@ -235,6 +236,7 @@ SQL;
         return [
             // native
             'id' => Module::t('models', 'ID'),
+            'region_code' => Module::t('models', 'Region Code'),
             'type_id' => Module::t('models', 'Type'),
             'search_name' => Module::t('models', 'Search Name'),
             'sublocation_of' => Module::t('models', 'Sublocation Of'),

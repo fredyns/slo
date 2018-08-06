@@ -13,6 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * This is the base-model class for table "location_place".
  *
  * @property string $id
+ * @property string $region_code
  * @property integer $type_id
  * @property string $search_name
  * @property string $sublocation_of
@@ -74,6 +75,7 @@ abstract class Place extends \yii\db\ActiveRecord
             [['type_id', 'sublocation_of'], 'integer'],
             [['search_name'], 'string'],
             [['latitude', 'longitude'], 'number'],
+            [['region_code'], 'string', 'max' => 32],
             [['sublocation_of'], 'exist', 'skipOnError' => true, 'targetClass' => \app\modules\location\models\LocationPlace::className(), 'targetAttribute' => ['sublocation_of' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\modules\location\models\LocationType::className(), 'targetAttribute' => ['type_id' => 'id']]
         ];
@@ -86,6 +88,7 @@ abstract class Place extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('modules/location/models', 'ID'),
+            'region_code' => Yii::t('modules/location/models', 'Region Code'),
             'type_id' => Yii::t('modules/location/models', 'Type ID'),
             'search_name' => Yii::t('modules/location/models', 'Search Name'),
             'sublocation_of' => Yii::t('modules/location/models', 'Sublocation Of'),

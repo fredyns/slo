@@ -87,6 +87,9 @@ use app\modules\location\models\Type;
 
         <hr/>
 
+        <!-- attribute region_code -->
+        <?= $form->field($model, 'region_code')->textInput() ?>
+
         <!-- attribute latitude -->
         <?= $form->field($model, 'latitude')->textInput() ?>
 

@@ -34,6 +34,7 @@ return [
     'Place Translations' => 'Terjemahan Lokasi',
     'Places' => 'Lokasi',
     'Quantity' => 'Cacah',
+    'Region Code'=>'Kode WIlayah',
     'Search Name' => 'Cari Nama',
     'Sublocation' => 'Sublokasi',
     'Sublocation Of' => 'Bagian dari',
