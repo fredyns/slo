@@ -64,10 +64,7 @@ use kartik\select2\Select2;
             $form
             ->field($model, 'language')
             ->widget(Select2::classname(), [
-                'data' => [
-                    'en-US' => 'English - US.',
-                    'id-ID' => 'Indonesia',
-                ],
+                'data' => Yii::$app->getModule('location')->locales,
                 'options' => [
                     'placeholder' => Module::t('app', 'Select'),
                 ],

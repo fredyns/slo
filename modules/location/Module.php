@@ -20,6 +20,13 @@ class Module extends \yii\base\Module
     public $defaultRoute = 'place';
 
     /**
+     * locales used for translation
+     *
+     * @var array
+     */
+    public $locales = [];
+
+    /**
      * {@inheritdoc}
      */
     public function init()
@@ -28,6 +35,10 @@ class Module extends \yii\base\Module
 
         // custom initialization code goes here
         $this->registerTranslations();
+
+        if (empty($this->locales)) {
+            $this->loadLocales();
+        }
     }
 
     public function registerTranslations()
@@ -41,6 +52,14 @@ class Module extends \yii\base\Module
                 'modules/location/models' => 'models.php',
             ],
         ];
+    }
+
+    /**
+     * load default locales
+     */
+    public function loadLocales()
+    {
+        $this->locales = include __DIR__.'/config/locales.php';
     }
 
     /**
