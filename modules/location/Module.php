@@ -33,14 +33,18 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
+        // registering translation
         $this->registerTranslations();
 
+        // default locales
         if (empty($this->locales)) {
             $this->loadLocales();
         }
     }
 
+    /**
+     * register module translation
+     */
     public function registerTranslations()
     {
         Yii::$app->i18n->translations['modules/location/*'] = [
