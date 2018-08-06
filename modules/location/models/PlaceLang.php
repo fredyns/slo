@@ -7,7 +7,6 @@ use yii\helpers\ArrayHelper;
 use app\modules\location\Module;
 use app\modules\location\models\base\PlaceLang as BasePlaceLang;
 
-
 /**
  * This is the base-model class for table "location_place_lang".
  *
@@ -76,6 +75,37 @@ class PlaceLang extends BasePlaceLang
     public function getPlace()
     {
         return $this->hasOne(\app\modules\location\models\Place::className(), ['id' => 'place_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (array_key_exists('name', $changedAttributes)) {
+            $this->putSearchName($this->name, $changedAttributes['name']);
+        }
+
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * 
+     * @param type $newValue
+     * @param type $oldValue
+     */
+    public function putSearchName($newValue, $oldValue)
+    {
+        $replaced = 0;
+        $searchName = $this->place->search_name;
+        $searchName = str_replace($oldValue, $newValue, $searchName, $replaced);
+
+        if ($replaced == 0) {
+            $searchName .= $newValue.';';
+        }
+
+        $this->place->search_name = $searchName;
+        $this->place->save(FALSE);
     }
 
 }
