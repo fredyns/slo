@@ -264,7 +264,7 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
                 [
                     'content' => $this->blocks['Sublocations'],
                     'label' => '<small>'.Module::t('models', 'Sublocations').' <span class="badge badge-default">'.$model->getSublocations()->count().'</span></small>',
-                    'active' => false,
+                    'active' => true,
                 ],
                 [
                     'content' => $this->blocks['SublocationCounters'],
