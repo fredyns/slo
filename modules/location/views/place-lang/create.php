@@ -6,6 +6,7 @@ use app\modules\location\Module;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\location\models\PlaceLang */
+/* @var $locales array */
 
 $this->title = Module::t('cruds', 'New Place Translation');
 $this->params['breadcrumbs'][] = ['label' => $model->getAliasModel(TRUE), 'url' => ['index']];
@@ -28,6 +29,6 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'New');
 
     <hr />
 
-    <?= $this->render('_form', ['model' => $model]); ?>
+    <?= $this->render('_form', ['model' => $model, 'locales' => $locales]); ?>
 
 </div>

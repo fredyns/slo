@@ -11,6 +11,7 @@ use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $model app\modules\location\models\PlaceLang */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $locales array */
 ?>
 
 <div class="place-lang-form">
@@ -65,7 +66,7 @@ use kartik\select2\Select2;
             $form
             ->field($model, 'language')
             ->widget(Select2::classname(), [
-                'data' => Yii::$app->getModule('location')->locales,
+                'data' => $locales,
                 'options' => [
                     'placeholder' => Module::t('app', 'Select'),
                 ],

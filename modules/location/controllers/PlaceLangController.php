@@ -10,6 +10,7 @@ use yii\web\HttpException;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 use dmstr\bootstrap\Tabs;
+use app\modules\location\Module;
 
 /**
  * PlaceLangController implements the CRUD actions for PlaceLang model.
@@ -70,6 +71,8 @@ class PlaceLangController extends Controller
      */
     public function actionCreate()
     {
+        /* @var $module Module */
+        $module = $this->module;
         $model = new PlaceLang;
 
         try {
@@ -82,7 +85,10 @@ class PlaceLangController extends Controller
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
         }
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', [
+                'model' => $model,
+                'locales' => $module->getLocales(),
+        ]);
     }
 
     /**
@@ -93,13 +99,16 @@ class PlaceLangController extends Controller
      */
     public function actionUpdate($id)
     {
+        /* @var $module Module */
+        $module = $this->module;
         $model = $this->findModel($id);
 
         if ($model->load($_POST) && $model->save()) {
             return $this->redirect(['place/view', 'id' => $model->place_id]);
         } else {
             return $this->render('update', [
-                    'model' => $model,
+                'model' => $model,
+                'locales' => $module->getLocales(),
             ]);
         }
     }

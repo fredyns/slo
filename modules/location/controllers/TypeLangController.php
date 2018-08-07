@@ -69,6 +69,8 @@ class TypeLangController extends Controller
      */
     public function actionCreate()
     {
+        /* @var $module Module */
+        $module = $this->module;
         $model = new TypeLang;
 
         try {
@@ -81,7 +83,10 @@ class TypeLangController extends Controller
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
         }
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', [
+                'model' => $model,
+                'locales' => $module->getLocales(),
+        ]);
     }
 
     /**
@@ -92,6 +97,8 @@ class TypeLangController extends Controller
      */
     public function actionUpdate($id)
     {
+        /* @var $module Module */
+        $module = $this->module;
         $model = $this->findModel($id);
 
         if ($model->load($_POST) && $model->save()) {
@@ -99,6 +106,7 @@ class TypeLangController extends Controller
         } else {
             return $this->render('update', [
                     'model' => $model,
+                    'locales' => $module->getLocales(),
             ]);
         }
     }
