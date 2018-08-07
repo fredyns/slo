@@ -31,6 +31,21 @@ class Module extends \yii\base\Module
     ];
 
     /**
+     * i18n configuration
+     *
+     * @var array 
+     */
+    public $translations = [
+        'class' => 'yii\i18n\PhpMessageSource',
+        'basePath' => '@app/modules/location/messages',
+        'fileMap' => [
+            'modules/location/app' => 'app.php',
+            'modules/location/cruds' => 'cruds.php',
+            'modules/location/models' => 'models.php',
+        ],
+    ];
+
+    /**
      * {@inheritdoc}
      */
     public function init()
@@ -51,15 +66,7 @@ class Module extends \yii\base\Module
      */
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['modules/location/*'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'basePath' => '@app/modules/location/messages',
-            'fileMap' => [
-                'modules/location/app' => 'app.php',
-                'modules/location/cruds' => 'cruds.php',
-                'modules/location/models' => 'models.php',
-            ],
-        ];
+        Yii::$app->i18n->translations['modules/location/*'] = $this->translations;
     }
 
     /**
