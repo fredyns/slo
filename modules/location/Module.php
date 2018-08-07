@@ -3,6 +3,7 @@
 namespace app\modules\location;
 
 use Yii;
+use yii\base\InvalidConfigException;
 
 /**
  * location module definition class
@@ -92,6 +93,25 @@ class Module extends \yii\base\Module
     public static function t($category, $message, $params = [], $language = null)
     {
         return Yii::t('modules/location/'.$category, $message, $params, $language);
+    }
+
+    /**
+     * getting locales  available
+     * 
+     * @return array
+     * @throws InvalidConfigException
+     */
+    public function getLocales()
+    {
+        $locales = $this->locales;
+
+        if (is_array($locales)) {
+            return $locales;
+        } elseif ($locales instanceof \Closure) {
+            return call_user_func($locales);
+        } else {
+            throw new InvalidConfigException("Locales config should be an array or closure.");
+        }
     }
 
 }
