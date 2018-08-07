@@ -54,11 +54,6 @@ class Module extends \yii\base\Module
 
         // registering translation
         $this->registerTranslations();
-
-        // default locales
-        if (empty($this->locales)) {
-            $this->loadLocales();
-        }
     }
 
     /**
@@ -67,14 +62,6 @@ class Module extends \yii\base\Module
     public function registerTranslations()
     {
         Yii::$app->i18n->translations['modules/location/*'] = $this->translations;
-    }
-
-    /**
-     * load default locales
-     */
-    public function loadLocales()
-    {
-        $this->locales = include __DIR__.'/config/locales.php';
     }
 
     /**
