@@ -24,7 +24,11 @@ class Module extends \yii\base\Module
      *
      * @var array
      */
-    public $locales = [];
+    public $locales = [
+        'en-US' => 'English (US)',
+        'id-ID' => 'Indonesia',
+        'ru-RU' => 'Russian',
+    ];
 
     /**
      * {@inheritdoc}
