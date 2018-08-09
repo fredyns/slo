@@ -20,7 +20,7 @@ class TypeLangSearch extends TypeLang
     {
         return [
             [['id', 'type_id'], 'integer'],
-            [['language', 'name', 'abbreviation'], 'string'],
+            [['language', 'name'], 'string'],
         ];
     }
 
@@ -72,7 +72,7 @@ class TypeLangSearch extends TypeLang
         $query
             ->andFilterWhere(['like', 'language', $this->language])
             ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'abbreviation', $this->abbreviation]);
+        ;
 
         return $dataProvider;
     }

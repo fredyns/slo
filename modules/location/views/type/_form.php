@@ -40,10 +40,6 @@ use app\modules\location\models\Type;
         <!-- attribute name -->
         <?= $form->field($model, 'name')->textInput() ?>
 
-        <!-- attribute abbreviation -->
-        <?= $form->field($model, 'abbreviation')->textInput() ?>
-
-
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>

@@ -14,7 +14,6 @@ use app\modules\location\models\base\TypeLang as BaseTypeLang;
  * @property integer $type_id
  * @property string $language
  * @property string $name
- * @property string $abbreviation
  *
  * @property \app\modules\location\models\Type $type
  * @property string $aliasModel
@@ -45,19 +44,6 @@ class TypeLang extends BaseTypeLang
     }
 
     /**
-     * get type abbreviation
-     * display full name when abbreviation is empty
-     * 
-     * @return string
-     */
-    public function getAbbreviation()
-    {
-        $value = $this->getAttribute('abbreviation');
-
-        return $value ? $value : $this->name;
-    }
-
-    /**
      * @inheritdoc
      */
     public function rules()
@@ -66,7 +52,6 @@ class TypeLang extends BaseTypeLang
             [['type_id'], 'integer'],
             [['language'], 'string', 'max' => 16],
             [['name'], 'string', 'max' => 1024],
-            [['abbreviation'], 'string', 'max' => 32],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['type_id' => 'id']]
         ];
     }
@@ -81,7 +66,6 @@ class TypeLang extends BaseTypeLang
             'type_id' => Module::t('models', 'Type'),
             'language' => Module::t('models', 'Language'),
             'name' => Module::t('models', 'Name'),
-            'abbreviation' => Module::t('models', 'Abbreviation'),
         ];
     }
 

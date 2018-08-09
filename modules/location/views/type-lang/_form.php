@@ -79,9 +79,6 @@ use kartik\select2\Select2;
         <!-- attribute name -->
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <!-- attribute abbreviation -->
-        <?= $form->field($model, 'abbreviation')->textInput(['maxlength' => true]) ?>
-
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>

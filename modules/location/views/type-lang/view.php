@@ -85,7 +85,6 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
             'attributes' => [
                 'language',
                 'name',
-                'abbreviation',
             ],
         ]);
         ?>

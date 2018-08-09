@@ -54,7 +54,6 @@ $actionColumnTemplateString = '<div class="action-buttons">{view} {update} {dele
             'columns' => [
                 'language',
                 'name',
-                'abbreviation',
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => $actionColumnTemplateString,

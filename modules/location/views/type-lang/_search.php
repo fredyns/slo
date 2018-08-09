@@ -25,8 +25,6 @@ use app\modules\location\Module;
 
     <?= $form->field($searchModel, 'name') ?>
 
-    <?= $form->field($searchModel, 'abbreviation') ?>
-
     <div class="form-group field-type-submit">
         <label class="control-label col-sm-3" for="save-place">&nbsp;</label>
         <div class="col-sm-6">

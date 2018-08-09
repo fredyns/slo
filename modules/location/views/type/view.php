@@ -68,7 +68,6 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
             'model' => $model,
             'attributes' => [
                 'name',
-                'abbreviation',
             ],
         ]);
         ?>
@@ -107,7 +106,6 @@ $this->params['breadcrumbs'][] = Module::t('cruds', 'View');
         'columns' => [
             'language',
             'name',
-            'abbreviation',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update}',

@@ -18,7 +18,6 @@ use app\modules\location\models\base\Type as BaseType;
  * 
  * @property string $language
  * @property string $name
- * @property string $abbreviation
  *
  * @property \app\modules\location\models\Place[] $places
  * @property \app\modules\location\models\SublocationCounter[] $sublocationCounters
@@ -56,7 +55,6 @@ class Type extends BaseType
     {
         return [
             [['name'], 'string', 'max' => 1024],
-            [['abbreviation'], 'string', 'max' => 32],
         ];
     }
 
@@ -75,7 +73,6 @@ class Type extends BaseType
             // translatable
             'language' => Module::t('models', 'Language'),
             'name' => Module::t('models', 'Name'),
-            'abbreviation' => Module::t('models', 'Abbreviation'),
         ];
     }
 

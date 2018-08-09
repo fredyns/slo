@@ -53,7 +53,6 @@ abstract class Type extends \yii\db\ActiveRecord
                 // 'relation' => 'translations',
                 'translationAttributes' => [
                     'name',
-                    'abbreviation'
                 ],
             ],
         ];

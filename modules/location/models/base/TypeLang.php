@@ -13,7 +13,6 @@ use Yii;
  * @property integer $type_id
  * @property string $language
  * @property string $name
- * @property string $abbreviation
  *
  * @property \app\modules\location\models\LocationType $type
  * @property string $aliasModel
@@ -40,7 +39,6 @@ abstract class TypeLang extends \yii\db\ActiveRecord
             [['type_id'], 'integer'],
             [['language'], 'string', 'max' => 16],
             [['name'], 'string', 'max' => 1024],
-            [['abbreviation'], 'string', 'max' => 32],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\modules\location\models\LocationType::className(), 'targetAttribute' => ['type_id' => 'id']]
         ];
     }
@@ -55,7 +53,6 @@ abstract class TypeLang extends \yii\db\ActiveRecord
             'type_id' => Yii::t('modules/location/models', 'Type ID'),
             'language' => Yii::t('modules/location/models', 'Language'),
             'name' => Yii::t('modules/location/models', 'Name'),
-            'abbreviation' => Yii::t('modules/location/models', 'Abbreviation'),
         ];
     }
 
