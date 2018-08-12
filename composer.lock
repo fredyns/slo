@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cc6a3ee42b9d18b31474a67e7426708",
+    "content-hash": "314267569ef6f9759d95e4bbaaa4d433",
     "packages": [
         {
             "name": "2amigos/yii2-translateable-behavior",
@@ -855,6 +855,48 @@
                 "yii2"
             ],
             "time": "2017-01-13T14:49:50+00:00"
+        },
+        {
+            "name": "fredyns/yii2-region",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fredyns/yii2-region.git",
+                "reference": "c002898dcc3c190f56386f69559a3be7455c6c5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fredyns/yii2-region/zipball/c002898dcc3c190f56386f69559a3be7455c6c5b",
+                "reference": "c002898dcc3c190f56386f69559a3be7455c6c5b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "fredyns\\region\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fredy Nurman Saleh",
+                    "email": "email@fredyns.net"
+                }
+            ],
+            "description": "Indonesian regional database.",
+            "keywords": [
+                "extension",
+                "indonesia",
+                "regional",
+                "yii2"
+            ],
+            "time": "2018-08-09T08:59:56+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
@@ -5418,7 +5460,8 @@
     "stability-flags": {
         "fredyns/yii2-daerah-indonesia": 20,
         "2amigos/yii2-translateable-behavior": 20,
-        "schmunk42/yii2-giiant": 20
+        "schmunk42/yii2-giiant": 20,
+        "fredyns/yii2-region": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

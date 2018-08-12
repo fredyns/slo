@@ -26,7 +26,8 @@
         "yiisoft/yii2-queue": "^2.1",
         "fredyns/yii2-daerah-indonesia": "@dev",
         "2amigos/yii2-translateable-behavior": "dev-master",
-        "schmunk42/yii2-giiant": "dev-master"
+        "schmunk42/yii2-giiant": "dev-master",
+        "fredyns/yii2-region": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
