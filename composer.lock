@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d824fc35b9b9567448b4fd9caddf53d4",
+    "content-hash": "dcc68841e9ada4ccc9e23602f5f35486",
     "packages": [
         {
             "name": "2amigos/yii2-translateable-behavior",
@@ -2936,6 +2936,56 @@
             "time": "2018-09-19T23:21:55+00:00"
         },
         {
+            "name": "yii2tech/ar-softdelete",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2tech/ar-softdelete.git",
+                "reference": "0cc8cd22aa7fd66c1d02d76e811a55c2f0eb9be6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2tech/ar-softdelete/zipball/0cc8cd22aa7fd66c1d02d76e811a55c2f0eb9be6",
+                "reference": "0cc8cd22aa7fd66c1d02d76e811a55c2f0eb9be6",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2tech\\ar\\softdelete\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "Provides support for ActiveRecord soft delete in Yii2",
+            "keywords": [
+                "active",
+                "delete",
+                "integrity",
+                "record",
+                "smart",
+                "soft",
+                "yii2"
+            ],
+            "time": "2018-05-30T11:41:32+00:00"
+        },
+        {
             "name": "yiisoft/yii2",
             "version": "dev-master",
             "source": {
@@ -5727,7 +5777,8 @@
         "fredyns/yii2-region": 20,
         "kartik-v/yii2-widget-depdrop": 20,
         "thamtech/yii2-uuid": 20,
-        "cornernote/yii2-returnurl": 20
+        "cornernote/yii2-returnurl": 20,
+        "yii2tech/ar-softdelete": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

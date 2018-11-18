@@ -30,7 +30,8 @@
         "fredyns/yii2-region": "dev-master",
         "kartik-v/yii2-widget-depdrop": "dev-master",
         "thamtech/yii2-uuid": "dev-master",
-        "cornernote/yii2-returnurl": "dev-master"
+        "cornernote/yii2-returnurl": "dev-master",
+        "yii2tech/ar-softdelete": "^1.0@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
