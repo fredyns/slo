@@ -29,7 +29,8 @@
         "schmunk42/yii2-giiant": "dev-master",
         "fredyns/yii2-region": "dev-master",
         "kartik-v/yii2-widget-depdrop": "dev-master",
-        "thamtech/yii2-uuid": "dev-master"
+        "thamtech/yii2-uuid": "dev-master",
+        "cornernote/yii2-returnurl": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

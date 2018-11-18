@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36c7779c87ec9bbd04ff38cd41eecf91",
+    "content-hash": "d824fc35b9b9567448b4fd9caddf53d4",
     "packages": [
         {
             "name": "2amigos/yii2-translateable-behavior",
@@ -408,12 +408,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cornernote/yii2-returnurl.git",
-                "reference": "71e42b113d9bdcff09c54067d47c7d15e4f3fd4a"
+                "reference": "afe4b8cbbb22f9a18609ccdad8d95374659b0c0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cornernote/yii2-returnurl/zipball/71e42b113d9bdcff09c54067d47c7d15e4f3fd4a",
-                "reference": "71e42b113d9bdcff09c54067d47c7d15e4f3fd4a",
+                "url": "https://api.github.com/repos/cornernote/yii2-returnurl/zipball/afe4b8cbbb22f9a18609ccdad8d95374659b0c0d",
+                "reference": "afe4b8cbbb22f9a18609ccdad8d95374659b0c0d",
                 "shasum": ""
             },
             "require": {
@@ -446,7 +446,7 @@
                 "url",
                 "yii2"
             ],
-            "time": "2017-05-09T04:37:55+00:00"
+            "time": "2018-08-15T14:40:06+00:00"
         },
         {
             "name": "dektrium/yii2-user",
@@ -5726,7 +5726,8 @@
         "schmunk42/yii2-giiant": 20,
         "fredyns/yii2-region": 20,
         "kartik-v/yii2-widget-depdrop": 20,
-        "thamtech/yii2-uuid": 20
+        "thamtech/yii2-uuid": 20,
+        "cornernote/yii2-returnurl": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
