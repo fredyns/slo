@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcc68841e9ada4ccc9e23602f5f35486",
+    "content-hash": "cf47f86ad52050f2fe94097adc339142",
     "packages": [
         {
             "name": "2amigos/yii2-translateable-behavior",
@@ -5760,7 +5760,8 @@
         "kartik-v/yii2-widget-depdrop": 20,
         "thamtech/yii2-uuid": 20,
         "cornernote/yii2-returnurl": 20,
-        "yii2tech/ar-softdelete": 20
+        "yii2tech/ar-softdelete": 20,
+        "fredyns/stringcleaner": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
