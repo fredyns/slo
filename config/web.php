@@ -114,8 +114,6 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
-    // load location config
-    $config['bootstrap'][] = 'location';
 }
 
 return $config;
