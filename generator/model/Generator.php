@@ -44,6 +44,24 @@ class Generator extends \schmunk42\giiant\generators\model\Generator
     /**
      * {@inheritdoc}
      */
+    public function generateRules($table)
+    {
+        $softdeleteCols = ['id_deleted', 'deleted_at', 'deleted_by'];
+
+        foreach ($table->columns as $index => $column) {
+            $isSoftdelete = in_array($column->name, $softdeleteCols);
+
+            if ($isSoftdelete) {
+                unset($table->columns[$index]);
+            }
+        }
+
+        return parent::generateRules($table);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function generate()
     {
         $files = parent::generate();
