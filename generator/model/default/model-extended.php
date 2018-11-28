@@ -29,11 +29,6 @@ use yii\helpers\ArrayHelper;
  * This is the model class for table "<?= $tableName ?>".
  *
  * @property string $aliasModel
-<?php if ($softdelete): ?>
- *
- * @method void softDelete() move to trash
- * @method void restore() pick up form trash
-<?php endif; ?>
  */
 class <?= $className ?> extends Base<?= $className . "\n" ?>
 {

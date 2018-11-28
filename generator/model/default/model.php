@@ -49,6 +49,12 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property \<?=$ns?>\<?= $relation[1] . ($relation[2] ? '[]' : '') . ' $' . lcfirst($name) . "\n" ?>
 <?php endforeach; ?>
 <?php endif; ?>
+ *
+<?php if ($softdelete): ?>
+ *
+ * @method void softDelete() move to trash
+ * @method void restore() pick up form trash
+<?php endif; ?>
  */
 abstract class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {
