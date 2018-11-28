@@ -57,15 +57,15 @@ class <?= $className ?> extends Base<?= $className . "\n" ?>
     {
         return [
             # filter
-/*//
-'string_filter' => [
-['name'],
-'filter',
-'filter' => function($value){
-    return StringCleaner::forPlaintext($value);
-    },
-],
-//*/
+            /*//
+            'string_filter' => [
+                ['name'],
+                'filter',
+                'filter' => function($value){
+                    return StringCleaner::forPlaintext($value);
+                },
+            ],
+            //*/
             # default
             # required
             # type
