@@ -1,6 +1,5 @@
 <?php
-
-require __DIR__ . '/host_config.php';
+require __DIR__.'/host_config.php';
 
 $config = [
     'id' => 'basic',
@@ -11,7 +10,7 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -113,6 +112,14 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        'generators' => [
+            'my-model' => [
+                'class' => 'app\generator\model\Generator',
+            ],
+            'my-crud' => [
+                'class' => 'app\generator\crud\Generator',
+            ],
+        ],
     ];
 }
 
