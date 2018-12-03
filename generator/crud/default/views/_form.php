@@ -76,6 +76,7 @@ foreach ($safeAttributes as $attribute) {
 
 echo "\n";
 ?>
+            
         </p>
 
         <?= "<?php \$this->endBlock(); ?>\n"; ?>

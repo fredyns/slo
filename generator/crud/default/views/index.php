@@ -95,7 +95,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
     <hr />
 
 <?php if ($generator->indexWidgetType === 'grid'): ?>
-<?= '    <?php\n' ?>
+<?= "    <?php\n" ?>
     \yii\widgets\Pjax::begin([
         'id' => 'pjax-main',
         'enableReplaceState' => false,
