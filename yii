@@ -16,6 +16,18 @@ require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
 
 $config = require __DIR__ . '/config/console.php';
 
+// load host config
+
+$host_config_path = __DIR__.'/../config/host/console.php';
+$host_config_exist = file_exists($host_config_path);
+
+if ($host_config_exist) {
+    $host_config = require $host_config_path;
+    $config = yii\helpers\ArrayHelper::merge($config, $host_config);
+}
+
+// run app
+
 $application = new yii\console\Application($config);
 $exitCode = $application->run();
 exit($exitCode);
