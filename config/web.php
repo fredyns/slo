@@ -3,8 +3,8 @@ $db = require __DIR__.'/db.php';
 $params = require __DIR__.'/params.php';
 
 $config = [
-    'id' => 'basic',
-    'name' => 'Yii2 Web-Application',
+    'id' => 'slobki-web',
+    'name' => 'SLO BKI',
     'timeZone' => 'Asia/Jakarta',
     'language' => 'id-ID',
     'basePath' => dirname(__DIR__),

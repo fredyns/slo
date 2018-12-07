@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `yii2basic`
+-- Database: `slobki`
 --
-CREATE DATABASE IF NOT EXISTS `yii2basic` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `yii2basic`;
+CREATE DATABASE IF NOT EXISTS `slobki` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `slobki`;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

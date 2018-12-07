@@ -3,7 +3,8 @@ $db = require __DIR__.'/db.php';
 $params = require __DIR__.'/params.php';
 
 $config = [
-    'id' => 'basic-console',
+    'id' => 'slobki-console',
+    'name' => 'SLO BKI',
     'timeZone' => 'Asia/Jakarta',
     'language' => 'id-ID',
     'basePath' => dirname(__DIR__),
