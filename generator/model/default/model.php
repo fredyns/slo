@@ -24,6 +24,7 @@ echo "<?php\n";
 namespace <?= $generator->ns ?>\base;
 
 use Yii;
+use app\models\User;
 <?php if (isset($translation)): ?>
 use dosamigos\translateable\TranslateableBehavior;
 <?php endif; ?>
@@ -45,6 +46,16 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
 <?php endforeach; ?>
 <?php if (!empty($relations)): ?>
  *
+<?php if ($tableSchema->getColumn('created_by') !== null): ?>
+ * @property User $createdBy
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('updated_by') !== null): ?>
+ * @property User $updatedBy
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('deleted_by') !== null): ?>
+ * @property User $deletedBy
+<?php endif; ?>
+ *
 <?php foreach ($relations as $name => $relation): ?>
  * @property \<?=$ns?>\<?= $relation[1] . ($relation[2] ? '[]' : '') . ' $' . lcfirst($name) . "\n" ?>
 <?php endforeach; ?>
@@ -58,14 +69,21 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  */
 abstract class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {
-
 <?php
     $traits = $generator->baseTraits;
     if ($traits) {
-        echo "use {$traits};";
+        echo "    use {$traits};\n\n";
     }
 ?>
-
+<?php if ($tableSchema->getColumn('created_by') !== null): ?>
+    const ALIAS_CREATEDBY = 'createdBy';
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('updated_by') !== null): ?>
+    const ALIAS_UPDATEDBY = 'updatedBy';
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('deleted_by') !== null): ?>
+    const ALIAS_DELETEDBY = 'deletedBy';
+<?php endif; ?>
 
 <?php
 if(!empty($enum)){
@@ -174,7 +192,6 @@ if(!empty($enum)){
     {
         return [<?= "\n            " . implode(",\n            ", $rules) . ",\n        " ?>];
     }
-
 <?php if (!empty($hints)): ?>
 
     /**
@@ -187,6 +204,36 @@ if(!empty($enum)){
             <?= "'$name' => " . $generator->generateString($hint) . ",\n" ?>
 <?php endforeach; ?>
         ]);
+    }
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('created_by') !== null): ?>
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['created_by' => 'id'])->alias(STATIS::ALIAS_CREATEDBY);
+    }
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('updated_by') !== null): ?>
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['updated_by' => 'id'])->alias(STATIS::ALIAS_UPDATEDBY);
+    }
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('deleted_by') !== null): ?>
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDeletedBy()
+    {
+        return $this->hasOne(User::className(), ['deleted_by' => 'id'])->alias(STATIS::ALIAS_DELETEDBY);
     }
 <?php endif; ?>
 <?php foreach ($relations as $name => $relation): ?>
