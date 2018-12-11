@@ -92,9 +92,13 @@ class <?= $className ?> extends Base<?= $className . "\n" ?>
     public function attributeLabels()
     {
         return [
-<?php foreach ($labels as $name => $label): ?>
-            <?= "'$name' => " . $generator->generateString($label) . ",\n" ?>
-<?php endforeach; ?>
+<?php 
+foreach ($labels as $name => $label) {
+    $label = $generator->generateString($label);
+    $label = str_replace(" ID'", "'", $label);    
+    echo "            '{$name}' => {$label},\n";
+}
+?>
         ];
     }
 }
