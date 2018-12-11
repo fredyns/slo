@@ -17,7 +17,7 @@ class Generator extends \schmunk42\giiant\generators\model\Generator
     #public $generateRelationsFromCurrentSchema = false;
     #public $useSchemaName = false;
     #public $useSoftDeleteBehavior = true;
-    #public $deletedStateColumn = 'id_deleted';
+    #public $deletedStateColumn = 'is_deleted';
     #public $deletedAtColumn = 'deleted_at';
     #public $deletedByColumn = 'deleted_by';
     public $generateHintsFromComments = false;
@@ -46,7 +46,7 @@ class Generator extends \schmunk42\giiant\generators\model\Generator
      */
     public function generateRules($table)
     {
-        $softdeleteCols = ['id_deleted', 'deleted_at', 'deleted_by'];
+        $softdeleteCols = ['is_deleted', 'deleted_at', 'deleted_by'];
 
         foreach ($table->columns as $index => $column) {
             $isSoftdelete = in_array($column->name, $softdeleteCols);
