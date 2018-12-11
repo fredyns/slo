@@ -68,7 +68,7 @@ class <?= $className ?> extends Base<?= $className . "\n" ?>
             # option
             # constraint
             # safe
-            <?= implode(",\n          ", $rules) . ",\n" ?>
+            <?= implode(",\n            ", $rules) . ",\n" ?>
         ];
     }
     
