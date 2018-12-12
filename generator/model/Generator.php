@@ -31,6 +31,38 @@ class Generator extends \schmunk42\giiant\generators\model\Generator
     /**
      * {@inheritdoc}
      */
+    public function getTableNames()
+    {
+        parent::getTableNames();
+
+        if ($this->tableName == '*') {
+            $skipTables = [
+                // Yii tables
+                'migration', 'yii_session',
+                // uploaded file
+                'uploaded_file',
+                // user extension
+                'user', 'profile', 'social_account', 'token',
+                // rbac
+                'auth_assignment', 'auth_item', 'auth_item_child', 'auth_rule',
+                // menu table
+                'menu',
+            ];
+
+            foreach ($skipTables as $skipTable) {
+                $k = array_search($skipTable, $this->tableNames);
+                if ($k !== FALSE) {
+                    unset($this->tableNames[$k]);
+                }
+            }
+        }
+
+        return $this->tableNames;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function requiredTemplates()
     {
         $templates = parent::requiredTemplates();
