@@ -1,6 +1,6 @@
 <?php
 
-use schmunk42\giiant\helpers\SaveForm;
+use app\generator\crud\SaveForm;
 
 /*
  * @var yii\web\View
