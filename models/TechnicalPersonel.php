@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\base\TechnicalPersonel as BaseTechnicalPersonel;
+use fredyns\region\models\Area;
 use fredyns\stringcleaner\StringCleaner;
 use yii\helpers\ArrayHelper;
 
@@ -11,19 +12,25 @@ use yii\helpers\ArrayHelper;
  * This is the model class for table "technical_personel".
  *
  * @property string $aliasModel
+ * @property Area $country
+ * @property Area $province
+ * @property Area $regency
  */
 class TechnicalPersonel extends BaseTechnicalPersonel
 {
+    const ALIAS_COUNTRY = 'country';
+    const ALIAS_PROVINCE = 'province';
+    const ALIAS_REGENCY = 'regency';
+
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return ArrayHelper::merge(
-            parent::behaviors(),
-            [
+                parent::behaviors(), [
                 # custom behaviors
-            ]
+                ]
         );
     }
 
@@ -34,15 +41,15 @@ class TechnicalPersonel extends BaseTechnicalPersonel
     {
         return [
             # filter
-            /*//
-            'string_filter' => [
-                ['name'],
-                'filter',
-                'filter' => function($value){
-                    return StringCleaner::forPlaintext($value);
-                },
-            ],
-            //*/
+            /* //
+              'string_filter' => [
+              ['name'],
+              'filter',
+              'filter' => function($value){
+              return StringCleaner::forPlaintext($value);
+              },
+              ],
+              // */
             # default
             # required
             # type
@@ -56,7 +63,31 @@ class TechnicalPersonel extends BaseTechnicalPersonel
             [['phone', 'email'], 'string', 'max' => 64],
         ];
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Area::className(), ['country_id' => 'id'])->alias(static::ALIAS_COUNTRY);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProvince()
+    {
+        return $this->hasOne(Area::className(), ['province_id' => 'id'])->alias(static::ALIAS_PROVINCE);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRegency()
+    {
+        return $this->hasOne(Area::className(), ['regency_id' => 'id'])->alias(static::ALIAS_REGENCY);
+    }
+
     /**
      * Alias name of table for crud views Lists all models.
      * Change the alias name manual if needed later
@@ -94,4 +125,5 @@ class TechnicalPersonel extends BaseTechnicalPersonel
             'regency_id' => Yii::t('models', 'Regency'),
         ];
     }
+
 }

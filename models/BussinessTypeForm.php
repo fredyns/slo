@@ -19,10 +19,9 @@ class BussinessTypeForm extends BussinessType
     public function behaviors()
     {
         return ArrayHelper::merge(
-            parent::behaviors(),
-            [
+                parent::behaviors(), [
                 # custom behaviors
-            ]
+                ]
         );
     }
 
@@ -33,7 +32,6 @@ class BussinessTypeForm extends BussinessType
     {
         return [
             # filter
-            /*//
             'string_filter' => [
                 ['name'],
                 'filter',
@@ -41,9 +39,9 @@ class BussinessTypeForm extends BussinessType
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            //*/
             # default
             # required
+            [['name'], 'required'],
             # type
             # format
             # option

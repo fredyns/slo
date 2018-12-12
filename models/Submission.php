@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\dictionaries\SubmissionProgressStatus;
 use app\models\base\Submission as BaseSubmission;
 use fredyns\stringcleaner\StringCleaner;
 use yii\helpers\ArrayHelper;
@@ -14,16 +15,16 @@ use yii\helpers\ArrayHelper;
  */
 class Submission extends BaseSubmission
 {
+
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return ArrayHelper::merge(
-            parent::behaviors(),
-            [
+                parent::behaviors(), [
                 # custom behaviors
-            ]
+                ]
         );
     }
 
@@ -34,36 +35,74 @@ class Submission extends BaseSubmission
     {
         return [
             # filter
-            /*//
-            'string_filter' => [
-                ['name'],
-                'filter',
-                'filter' => function($value){
-                    return StringCleaner::forPlaintext($value);
-                },
-            ],
-            //*/
+            /* //
+              'string_filter' => [
+              ['name'],
+              'filter',
+              'filter' => function($value){
+              return StringCleaner::forPlaintext($value);
+              },
+              ],
+              // */
             # default
             # required
             # type
-            # format
-            # option
-            # constraint
-            # safe
-            [['progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
-            [['examination_date'], 'safe'],
+            [['progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id'], 'integer'],
             [['instalation_location'], 'string'],
             [['instalation_latitude', 'instalation_longitude'], 'number'],
             [['agenda_number', 'report_number'], 'string', 'max' => 64],
             [['instalation_name'], 'string', 'max' => 128],
-            [['bussiness_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\BussinessType::className(), 'targetAttribute' => ['bussiness_type_id' => 'id']],
-            [['owner_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Owner::className(), 'targetAttribute' => ['owner_id' => 'id']],
-            [['sbu_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Sbu::className(), 'targetAttribute' => ['sbu_id' => 'id']],
-            [['technical_personel_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\TechnicalPersonel::className(), 'targetAttribute' => ['technical_personel_id' => 'id']],
-            [['technical_pic_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\TechnicalPic::className(), 'targetAttribute' => ['technical_pic_id' => 'id']],
+            # format
+            [['examination_date'], 'date'],
+            # option
+            [
+                ['progress_status'],
+                'in', 'range' => [
+                    SubmissionProgressStatus::REQUEST,
+                    SubmissionProgressStatus::REGISTRATION,
+                    SubmissionProgressStatus::REGISTERED,
+                ],
+            ],
+            # constraint
+            [
+                ['bussiness_type_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => \app\models\BussinessType::className(),
+                'targetAttribute' => ['bussiness_type_id' => 'id'],
+            ],
+            [
+                ['owner_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => \app\models\Owner::className(),
+                'targetAttribute' => ['owner_id' => 'id'],
+            ],
+            [
+                ['sbu_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => \app\models\Sbu::className(),
+                'targetAttribute' => ['sbu_id' => 'id'],
+            ],
+            [
+                ['technical_personel_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => \app\models\TechnicalPersonel::className(),
+                'targetAttribute' => ['technical_personel_id' => 'id'],
+            ],
+            [
+                ['technical_pic_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => \app\models\TechnicalPic::className(),
+                'targetAttribute' => ['technical_pic_id' => 'id'],
+            ],
+            # safe
         ];
     }
-    
+
     /**
      * Alias name of table for crud views Lists all models.
      * Change the alias name manual if needed later
@@ -104,8 +143,8 @@ class Submission extends BaseSubmission
             'instalation_latitude' => Yii::t('models', 'Instalation Latitude'),
             'instalation_longitude' => Yii::t('models', 'Instalation Longitude'),
             'bussiness_type_id' => Yii::t('models', 'Bussiness Type'),
-            'sbu_id' => Yii::t('models', 'Sbu'),
-            'technical_pic_id' => Yii::t('models', 'Technical Pic'),
+            'sbu_id' => Yii::t('models', 'SBU'),
+            'technical_pic_id' => Yii::t('models', 'Technical PIC'),
             'technical_personel_id' => Yii::t('models', 'Technical Personel'),
             'report_number' => Yii::t('models', 'Report Number'),
             'report_file_id' => Yii::t('models', 'Report File'),
@@ -117,4 +156,5 @@ class Submission extends BaseSubmission
             'registered_by' => Yii::t('models', 'Registered By'),
         ];
     }
+
 }

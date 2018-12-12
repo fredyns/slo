@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\TechnicalPersonel;
+use fredyns\region\models\Area;
 use fredyns\stringcleaner\StringCleaner;
 use yii\helpers\ArrayHelper;
 
@@ -19,10 +20,9 @@ class TechnicalPersonelForm extends TechnicalPersonel
     public function behaviors()
     {
         return ArrayHelper::merge(
-            parent::behaviors(),
-            [
+                parent::behaviors(), [
                 # custom behaviors
-            ]
+                ]
         );
     }
 
@@ -33,26 +33,48 @@ class TechnicalPersonelForm extends TechnicalPersonel
     {
         return [
             # filter
-            /*//
             'string_filter' => [
-                ['name'],
+                ['name', 'address', 'phone', 'email'],
                 'filter',
                 'filter' => function($value){
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            //*/
             # default
+            [['country_id'], 'default', 'value' => 1],
             # required
+            [['name'], 'required'],
             # type
-            # format
-            # option
-            # constraint
-            # safe
             [['address'], 'string'],
             [['country_id', 'province_id', 'regency_id'], 'integer'],
             [['name'], 'string', 'max' => 512],
             [['phone', 'email'], 'string', 'max' => 64],
+            # format
+            [['email'], 'email'],
+            # option
+            # constraint
+            [
+                ['country_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Area::className(),
+                'targetAttribute' => ['country_id' => 'id'],
+            ],
+            [
+                ['province_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Area::className(),
+                'targetAttribute' => ['province_id' => 'id'],
+            ],
+            [
+                ['regency_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Area::className(),
+                'targetAttribute' => ['regency_id' => 'id'],
+            ],
+            # safe
         ];
     }
 
