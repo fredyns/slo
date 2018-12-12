@@ -62,17 +62,16 @@ abstract class <?= $controllerClass ?> extends <?= StringHelper::basename($gener
 <?php
 $traits = $generator->baseTraits;
 if ($traits) {
-    echo "    use {$traits};";
+    echo "    use {$traits};\n\n";
 }
 ?>
-
     /**
      * @var boolean whether to enable CSRF validation for the actions in this controller.
      * CSRF validation is enabled only when both this property and [[Request::enableCsrfValidation]] are true.
      */
     public $enableCsrfValidation = false;
-
 <?php if ($generator->accessFilter): ?>
+    
     /**
      * @inheritdoc
      */
@@ -235,7 +234,7 @@ if ($traits) {
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
             Yii::$app->getSession()->addFlash('error', $msg);
-            
+
             return $this->redirect(Url::previous());
         }
 
@@ -253,7 +252,42 @@ if ($traits) {
             return $this->redirect(['index']);
         }
     }
+<?php if ($softdelete): ?>
 
+    /**
+     * Restores an deleted <?= $modelClass ?> model.
+     * If restoration is successful, the browser will be redirected to the 'index' page.
+     * <?= implode("\n     * ", $actionParamComments)."\n" ?>
+     * @return mixed
+     */
+    public function actionRestore(<?= $actionParams ?>)
+    {
+        $model = $this->findModel(<?= $actionParams ?>);
+
+        try {
+            $model->restore();
+        } catch (\Exception $e) {
+            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+            Yii::$app->getSession()->addFlash('error', $msg);
+
+            return $this->redirect(Url::previous());
+        }
+
+        // TODO: improve detection
+        $isPivot = strstr('<?= $actionParams ?>',',');
+        if ($isPivot == true) {
+            return $this->redirect(Url::previous());
+        } elseif (isset(Yii::$app->session['__crudReturnUrl']) && Yii::$app->session['__crudReturnUrl'] != '/') {
+            Url::remember(null);
+            $url = Yii::$app->session['__crudReturnUrl'];
+            Yii::$app->session['__crudReturnUrl'] = null;
+
+            return $this->redirect($url);
+        } else {
+            return $this->redirect(['index']);
+        }
+    }
+<?php endif; ?>
 <?php
 
 if (count($pks) === 1) {
@@ -267,6 +301,7 @@ if (count($pks) === 1) {
 }
 
 ?>
+
     /**
      * Finds the <?= $modelClass ?> model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
