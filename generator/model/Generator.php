@@ -14,13 +14,11 @@ use schmunk42\giiant\helpers\SaveForm;
  */
 class Generator extends \schmunk42\giiant\generators\model\Generator
 {
-    #public $generateRelationsFromCurrentSchema = false;
-    #public $useSchemaName = false;
-    #public $useSoftDeleteBehavior = true;
-    #public $deletedStateColumn = 'is_deleted';
-    #public $deletedAtColumn = 'deleted_at';
-    #public $deletedByColumn = 'deleted_by';
+    public $tableName = '*';
+    public $useBlameableBehavior = true;
+    public $generateModelClass = true;
     public $generateHintsFromComments = false;
+    public $useTranslatableBehavior = false;
 
     /**
      * {@inheritdoc}
@@ -57,7 +55,33 @@ class Generator extends \schmunk42\giiant\generators\model\Generator
             }
         }
 
-        return parent::generateRules($source);
+        $rules = parent::generateRules($source);
+
+        foreach ($rules as $k => $rule) {
+            $rules[$k] = str_replace('self::', 'static::', $rule);
+
+            if (strpos("'exist',", $rule) !== FALSE) {
+                $rules[$k] = $this->formatFKRule($rule);
+            }
+        }
+
+        return $rules;
+    }
+
+    /**
+     * @param string $rule
+     * @return string
+     */
+    public function formatFKRule($rule)
+    {
+        $tab3 = "\n            ";
+        $tab4 = "\n                ";
+        $rule = str_replace("[['", "[{$tab4}['", $rule);
+        $rule = str_replace("'exist', 'skipOnError' => true, ", "{$tab4}'exist', {$tab4}'skipOnError' => true, {$tab4}", $rule);
+        $rule = str_replace("'targetAttribute'", "{$tab4}'targetAttribute'", $rule);
+        $rule = str_replace("]],", "],{$tab3}],", $rule);
+        $rule = str_replace("search", "replace", $rule);
+        return $rule;
     }
 
     /**
