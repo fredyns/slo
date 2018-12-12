@@ -55,18 +55,18 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('View') ?>;
 <div class="giiant-crud <?= Inflector::camel2id(StringHelper::basename($generator->modelClass), '-', true) ?>-view">
 
     <h1>
-        <?='<?= '?> $model->aliasModel ?>
-        <small>            
+        <?='<?= '?>$model->aliasModel ?>
+        <small>
 <?php if($haveID):?>
-            #<?='<?= '?> $model->id ?>
-<?php else:?>     
-            <?= '<?= Html::encode($model->'.($generator->getModelNameAttribute($generator->modelClass)).") ?>\n" ?>       
-<?php endif;?>            
+            #<?='<?= '?>$model->id ?>
+<?php else:?>
+            <?= '<?= Html::encode($model->'.($generator->getModelNameAttribute($generator->modelClass)).") ?>\n" ?>
+<?php endif;?>
 <?php if($softdelete):?>
             <?='<?php'?> if ($model->is_deleted): ?>
                 <span class="badge">deleted</span>
-            <?='<?php'?> endif; ?>  
-<?php endif;?>            
+            <?='<?php'?> endif; ?>
+<?php endif;?>
         </small>
     </h1>
 
@@ -118,7 +118,7 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('View') ?>;
                                 'class' => 'label label-info',
                             ],
                             'visible' => ($model->is_deleted),
-<?php endif;?>            
+<?php endif;?>
                         ],
                     ],
                 ],
@@ -161,7 +161,7 @@ foreach ($safeAttributes as $attribute) {
     $items = '';
 
     foreach ($generator->getModelRelations($generator->modelClass, ['has_many', 'has_one']) as $name => $relation) {
-        echo "\n<?php \$this->beginBlock('$name'); ?>\n";
+        echo "\n    <?php \$this->beginBlock('{$name}'); ?>\n";
 
         $showAllRecords = false;
 
@@ -171,7 +171,7 @@ foreach ($safeAttributes as $attribute) {
             $pivotPk = key($pivotRelation->link);
 
             $addButton = "  <?= Html::a(
-            '<span class=\"glyphicon glyphicon-link\"></span> ' . ".$generator->generateString('Attach')." . ' ".
+            '<span class=\"glyphicon glyphicon-link\"></span> '.".$generator->generateString('Attach').".' ".
                 Inflector::singularize(Inflector::camel2words($name)).
                 "', ['".$generator->createRelationRoute($pivotRelation, 'create')."', '".
                 Inflector::singularize($pivotName)."'=>['".key(
@@ -187,9 +187,9 @@ foreach ($safeAttributes as $attribute) {
         echo "    <div style='position: relative'>\n        <div style='position:absolute; right: 0px; top: 0px;'>\n";
 
         echo "
-            <?= 
+            <?=
             Html::a(
-                '<span class=\"glyphicon glyphicon-list\"></span> ' . ".$generator->generateString('List All')." . ' ".
+                '<span class=\"glyphicon glyphicon-list\"></span> '.".$generator->generateString('List All').".' ".
                 Inflector::camel2words($name)."',
                 ['".$generator->createRelationRoute($relation, 'index')."'],
                 ['class'=>'btn text-muted btn-xs']
@@ -197,10 +197,10 @@ foreach ($safeAttributes as $attribute) {
             ?>\n
         ";
         // TODO: support multiple PKs
-        echo "  
-            <?= 
+        echo "
+            <?=
             Html::a(
-                '<span class=\"glyphicon glyphicon-plus\"></span> ' . ".$generator->generateString('New')." . ' ".
+                '<span class=\"glyphicon glyphicon-plus\"></span> '.".$generator->generateString('New').".' ".
                 Inflector::singularize(Inflector::camel2words($name))."',
                 ['".$generator->createRelationRoute($relation, 'create')."', '".
                 Inflector::id2camel($generator->generateRelationTo($relation),
@@ -211,7 +211,7 @@ foreach ($safeAttributes as $attribute) {
             ?>\n";
         echo $addButton;
 
-        echo "        </div>\n    </div>\n"; #<div class='clearfix'></div>\n";
+        echo "        </div>\n    </div>\n\n"; #<div class='clearfix'></div>\n";
         // render pivot grid
         if ($relation->via !== null) {
             $pjaxId = "pjax-{$pivotName}";
@@ -227,21 +227,31 @@ foreach ($safeAttributes as $attribute) {
 
         // render relation grid
         if (!empty($output)):
-            echo "<?php Pjax::begin(['id'=>'pjax-{$name}', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-{$name} ul.pagination a, th a']) ?>\n";
-            echo "<?=\n ".$output."\n?>\n";
-            echo "<?php Pjax::end() ?>\n";
+            echo  <<<PHP
+    <?php 
+        Pjax::begin([
+            'id'=>'pjax-{$name}',
+            'enableReplaceState'=> false,
+            'linkSelector'=>'#pjax-{$name} ul.pagination a, th a',
+        ]);
+    ?>
+    <?=
+$output
+    ?>
+    <?php Pjax::end(); ?>\n
+PHP;
         endif;
 
-        echo "<?php \$this->endBlock() ?>\n\n";
+        echo "    <?php \$this->endBlock() ?>\n\n";
 
         // build tab items
         $label = Inflector::camel2words($name);
         $items .= <<<EOS
-                [
-                    'content' => \$this->blocks['$name'],
-                    'label'   => '<small>$label <span class="badge badge-default">'. \$model->get{$name}()->count() . '</span></small>',
-                    #'active'  => false,
-                ],\n
+            [
+                'content' => \$this->blocks['$name'],
+                'label'   => '<small>$label <span class="badge badge-default">'. \$model->get{$name}()->count() . '</span></small>',
+                #'active'  => false,
+            ],\n
 EOS;
     }
     ?>
@@ -249,7 +259,7 @@ EOS;
 <?php
 if ($items){
     echo "
-    <?= 
+    <?=
     Tabs::widget([
         'id' => 'relation-tabs',
         'encodeLabels' => false,

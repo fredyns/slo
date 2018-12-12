@@ -165,7 +165,7 @@ EOS;
      *
      * Renders a link to the related detail view
      *
-     * @param $column ColumnSchema
+     * @param $attribute ColumnSchema
      * @param $model ActiveRecord
      *
      * @return null|string
@@ -245,9 +245,9 @@ EOS;
         // column counter
         $counter = 0;
         $columns = <<<EOS
-                [
-                    'class' => 'yii\grid\SerialColumn',
-                ],\n
+            [
+                'class' => 'yii\grid\SerialColumn',
+            ],\n
 EOS;
 
         if (!$this->generator->isPivotRelation($relation)) {
@@ -258,29 +258,27 @@ EOS;
             // manyMany relations
             $template = '{view} {delete}';
             $deleteButtonPivot = <<<EOS
-'delete' => function (\$url, \$model) {
-                return Html::a('<span class="glyphicon glyphicon-remove"></span>', \$url, [
-                    'class' => 'text-danger',
-                    'title'         => {$this->generator->generateString('Remove')},
-                    'data-confirm'  => {$this->generator->generateString(
-                    'Are you sure you want to delete the related item?'
-                )},
-                    'data-method' => 'post',
-                    'data-pjax' => '0',
-                ]);
-            },
-'view' => function (\$url, \$model) {
-                return Html::a(
-                    '<span class="glyphicon glyphicon-cog"></span>',
-                    \$url,
-                    [
-                        'data-title'  => {$this->generator->generateString('View Pivot Record')},
-                        'data-toggle' => 'tooltip',
-                        'data-pjax'   => '0',
-                        'class'       => 'text-muted',
-                    ]
-                );
-            },
+                    'delete' => function (\$url, \$model) {
+                        return Html::a('<span class="glyphicon glyphicon-remove"></span>', \$url, [
+                            'class' => 'text-danger',
+                            'title'         => {$this->generator->generateString('Remove')},
+                            'data-confirm'  => {$this->generator->generateString('Are you sure you want to delete the related item?')},
+                            'data-method' => 'post',
+                            'data-pjax' => '0',
+                        ]);
+                    },
+                    'view' => function (\$url, \$model) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-cog"></span>',
+                            \$url,
+                            [
+                                'data-title'  => {$this->generator->generateString('View Pivot Record')},
+                                'data-toggle' => 'tooltip',
+                                'data-pjax'   => '0',
+                                'class'       => 'text-muted',
+                            ]
+                        );
+                    },\n
 EOS;
         }
 
@@ -288,38 +286,33 @@ EOS;
         $controller = $this->generator->pathPrefix.Inflector::camel2id($reflection->getShortName(), '-', true);
         $relKey = key($relation->link);
         $actionColumn = <<<EOS
-[
-    'class'      => '{$this->generator->actionButtonClass}',
-    'template'   => '$template',
-    'contentOptions' => ['nowrap'=>'nowrap'],
-    'urlCreator' => function (\$action, \$model, \$key, \$index) {
-        // using the column name as key, not mapping to 'id' like the standard generator
-        \$params = is_array(\$key) ? \$key : [\$model->primaryKey()[0] => (string) \$key];
-        \$params[0] = '$controller' . '/' . \$action;
-        \$params['{$model->formName()}'] = ['$relKey' => \$model->primaryKey()[0]];
-        return \$params;
-    },
-    'buttons'    => [
-        $deleteButtonPivot
-    ],
-    'controller' => '$controller'
-]
+            [
+                'class' => '{$this->generator->actionButtonClass}',
+                'template' => '{$template}',
+                'contentOptions' => ['nowrap' => 'nowrap'],
+                'urlCreator' => function (\$action, \$model, \$key, \$index) {
+                    // using the column name as key, not mapping to 'id' like the standard generator
+                    \$params = is_array(\$key) ? \$key : [\$model->primaryKey()[0] => (string) \$key];
+                    \$params[0] = '{$controller}/' . \$action;
+                    \$params['{$model->formName()}'] = ['$relKey' => \$model->primaryKey()[0]];
+                    return \$params;
+                },
+                'buttons'    => [
+$deleteButtonPivot
+                ],
+                'controller' => '{$controller}'
+            ],\n
 EOS;
 
         // prepare grid column formatters
         $model->setScenario('crud');
-        $safeAttributes = $model->safeAttributes();
-        if (empty($safeAttributes)) {
+        $allAttributes = $model->safeAttributes();
+        if (empty($allAttributes)) {
             $safeAttributes = $model->getTableSchema()->columnNames;
         }
         $skipCols = ['id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'is_deleted', 'deleted_at', 'deleted_by'];
-        $safeAttributes = array_diff($safeAttributes, $skipCols);
+        $safeAttributes = array_diff($allAttributes, $skipCols);
         foreach ($safeAttributes as $attr) {
-
-            // max seven columns
-            if ($counter > $this->generator->gridRelationMaxColumns) {
-                continue;
-            }
             // skip virtual attributes
             if ($this->skipVirtualAttributes && !isset($model->tableSchema->columns[$attr])) {
                 continue;
@@ -333,39 +326,59 @@ EOS;
             if ($code == false) {
                 continue;
             }
-            $columns .= $code.",\n";
+            
+            // max seven columns displayed
+            if ($counter > $this->generator->gridRelationMaxColumns) {
+                $columns .= "            \\*\\\n";
+            }
+            
+            $columns .= "            ".$code.",\n";
+            
+            // max seven columns displayed
+            if ($counter > $this->generator->gridRelationMaxColumns) {
+                $columns .= "            \\*\\\n";
+            }
+            
             ++$counter;
         }
 
         // add action column
-        $columns .= $actionColumn.",\n";
+        $columns .= $actionColumn;
 
         $query = $showAllRecords ?
             "'query' => \\{$relation->modelClass}::find()" :
             "'query' => \$model->get{$name}()";
+            
+        if (in_array('is_deleted', $model->getTableSchema()->columnNames)) {
+            $query .= "->andWhere(['is_deleted' => FALSE])";
+        }
+        
         $pageParam = Inflector::slug("page-{$name}");
         $firstPageLabel = $this->generator->generateString('First');
         $lastPageLabel = $this->generator->generateString('Last');
         $code = "'<div class=\"table-responsive\">'\n . ";
-        $code .= <<<EOS
-\\yii\\grid\\GridView::widget([
-    'layout' => '{summary}{pager}<br/>{items}{pager}',
-    'dataProvider' => new \\yii\\data\\ActiveDataProvider([
-        {$query},
-        'pagination' => [
-            'pageSize' => 20,
-            'pageParam'=>'{$pageParam}',
-        ]
-    ]),
-    'pager'        => [
-        'class'          => yii\widgets\LinkPager::className(),
-        'firstPageLabel' => {$firstPageLabel},
-        'lastPageLabel'  => {$lastPageLabel}
-    ],
-    'columns' => [\n $columns]
-])
+        $code = <<<EOS
+    '<div class=\"table-responsive\">'
+    .\\yii\\grid\\GridView::widget([
+        'layout' => '{summary}{pager}<br/>{items}{pager}',
+        'dataProvider' => new \\yii\\data\\ActiveDataProvider([
+            {$query},
+            'pagination' => [
+                'pageSize' => 20,
+                'pageParam'=>'{$pageParam}',
+            ]
+        ]),
+        'pager'        => [
+            'class'          => yii\widgets\LinkPager::className(),
+            'firstPageLabel' => {$firstPageLabel},
+            'lastPageLabel'  => {$lastPageLabel}
+        ],
+        'columns' => [
+{$columns}
+        ],
+    ])
+    . '</div>'\n
 EOS;
-        $code .= "\n . '</div>' ";
 
         return $code;
     }
