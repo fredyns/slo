@@ -112,7 +112,6 @@ class Generator extends \schmunk42\giiant\generators\model\Generator
         $rule = str_replace("'exist', 'skipOnError' => true, ", "{$tab4}'exist', {$tab4}'skipOnError' => true, {$tab4}", $rule);
         $rule = str_replace("'targetAttribute'", "{$tab4}'targetAttribute'", $rule);
         $rule = str_replace("]],", "],{$tab3}],", $rule);
-        $rule = str_replace("search", "replace", $rule);
         return $rule;
     }
 
