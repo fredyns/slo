@@ -244,7 +244,11 @@ EOS;
 
         // column counter
         $counter = 0;
-        $columns = '';
+        $columns = <<<EOS
+                [
+                    'class' => 'yii\grid\SerialColumn',
+                ],\n
+EOS;
 
         if (!$this->generator->isPivotRelation($relation)) {
             // hasMany relations
@@ -302,15 +306,14 @@ EOS;
 ]
 EOS;
 
-        // add action column
-        $columns .= $actionColumn.",\n";
-
         // prepare grid column formatters
         $model->setScenario('crud');
         $safeAttributes = $model->safeAttributes();
         if (empty($safeAttributes)) {
             $safeAttributes = $model->getTableSchema()->columnNames;
         }
+        $skipCols = ['id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'is_deleted', 'deleted_at', 'deleted_by'];
+        $safeAttributes = array_diff($safeAttributes, $skipCols);
         foreach ($safeAttributes as $attr) {
 
             // max seven columns
@@ -333,6 +336,9 @@ EOS;
             $columns .= $code.",\n";
             ++$counter;
         }
+
+        // add action column
+        $columns .= $actionColumn.",\n";
 
         $query = $showAllRecords ?
             "'query' => \\{$relation->modelClass}::find()" :
