@@ -177,7 +177,11 @@ if ($traits) {
      */
     public function actionCreate()
     {
+<?php if ($softdelete): ?>
+        $model = new <?= $modelClass ?>Form(['is_deleted' => FALSE]);
+<?php else: ?>
         $model = new <?= $modelClass ?>Form;
+<?php endif; ?>
 
         try {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
