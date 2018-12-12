@@ -55,7 +55,7 @@ class Generator extends \schmunk42\giiant\generators\crud\Generator
         if (($table = $this->getTableSchema()) === false) {
             return ["[['".implode("', '", $this->getColumnNames())."'], 'safe']"];
         }
-        
+
         $skipCols = ['created_at', 'updated_at', 'deleted_at'];
         $types = [];
         foreach ($table->columns as $column) {
@@ -158,6 +158,31 @@ class Generator extends \schmunk42\giiant\generators\crud\Generator
         }
 
         return $conditions;
+    }
+
+    /**
+     * @return array List of providers. Keys and values contain the same strings
+     */
+    public function generateProviderCheckboxListData()
+    {
+        $files = FileHelper::findFiles(
+                __DIR__.DIRECTORY_SEPARATOR.'providers', [
+                'only' => ['*.php'],
+                'recursive' => false,
+                ]
+        );
+
+        foreach ($files as $file) {
+            require_once $file;
+        }
+
+        $coreProviders = array_filter(
+            get_declared_classes(), function ($a) {
+            return stripos($a, __NAMESPACE__.'\providers') !== false;
+            }
+        );
+
+        return array_combine($coreProviders, $coreProviders);
     }
 
 }
