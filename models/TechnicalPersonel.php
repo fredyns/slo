@@ -50,10 +50,10 @@ class TechnicalPersonel extends BaseTechnicalPersonel
             # option
             # constraint
             # safe
-            [['is_deleted', 'country_id', 'province_id', 'regency_id'], 'integer'],
-          [['address'], 'string'],
-          [['name'], 'string', 'max' => 512],
-          [['phone', 'email'], 'string', 'max' => 64],
+            [['address'], 'string'],
+            [['country_id', 'province_id', 'regency_id'], 'integer'],
+            [['name'], 'string', 'max' => 512],
+            [['phone', 'email'], 'string', 'max' => 64],
         ];
     }
     
@@ -89,9 +89,9 @@ class TechnicalPersonel extends BaseTechnicalPersonel
             'phone' => Yii::t('models', 'Phone'),
             'email' => Yii::t('models', 'Email'),
             'address' => Yii::t('models', 'Address'),
-            'country_id' => Yii::t('models', 'Country ID'),
-            'province_id' => Yii::t('models', 'Province ID'),
-            'regency_id' => Yii::t('models', 'Regency ID'),
+            'country_id' => Yii::t('models', 'Country'),
+            'province_id' => Yii::t('models', 'Province'),
+            'regency_id' => Yii::t('models', 'Regency'),
         ];
     }
 }

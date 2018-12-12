@@ -49,10 +49,10 @@ class TechnicalPersonelForm extends TechnicalPersonel
             # option
             # constraint
             # safe
-            [['is_deleted', 'country_id', 'province_id', 'regency_id'], 'integer'],
-          [['address'], 'string'],
-          [['name'], 'string', 'max' => 512],
-          [['phone', 'email'], 'string', 'max' => 64],
+            [['address'], 'string'],
+            [['country_id', 'province_id', 'regency_id'], 'integer'],
+            [['name'], 'string', 'max' => 512],
+            [['phone', 'email'], 'string', 'max' => 64],
         ];
     }
 

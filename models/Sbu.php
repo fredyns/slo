@@ -50,9 +50,9 @@ class Sbu extends BaseSbu
             # option
             # constraint
             # safe
-            [['is_deleted', 'country_id', 'province_id', 'regency_id'], 'integer'],
-          [['address'], 'string'],
-          [['name'], 'string', 'max' => 512],
+            [['address'], 'string'],
+            [['country_id', 'province_id', 'regency_id'], 'integer'],
+            [['name'], 'string', 'max' => 512],
         ];
     }
     
@@ -86,9 +86,9 @@ class Sbu extends BaseSbu
             'deleted_by' => Yii::t('models', 'Deleted By'),
             'name' => Yii::t('models', 'Name'),
             'address' => Yii::t('models', 'Address'),
-            'country_id' => Yii::t('models', 'Country ID'),
-            'province_id' => Yii::t('models', 'Province ID'),
-            'regency_id' => Yii::t('models', 'Regency ID'),
+            'country_id' => Yii::t('models', 'Country'),
+            'province_id' => Yii::t('models', 'Province'),
+            'regency_id' => Yii::t('models', 'Regency'),
         ];
     }
 }

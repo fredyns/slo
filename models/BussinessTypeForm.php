@@ -49,8 +49,7 @@ class BussinessTypeForm extends BussinessType
             # option
             # constraint
             # safe
-            [['is_deleted'], 'integer'],
-          [['name'], 'string', 'max' => 128],
+            [['name'], 'string', 'max' => 128],
         ];
     }
 

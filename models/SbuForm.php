@@ -49,9 +49,9 @@ class SbuForm extends Sbu
             # option
             # constraint
             # safe
-            [['is_deleted', 'country_id', 'province_id', 'regency_id'], 'integer'],
-          [['address'], 'string'],
-          [['name'], 'string', 'max' => 512],
+            [['address'], 'string'],
+            [['country_id', 'province_id', 'regency_id'], 'integer'],
+            [['name'], 'string', 'max' => 512],
         ];
     }
 

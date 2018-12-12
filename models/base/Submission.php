@@ -5,14 +5,22 @@
 namespace app\models\base;
 
 use Yii;
+use app\models\User;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii2tech\ar\softdelete\SoftDeleteBehavior;
 
 /**
  * This is the base-model class for table "submission".
  *
  * @property string $id
+ * @property integer $created_at
+ * @property integer $created_by
+ * @property integer $updated_at
+ * @property integer $updated_by
  * @property integer $is_deleted
+ * @property integer $deleted_at
+ * @property integer $deleted_by
  * @property string $agenda_number
  * @property integer $progress_status
  * @property string $examination_date
@@ -36,10 +44,10 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $registering_by
  * @property integer $registered_at
  * @property integer $registered_by
- * @property integer $created_at
- * @property integer $created_by
- * @property integer $updated_at
- * @property integer $updated_by
+ *
+ * @property User $createdBy
+ * @property User $updatedBy
+ * @property User $deletedBy
  *
  * @property \app\models\BussinessType $bussinessType
  * @property \app\models\Owner $owner
@@ -47,11 +55,15 @@ use yii\behaviors\TimestampBehavior;
  * @property \app\models\TechnicalPersonel $technicalPersonel
  * @property \app\models\TechnicalPic $technicalPic
  *
+ *
+ * @method void softDelete() move to trash
+ * @method void restore() pick up form trash
  */
 abstract class Submission extends \yii\db\ActiveRecord
 {
-
-
+    const ALIAS_CREATEDBY = 'createdBy';
+    const ALIAS_UPDATEDBY = 'updatedBy';
+    const ALIAS_DELETEDBY = 'deletedBy';
 
     /**
      * @inheritdoc
@@ -73,6 +85,23 @@ abstract class Submission extends \yii\db\ActiveRecord
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
             ],
+            'softdelete' => [
+                'class' => SoftDeleteBehavior::className(),
+                'softDeleteAttributeValues' => [
+                    'is_deleted' => TRUE,
+                    'deleted_at' => time(),
+                    'deleted_by' => function($model) {
+                        if (Yii::$app->user->isGuest === FALSE) {
+                            return Yii::$app->user->id;
+                        }
+
+                        return NULL;
+                    },
+                ],
+                'restoreAttributeValues' => [
+                    'is_deleted' => FALSE,
+                ],
+            ],
         ];
     }
 
@@ -82,7 +111,7 @@ abstract class Submission extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_deleted', 'progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
+            [['progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
             [['examination_date'], 'safe'],
             [['instalation_location'], 'string'],
             [['instalation_latitude', 'instalation_longitude'], 'number'],
@@ -96,6 +125,29 @@ abstract class Submission extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['created_by' => 'id'])->alias(static::ALIAS_CREATEDBY);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['updated_by' => 'id'])->alias(static::ALIAS_UPDATEDBY);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDeletedBy()
+    {
+        return $this->hasOne(User::className(), ['deleted_by' => 'id'])->alias(static::ALIAS_DELETEDBY);
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -136,8 +188,5 @@ abstract class Submission extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\TechnicalPic::className(), ['id' => 'technical_pic_id']);
     }
-
-
-
 
 }
