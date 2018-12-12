@@ -87,7 +87,7 @@ echo "\n";
                 'encodeLabels' => false,
                 'items' => [
                     [
-                        'label' => Yii::t('<?=$generator->modelMessageCategory?>', '<?=substr(strrchr($model::className(), '\\'), 1)?>'),
+                        'label' => $model->aliasModel,
                         'content' => $this->blocks['main'],
                         'active' => true,
                     ],
