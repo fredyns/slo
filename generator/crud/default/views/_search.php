@@ -32,11 +32,13 @@ use yii\widgets\ActiveForm;
 
 <?php
 $count = 0;
+$skipCols = ['created_at', 'created_by', 'updated_at', 'updated_by', 'is_deleted', 'deleted_at', 'deleted_by'];
 foreach ($generator->getTableSchema()->getColumnNames() as $attribute) {
-    if (++$count < 6) {
+    if ($count < 6 && !in_array($attribute, $skipCols)) {
         echo "        <?= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
+        $count++;
     } else {
-        echo "        <?php // echo ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
+        echo "        <?php //= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
     }
 }
 ?>
