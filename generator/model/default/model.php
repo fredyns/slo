@@ -213,7 +213,7 @@ if(!empty($enum)){
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['created_by' => 'id'])->alias(static::ALIAS_CREATEDBY);
+        return $this->hasOne(User::className(), ['id' => 'created_by'])->alias(static::ALIAS_CREATEDBY);
     }
 <?php endif; ?>
 <?php if ($tableSchema->getColumn('updated_by') !== null): ?>
@@ -223,7 +223,7 @@ if(!empty($enum)){
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(User::className(), ['updated_by' => 'id'])->alias(static::ALIAS_UPDATEDBY);
+        return $this->hasOne(User::className(), ['id' => 'updated_by'])->alias(static::ALIAS_UPDATEDBY);
     }
 <?php endif; ?>
 <?php if ($tableSchema->getColumn('deleted_by') !== null): ?>
@@ -233,7 +233,7 @@ if(!empty($enum)){
      */
     public function getDeletedBy()
     {
-        return $this->hasOne(User::className(), ['deleted_by' => 'id'])->alias(static::ALIAS_DELETEDBY);
+        return $this->hasOne(User::className(), ['id' => 'deleted_by'])->alias(static::ALIAS_DELETEDBY);
     }
 <?php endif; ?>
 <?php foreach ($relations as $name => $relation): ?>
