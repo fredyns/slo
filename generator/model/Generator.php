@@ -153,6 +153,17 @@ class Generator extends \schmunk42\giiant\generators\model\Generator
             $files[] = new CodeFile(
                 $formFilepath, $this->render('model-form.php', $params)
             );
+            /*
+             * create gii/[name]GiiantModel.json with actual form data
+             */
+            $suffix = str_replace(' ', '', $this->getName());
+            $formDataDir = Yii::getAlias('@'.str_replace('\\', '/', $this->ns));
+            $formDataFile = StringHelper::dirname($formDataDir)
+                .'/gii'
+                .'/'.$tableName.$suffix.'.json';
+
+            $formData = json_encode(SaveForm::getFormAttributesValues($this, $this->formAttributes()), JSON_PRETTY_PRINT);
+            $files[] = new CodeFile($formDataFile, $formData);
             /**
              * fredyns: end
              */
