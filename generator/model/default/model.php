@@ -213,7 +213,7 @@ if(!empty($enum)){
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['created_by' => 'id'])->alias(STATIS::ALIAS_CREATEDBY);
+        return $this->hasOne(User::className(), ['created_by' => 'id'])->alias(static::ALIAS_CREATEDBY);
     }
 <?php endif; ?>
 <?php if ($tableSchema->getColumn('updated_by') !== null): ?>
@@ -223,7 +223,7 @@ if(!empty($enum)){
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(User::className(), ['updated_by' => 'id'])->alias(STATIS::ALIAS_UPDATEDBY);
+        return $this->hasOne(User::className(), ['updated_by' => 'id'])->alias(static::ALIAS_UPDATEDBY);
     }
 <?php endif; ?>
 <?php if ($tableSchema->getColumn('deleted_by') !== null): ?>
@@ -233,7 +233,7 @@ if(!empty($enum)){
      */
     public function getDeletedBy()
     {
-        return $this->hasOne(User::className(), ['deleted_by' => 'id'])->alias(STATIS::ALIAS_DELETEDBY);
+        return $this->hasOne(User::className(), ['deleted_by' => 'id'])->alias(static::ALIAS_DELETEDBY);
     }
 <?php endif; ?>
 <?php foreach ($relations as $name => $relation): ?>
@@ -246,8 +246,8 @@ if(!empty($enum)){
         <?= $relation[0] . "\n" ?>
     }
 <?php endforeach; ?>
-
 <?php if (isset($translation)): ?>
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -256,12 +256,12 @@ if(!empty($enum)){
         <?= $translation['code'] . "\n"?>
     }
 <?php endif; ?>
-
 <?php if ($queryClassName): ?>
     <?php
     $queryClassFullName = ($generator->ns .'\\base' === $generator->queryNs) ? $queryClassName : '\\' . $generator->queryNs . '\\' . $queryClassName;
     echo "\n";
     ?>
+
     /**
      * @inheritdoc
      * @return <?= $queryClassFullName ?> the active query used by this AR class.
@@ -271,10 +271,10 @@ if(!empty($enum)){
         return new <?= $queryClassFullName ?>(get_called_class());
     }
 <?php endif; ?>
-
 <?php
     foreach($enum as $column_name => $column_data){
 ?>
+
     /**
      * get column <?php echo $column_name?> enum value label
      * @param string $value
@@ -308,8 +308,6 @@ if(!empty($enum)){
     }
 <?php
     }
-
-
 ?>
 
 }
