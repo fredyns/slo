@@ -109,6 +109,9 @@ $config = [
             'class' => 'fredyns\region\Module',
         ],
     ],
+    'controllerMap' => [
+        'file' => 'mdm\\upload\\FileController', // use to show or download file
+    ],
     'params' => $params,
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
