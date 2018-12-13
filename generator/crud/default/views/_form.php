@@ -105,7 +105,7 @@ echo "\n";
             '<span class="glyphicon glyphicon-check"></span> ' .
             ($model->isNewRecord ? <?= $generator->generateString('Create') ?> : <?= $generator->generateString('Save') ?>),
             [
-            'id' => 'save-' . $model->formName(),
+            'id' => 'save-'.$model->formName(),
             'class' => 'btn btn-success'
             ]
         );

@@ -251,9 +251,9 @@ PHP;
         $label = Inflector::camel2words($name);
         $items .= <<<EOS
             [
+                //'active' => false,
                 'content' => \$this->blocks['$name'],
-                'label'   => '<small>$label <span class="badge badge-default">'. \$model->get{$name}()->count() . '</span></small>',
-                #'active'  => false,
+                'label' => '<small>$label <span class="badge badge-default">'. \$model->get{$name}()->count().'</span></small>',
             ],\n
 EOS;
     }

@@ -65,7 +65,7 @@ if (Yii::$app->user->can('<?=$permisions['delete']['name']?>', ['route' => true]
 $actionColumnTemplate = implode(' ', $actionColumnTemplates);
 $actionColumnTemplateString = $actionColumnTemplate;
 <?php else: ?>
-Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . <?= $generator->generateString('New') ?>, ['create'], ['class' => 'btn btn-success']);
+Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> '.<?= $generator->generateString('New') ?>, ['create'], ['class' => 'btn btn-success']);
 $actionColumnTemplateString = "{view} {update}";
 <?php endif; ?>
 
@@ -139,7 +139,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 echo "                /*/";
             }
 
-            echo "                " . str_replace("\n", "\n                ", $format) . ",\n";
+            echo "                ".str_replace("\n", "\n                ", $format).",\n";
 
             if ($count >= $generator->gridMaxColumns) {
                 echo "                //*/";
@@ -162,7 +162,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                     'urlCreator' => function($action, $model, $key, $index) {
                         // using the column name as key, not mapping to 'id' like the standard generator
                         $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
-                        $params[0] = Yii::$app->controller->id ? Yii::$app->controller->id . '/' . $action : $action;
+                        $params[0] = Yii::$app->controller->id ? Yii::$app->controller->id.'/'.$action : $action;
                         return Url::toRoute($params);
                     },
                     'contentOptions' => ['nowrap'=>'nowrap']
