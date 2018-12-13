@@ -305,13 +305,13 @@ $deleteButtonPivot
 EOS;
 
         // prepare grid column formatters
-        $model->setScenario('crud');
         $allAttributes = $model->safeAttributes();
         if (empty($allAttributes)) {
             $safeAttributes = $model->getTableSchema()->columnNames;
         }
         $skipCols = ['id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'is_deleted', 'deleted_at', 'deleted_by'];
         $safeAttributes = array_diff($allAttributes, $skipCols);
+        $columns .= "            /* columns: ".implode(',', $allAttributes)." */\n";
         foreach ($safeAttributes as $attr) {
             // skip virtual attributes
             if ($this->skipVirtualAttributes && !isset($model->tableSchema->columns[$attr])) {
