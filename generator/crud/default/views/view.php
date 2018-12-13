@@ -187,34 +187,34 @@ foreach ($safeAttributes as $attribute) {
         }
 
         // relation list, add, create buttons
-        echo "    <div style='position: relative'>\n        <div style='position:absolute; right: 0px; top: 0px;'>\n";
-
         echo "
+    <div style='position: relative'>
+        <div style='position:absolute; right: 0px; top: 0px;'>
+
             <?=
             Html::a(
-                '<span class=\"glyphicon glyphicon-list\"></span> '.".$generator->generateString('List All').".' ".
-                Inflector::camel2words($name)."',
+                '<span class=\"glyphicon glyphicon-list\"></span> '.".$generator->generateString('List All').".' '.".$generator->generateString(Inflector::camel2words($name)).",
                 ['".$generator->createRelationRoute($relation, 'index')."'],
                 ['class'=>'btn text-muted btn-xs']
             );
-            ?>\n
-        ";
-        // TODO: support multiple PKs
-        echo "
+            ?>
+
+
             <?=
             Html::a(
-                '<span class=\"glyphicon glyphicon-plus\"></span> '.".$generator->generateString('New').".' ".
-                Inflector::singularize(Inflector::camel2words($name))."',
-                ['".$generator->createRelationRoute($relation, 'create')."', '".
-                Inflector::id2camel($generator->generateRelationTo($relation),
-                    '-',
-                    true)."' => ['".key($relation->link)."' => \$model->".$model->primaryKey()[0]."]],
+                '<span class=\"glyphicon glyphicon-plus\"></span> '.".$generator->generateString('New '.Inflector::singularize(Inflector::camel2words($name))).",
+                ['".$generator->createRelationRoute($relation, 'create')."', '".Inflector::id2camel($generator->generateRelationTo($relation),'-',true)."' => ['".key($relation->link)."' => \$model->".$model->primaryKey()[0]."]],
                 ['class'=>'btn btn-success btn-xs']
             );
-            ?>\n";
-        echo $addButton;
+            ?>
 
-        echo "        </div>\n    </div>\n\n"; #<div class='clearfix'></div>\n";
+            {$addButton}
+
+        </div>
+    </div>
+
+";
+
         // render pivot grid
         if ($relation->via !== null) {
             $pjaxId = "pjax-{$pivotName}";
@@ -231,7 +231,7 @@ foreach ($safeAttributes as $attribute) {
         // render relation grid
         if (!empty($output)):
             echo  <<<PHP
-    <?php 
+    <?php
         Pjax::begin([
             'id'=>'pjax-{$name}',
             'enableReplaceState'=> false,
@@ -249,11 +249,12 @@ PHP;
 
         // build tab items
         $label = Inflector::camel2words($name);
+        $label = $generator->generateString($label);
         $items .= <<<EOS
             [
                 //'active' => false,
                 'content' => \$this->blocks['$name'],
-                'label' => '<small>$label <span class="badge badge-default">'. \$model->get{$name}()->count().'</span></small>',
+                'label' => '<small>'.{$label}.' <span class="badge badge-default">'. \$model->get{$name}()->count().'</span></small>',
             ],\n
 EOS;
     }

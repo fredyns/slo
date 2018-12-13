@@ -98,7 +98,7 @@ echo "\n";
 
         <hr/>
 
-        <?= '<?= ' ?> $form->errorSummary($model); ?>
+        <?= '<?= ' ?>$form->errorSummary($model); ?>
 
         <?= "<?=\n" ?>
         Html::submitButton(
