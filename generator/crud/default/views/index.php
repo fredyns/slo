@@ -30,6 +30,7 @@ if (empty($safeAttributes)) {
 echo "<?php\n";
 ?>
 
+use <?= ltrim($generator->modelClass, '\\') ?>;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
