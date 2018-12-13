@@ -120,7 +120,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             'filterModel' => $searchModel,
 <?php endif; ?>
             'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
-            'headerRowOptions' => ['class'=>'x'],
+            'headerRowOptions' => ['class' => 'x'],
             'columns' => [
                 [
                     'class' => 'yii\grid\SerialColumn',
@@ -161,7 +161,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                         $params[0] = Yii::$app->controller->id ? Yii::$app->controller->id.'/'.$action : $action;
                         return Url::toRoute($params);
                     },
-                    'contentOptions' => ['nowrap'=>'nowrap']
+                    'contentOptions' => ['nowrap' => 'nowrap']
                 ],
             ],
         ]);

@@ -180,7 +180,7 @@ foreach ($safeAttributes as $attribute) {
                 Inflector::singularize($pivotName)."'=>['".key(
                     $pivotRelation->link
                 )."'=>\$model->{$model->primaryKey()[0]}]],
-            ['class'=>'btn btn-info btn-xs']
+            ['class' => 'btn btn-info btn-xs']
         ) ?>\n";
         } else {
             $addButton = '';
@@ -195,7 +195,7 @@ foreach ($safeAttributes as $attribute) {
             Html::a(
                 '<span class=\"glyphicon glyphicon-list\"></span> '.".$generator->generateString('List All').".' '.".$generator->generateString(Inflector::camel2words($name)).",
                 ['".$generator->createRelationRoute($relation, 'index')."'],
-                ['class'=>'btn text-muted btn-xs']
+                ['class' => 'btn text-muted btn-xs']
             );
             ?>
 
@@ -204,7 +204,7 @@ foreach ($safeAttributes as $attribute) {
             Html::a(
                 '<span class=\"glyphicon glyphicon-plus\"></span> '.".$generator->generateString('New '.Inflector::singularize(Inflector::camel2words($name))).",
                 ['".$generator->createRelationRoute($relation, 'create')."', '".Inflector::id2camel($generator->generateRelationTo($relation),'-',true)."' => ['".key($relation->link)."' => \$model->".$model->primaryKey()[0]."]],
-                ['class'=>'btn btn-success btn-xs']
+                ['class' => 'btn btn-success btn-xs']
             );
             ?>
 
@@ -233,9 +233,9 @@ foreach ($safeAttributes as $attribute) {
             echo  <<<PHP
     <?php
         Pjax::begin([
-            'id'=>'pjax-{$name}',
+            'id' => 'pjax-{$name}',
             'enableReplaceState'=> false,
-            'linkSelector'=>'#pjax-{$name} ul.pagination a, th a',
+            'linkSelector' => '#pjax-{$name} ul.pagination a, th a',
         ]);
     ?>
     <?=
