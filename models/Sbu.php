@@ -119,7 +119,7 @@ class Sbu extends BaseSbu
             'address' => Yii::t('models', 'Address'),
             'country_id' => Yii::t('models', 'Country'),
             'province_id' => Yii::t('models', 'Province'),
-            'regency_id' => Yii::t('models', 'Regency'),
+            'regency_id' => Yii::t('models', 'City').'/'.Yii::t('models', 'Regency'),
         ];
     }
 
