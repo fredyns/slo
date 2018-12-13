@@ -66,8 +66,8 @@ if (!$model->country_id) {
                         'pluginOptions' => [
                             'multiple' => FALSE,
                             'allowClear' => TRUE,
-                            //'tags' => TRUE,
-                            //'maximumInputLength' => 255,
+                        //'tags' => TRUE,
+                        //'maximumInputLength' => 255,
                         ],
                     ],
                     'pluginOptions' => [
@@ -144,18 +144,16 @@ if (!$model->country_id) {
         <?php $this->endBlock(); ?>
 
         <?=
-        Tabs::widget(
-            [
-                'encodeLabels' => false,
-                'items' => [
-                    [
-                        'label' => $model->aliasModel,
-                        'content' => $this->blocks['main'],
-                        'active' => true,
-                    ],
-                ]
+        Tabs::widget([
+            'encodeLabels' => false,
+            'items' => [
+                [
+                    'label' => $model->aliasModel,
+                    'content' => $this->blocks['main'],
+                    'active' => true,
+                ],
             ]
-        );
+        ]);
         ?>
 
         <hr/>

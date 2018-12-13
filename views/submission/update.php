@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'Edit');
 <div class="giiant-crud submission-update">
 
     <h1>
-        <?=  $model->aliasModel ?>
+        <?= $model->aliasModel ?>
 
         <small>
             #<?= $model->id ?>

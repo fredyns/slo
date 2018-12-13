@@ -268,6 +268,25 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
     ?>
 
 
-    <hr/><br/>
+    <hr/>
+
+    <div style="font-size: 50%; font-style: italic;">
+        <?= Yii::t('timestamp', 'Created') ?>
+        <?= Yii::$app->formatter->asDate($model->created_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
+        <?= Yii::t('timestamp', 'by') ?>
+        <?= ArrayHelper::getValue($model, 'createdBy.username', '-') ?>
+        <br/>
+        <?= Yii::t('timestamp', 'Updated') ?>
+        <?= Yii::$app->formatter->asDate($model->updated_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
+        <?= Yii::t('timestamp', 'by') ?>
+        <?= ArrayHelper::getValue($model, 'updatedBy.username', '-') ?>
+        <?php if ($model->is_deleted): ?>
+            <br/>
+            <?= Yii::t('timestamp', 'Deleted') ?>
+            <?= Yii::$app->formatter->asDate($model->deleted_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
+            <?= Yii::t('timestamp', 'by') ?>
+            <?= ArrayHelper::getValue($model, 'deletedBy.username', '-') ?>
+        <?php endif; ?>
+    </div>
 
 </div>

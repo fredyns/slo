@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Sbu;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;

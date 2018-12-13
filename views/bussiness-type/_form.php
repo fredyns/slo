@@ -39,24 +39,22 @@ use dmstr\bootstrap\Tabs;
 
 			<!-- attribute name -->
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            
+
         </p>
 
         <?php $this->endBlock(); ?>
 
         <?=
-        Tabs::widget(
-            [
-                'encodeLabels' => false,
-                'items' => [
-                    [
-                        'label' => $model->aliasModel,
-                        'content' => $this->blocks['main'],
-                        'active' => true,
-                    ],
-                ]
-            ]
-        );
+        Tabs::widget([
+            'encodeLabels' => false,
+            'items' => [
+                [
+                    'label' => $model->aliasModel,
+                    'content' => $this->blocks['main'],
+                    'active' => true,
+                ],
+            ],
+        ]);
         ?>
 
         <hr/>
