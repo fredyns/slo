@@ -35,10 +35,10 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('Edit') ?>;
         <small>
 <?php            
 if($haveID) {
-    echo '            #<?= Html::encode($model->id) ?>';
+    echo "            #<?= Html::encode($model->id) ?>\n";
 }else{
     $label = StringHelper::basename($generator->modelClass);
-    echo '            <?= Html::encode($model->'.$generator->getModelNameAttribute($generator->modelClass).") ?>\n";
+    echo "            <?= Html::encode($model->".$generator->getModelNameAttribute($generator->modelClass).") ?>\n";
 }
 ?>
         </small>
