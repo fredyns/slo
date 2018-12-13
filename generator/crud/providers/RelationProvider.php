@@ -252,8 +252,8 @@ EOS;
                     'delete' => function (\$url, \$model) {
                         return Html::a('<span class="glyphicon glyphicon-remove"></span>', \$url, [
                             'class' => 'text-danger',
-                            'title'         => {$this->generator->generateString('Remove')},
-                            'data-confirm'  => {$this->generator->generateString('Are you sure you want to delete the related item?')},
+                            'title' => {$this->generator->generateString('Remove')},
+                            'data-confirm' => {$this->generator->generateString('Are you sure you want to delete the related item?')},
                             'data-method' => 'post',
                             'data-pjax' => '0',
                         ]);
@@ -263,10 +263,10 @@ EOS;
                             '<span class="glyphicon glyphicon-cog"></span>',
                             \$url,
                             [
-                                'data-title'  => {$this->generator->generateString('View Pivot Record')},
+                                'data-title' => {$this->generator->generateString('View Pivot Record')},
                                 'data-toggle' => 'tooltip',
-                                'data-pjax'   => '0',
-                                'class'       => 'text-muted',
+                                'data-pjax' => '0',
+                                'class' => 'text-muted',
                             ]
                         );
                     },\n
@@ -284,11 +284,11 @@ EOS;
                 'urlCreator' => function (\$action, \$model, \$key, \$index) {
                     // using the column name as key, not mapping to 'id' like the standard generator
                     \$params = is_array(\$key) ? \$key : [\$model->primaryKey()[0] => (string) \$key];
-                    \$params[0] = '{$controller}/' . \$action;
+                    \$params[0] = '{$controller}/'.\$action;
                     \$params['{$model->formName()}'] = ['$relKey' => \$model->primaryKey()[0]];
                     return \$params;
                 },
-                'buttons'    => [
+                'buttons' => [
 $deleteButtonPivot
                 ],
                 'controller' => '{$controller}'
@@ -347,7 +347,6 @@ EOS;
         $pageParam = Inflector::slug("page-{$name}");
         $firstPageLabel = $this->generator->generateString('First');
         $lastPageLabel = $this->generator->generateString('Last');
-        $code = "'<div class=\"table-responsive\">'\n . ";
         $code = <<<EOS
     '<div class=\"table-responsive\">'
     .\\yii\\grid\\GridView::widget([
@@ -356,19 +355,19 @@ EOS;
             {$query},
             'pagination' => [
                 'pageSize' => 20,
-                'pageParam'=>'{$pageParam}',
+                'pageParam' => '{$pageParam}',
             ]
         ]),
-        'pager'        => [
-            'class'          => yii\widgets\LinkPager::className(),
+        'pager' => [
+            'class' => yii\widgets\LinkPager::className(),
             'firstPageLabel' => {$firstPageLabel},
-            'lastPageLabel'  => {$lastPageLabel}
+            'lastPageLabel' => {$lastPageLabel}
         ],
         'columns' => [
 {$columns}
         ],
     ])
-    . '</div>'\n
+    .'</div>'\n
 EOS;
 
         return $code;
