@@ -145,7 +145,7 @@ foreach ($safeAttributes as $attribute) {
     if (!$format) {
         continue;
     } else {
-        echo "            {$format},\n";
+        echo "    {$format},\n";
     }
 }
 ?>
