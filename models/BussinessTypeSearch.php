@@ -9,17 +9,17 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * BussinessTypeSearch represents the model behind the search form about `app\models\BussinessType`.
- */
+* BussinessTypeSearch represents the model behind the search form about `app\models\BussinessType`.
+*/
 class BussinessTypeSearch extends BussinessType
 {
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
+            /*//
             'string_filter' => [
                 ['name'],
                 'filter',
@@ -27,7 +27,9 @@ class BussinessTypeSearch extends BussinessType
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            [['id', 'created_by', 'updated_by', 'is_deleted', 'deleted_by'], 'integer'],
+            //*/
+            [['id', 'created_by', 'updated_by', 'deleted_by'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 

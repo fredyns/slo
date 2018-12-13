@@ -28,7 +28,7 @@ class SbuSearch extends Sbu
                 },
             ],
             //*/
-            [['id', 'created_by', 'updated_by', 'is_deleted', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
+            [['id', 'created_by', 'updated_by', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
             [['name', 'address'], 'safe'],
         ];
     }
@@ -55,7 +55,6 @@ class SbuSearch extends Sbu
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-
             'sort' => [
                 'defaultOrder' => ['id' => SORT_DESC],
             ],
@@ -83,8 +82,9 @@ class SbuSearch extends Sbu
         $query
             ->andFilterWhere(['like', static::tableName().'.name', $this->name])
             ->andFilterWhere(['like', static::tableName().'.address', $this->address])
-            ;
+        ;
 
         return $dataProvider;
     }
+
 }

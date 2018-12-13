@@ -28,7 +28,7 @@ class SubmissionSearch extends Submission
                 },
             ],
             //*/
-            [['id', 'created_by', 'updated_by', 'is_deleted', 'deleted_by', 'progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
+            [['id', 'created_by', 'updated_by', 'deleted_by', 'progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
             [['agenda_number', 'examination_date', 'instalation_name', 'instalation_location', 'report_number'], 'safe'],
             [['instalation_latitude', 'instalation_longitude'], 'number'],
         ];
@@ -56,7 +56,6 @@ class SubmissionSearch extends Submission
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-
             'sort' => [
                 'defaultOrder' => ['id' => SORT_DESC],
             ],
@@ -89,11 +88,8 @@ class SubmissionSearch extends Submission
             static::tableName().'.technical_pic_id' => $this->technical_pic_id,
             static::tableName().'.technical_personel_id' => $this->technical_personel_id,
             static::tableName().'.report_file_id' => $this->report_file_id,
-            static::tableName().'.requested_at' => $this->requested_at,
             static::tableName().'.requested_by' => $this->requested_by,
-            static::tableName().'.registering_at' => $this->registering_at,
             static::tableName().'.registering_by' => $this->registering_by,
-            static::tableName().'.registered_at' => $this->registered_at,
             static::tableName().'.registered_by' => $this->registered_by,
         ]);
 
@@ -102,8 +98,9 @@ class SubmissionSearch extends Submission
             ->andFilterWhere(['like', static::tableName().'.instalation_name', $this->instalation_name])
             ->andFilterWhere(['like', static::tableName().'.instalation_location', $this->instalation_location])
             ->andFilterWhere(['like', static::tableName().'.report_number', $this->report_number])
-            ;
+        ;
 
         return $dataProvider;
     }
+
 }

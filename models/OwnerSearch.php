@@ -9,8 +9,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * OwnerSearch represents the model behind the search form about `app\models\Owner`.
- */
+* OwnerSearch represents the model behind the search form about `app\models\Owner`.
+*/
 class OwnerSearch extends Owner
 {
     public $regency_name;
@@ -26,7 +26,7 @@ class OwnerSearch extends Owner
                 'filter',
                 'filter' => function($value){
                     return StringCleaner::forPlaintext($value);
-              },
+                },
             ],
             [['id', 'created_by', 'updated_by', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
         ];

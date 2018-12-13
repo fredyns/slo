@@ -28,7 +28,7 @@ class TechnicalPicSearch extends TechnicalPic
                 },
             ],
             //*/
-            [['id', 'created_by', 'updated_by', 'is_deleted', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
+            [['id', 'created_by', 'updated_by', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
             [['name', 'phone', 'email', 'address'], 'safe'],
         ];
     }
@@ -55,7 +55,6 @@ class TechnicalPicSearch extends TechnicalPic
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-
             'sort' => [
                 'defaultOrder' => ['id' => SORT_DESC],
             ],
@@ -85,8 +84,9 @@ class TechnicalPicSearch extends TechnicalPic
             ->andFilterWhere(['like', static::tableName().'.phone', $this->phone])
             ->andFilterWhere(['like', static::tableName().'.email', $this->email])
             ->andFilterWhere(['like', static::tableName().'.address', $this->address])
-            ;
+        ;
 
         return $dataProvider;
     }
+
 }
