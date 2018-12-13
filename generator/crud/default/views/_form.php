@@ -82,18 +82,16 @@ echo "\n";
         <?= "<?php \$this->endBlock(); ?>\n"; ?>
 
 <?="        <?=\n"?>
-        Tabs::widget(
-            [
-                'encodeLabels' => false,
-                'items' => [
-                    [
-                        'label' => $model->aliasModel,
-                        'content' => $this->blocks['main'],
-                        'active' => true,
-                    ],
-                ]
-            ]
-        );
+        Tabs::widget([
+            'encodeLabels' => false,
+            'items' => [
+                [
+                    'label' => $model->aliasModel,
+                    'content' => $this->blocks['main'],
+                    'active' => true,
+                ],
+            ],
+        ]);
         ?>
 
         <hr/>
