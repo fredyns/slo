@@ -56,7 +56,7 @@ class Generator extends \schmunk42\giiant\generators\crud\Generator
             return ["[['".implode("', '", $this->getColumnNames())."'], 'safe']"];
         }
 
-        $skipCols = ['created_at', 'updated_at', 'deleted_at'];
+        $skipCols = ['created_at', 'updated_at', 'is_deleted', 'deleted_at'];
         $types = [];
         foreach ($table->columns as $column) {
             if (in_array($column->name, $skipCols)) {
