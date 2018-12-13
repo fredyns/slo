@@ -38,7 +38,7 @@ foreach ($generator->getTableSchema()->getColumnNames() as $attribute) {
         echo "        <?= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
         $count++;
     } else {
-        echo "        <?php //= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
+        echo "        <?php//= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
     }
 }
 ?>
