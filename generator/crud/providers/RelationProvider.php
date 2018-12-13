@@ -213,7 +213,7 @@ EOS;
         /* @var \$model \\{$relModelClassname} */
         return ArrayHelper::getValue(\$model, '{$relationProperty}.{$title}');
     },
-]\n
+]
 EOS;
 
             return $code;
