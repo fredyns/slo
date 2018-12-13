@@ -329,14 +329,14 @@ EOS;
             
             // max seven columns displayed
             if ($counter > $this->generator->gridRelationMaxColumns) {
-                $columns .= "            \\*\\\n";
+                $columns .= "            /*/\n";
             }
             
             $columns .= "            ".$code.",\n";
             
             // max seven columns displayed
             if ($counter > $this->generator->gridRelationMaxColumns) {
-                $columns .= "            \\*\\\n";
+                $columns .= "            //*/\n";
             }
             
             ++$counter;
