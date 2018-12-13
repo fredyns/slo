@@ -20,13 +20,11 @@ use yii\web\HttpException;
  */
 abstract class OwnerController extends Controller
 {
-
     /**
      * @var boolean whether to enable CSRF validation for the actions in this controller.
      * CSRF validation is enabled only when both this property and [[Request::enableCsrfValidation]] are true.
      */
     public $enableCsrfValidation = false;
-
 
     /**
      * Lists all (active) Owner models.
@@ -92,7 +90,7 @@ abstract class OwnerController extends Controller
      */
     public function actionCreate()
     {
-        $model = new OwnerForm;
+        $model = new OwnerForm(['is_deleted' => FALSE]);
 
         try {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -142,7 +140,41 @@ abstract class OwnerController extends Controller
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
             Yii::$app->getSession()->addFlash('error', $msg);
-            
+
+            return $this->redirect(Url::previous());
+        }
+
+        // TODO: improve detection
+        $isPivot = strstr('$id',',');
+        if ($isPivot == true) {
+            return $this->redirect(Url::previous());
+        } elseif (isset(Yii::$app->session['__crudReturnUrl']) && Yii::$app->session['__crudReturnUrl'] != '/') {
+            Url::remember(null);
+            $url = Yii::$app->session['__crudReturnUrl'];
+            Yii::$app->session['__crudReturnUrl'] = null;
+
+            return $this->redirect($url);
+        } else {
+            return $this->redirect(['index']);
+        }
+    }
+
+    /**
+     * Restores an deleted Owner model.
+     * If restoration is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionRestore($id)
+    {
+        $model = $this->findModel($id);
+
+        try {
+            $model->restore();
+        } catch (\Exception $e) {
+            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+            Yii::$app->getSession()->addFlash('error', $msg);
+
             return $this->redirect(Url::previous());
         }
 

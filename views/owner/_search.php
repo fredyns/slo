@@ -18,29 +18,29 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'id') ?>
 
-        <?= $form->field($model, 'created_at') ?>
+        <?php //= $form->field($model, 'created_at') ?>
 
-        <?= $form->field($model, 'created_by') ?>
+        <?php //= $form->field($model, 'created_by') ?>
 
-        <?= $form->field($model, 'updated_at') ?>
+        <?php //= $form->field($model, 'updated_at') ?>
 
-        <?= $form->field($model, 'updated_by') ?>
+        <?php //= $form->field($model, 'updated_by') ?>
 
-        <?php // echo $form->field($model, 'is_deleted') ?>
+        <?php //= $form->field($model, 'is_deleted') ?>
 
-        <?php // echo $form->field($model, 'deleted_at') ?>
+        <?php//= $form->field($model, 'deleted_at') ?>
 
-        <?php // echo $form->field($model, 'deleted_by') ?>
+        <?php//= $form->field($model, 'deleted_by') ?>
 
-        <?php // echo $form->field($model, 'name') ?>
+        <?= $form->field($model, 'name') ?>
 
-        <?php // echo $form->field($model, 'address') ?>
+        <?= $form->field($model, 'address') ?>
 
-        <?php // echo $form->field($model, 'country_id') ?>
+        <?= $form->field($model, 'country_id') ?>
 
-        <?php // echo $form->field($model, 'province_id') ?>
+        <?= $form->field($model, 'province_id') ?>
 
-        <?php // echo $form->field($model, 'regency_id') ?>
+        <?= $form->field($model, 'regency_id') ?>
 
         <div class="form-group">
             <?= Html::submitButton(Yii::t('cruds', 'Search'), ['class' => 'btn btn-primary']) ?>

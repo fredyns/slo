@@ -17,7 +17,8 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'Edit');
         <?=  $model->aliasModel ?>
 
         <small>
-            #<?= Html::encode($model->id) ?>\n        </small>
+            #<?= Html::encode() ?>
+        </small>
     </h1>
 
     <div class="clearfix crud-navigation">
@@ -29,6 +30,6 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'Edit');
 
     <hr />
 
-    <?=  $this->render('_form', ['model' => $model]); ?>
+    <?= $this->render('_form', ['model' => $model]); ?>
 
 </div>

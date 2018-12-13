@@ -35,7 +35,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
         </div>
     </div>
 
-    <?= ""; // $this->render('_search', ['model' =>$searchModel]); ?>
+    <?php // $this->render('_search', ['model' =>$searchModel]); ?>
 
     <hr />
 

@@ -62,7 +62,7 @@ use dmstr\bootstrap\Tabs;
                 'encodeLabels' => false,
                 'items' => [
                     [
-                        'label' => Yii::t('models', 'Owner'),
+                        'label' => $model->aliasModel,
                         'content' => $this->blocks['main'],
                         'active' => true,
                     ],
