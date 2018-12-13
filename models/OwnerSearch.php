@@ -9,27 +9,26 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
-* OwnerSearch represents the model behind the search form about `app\models\Owner`.
-*/
+ * OwnerSearch represents the model behind the search form about `app\models\Owner`.
+ */
 class OwnerSearch extends Owner
 {
+    public $regency_name;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            /*//
             'string_filter' => [
-                ['name'],
+                ['name', 'address', 'regency_name'],
                 'filter',
                 'filter' => function($value){
                     return StringCleaner::forPlaintext($value);
-                },
+              },
             ],
-            //*/
-            [['id', 'created_by', 'updated_by', 'is_deleted', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
-            [['name', 'address'], 'safe'],
+            [['id', 'created_by', 'updated_by', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
         ];
     }
 
@@ -51,11 +50,10 @@ class OwnerSearch extends Owner
      */
     public function search($params)
     {
-        $query = Owner::find();
+        $query = Owner::find()->joinWith('regency');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-
             'sort' => [
                 'defaultOrder' => ['id' => SORT_DESC],
             ],
@@ -83,8 +81,10 @@ class OwnerSearch extends Owner
         $query
             ->andFilterWhere(['like', static::tableName().'.name', $this->name])
             ->andFilterWhere(['like', static::tableName().'.address', $this->address])
-            ;
+            ->andFilterWhere(['like', static::ALIAS_REGENCY.'.search_name', $this->regency_name])
+        ;
 
         return $dataProvider;
     }
+
 }
