@@ -22,7 +22,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
     <h1>
         <?= $searchModel->getAliasModel(TRUE) ?>
         <small>
-            <?= $generator->generateString('List') ?>
+            <?= Yii::t('cruds', 'List') ?>
         </small>
     </h1>
 

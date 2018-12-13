@@ -38,12 +38,37 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav'],
                 'items' => [
-                    //['label' => 'Home', 'url' => ['/site/index']],
+                    ['label' => Yii::t('models', 'Submissions'), 'url' => ['/submission']],
+                    [
+                        'label' => 'Master',
+                        'items' => [
+                            [
+                                'label' => Yii::t('models', 'Bussiness Type'),
+                                'url' => ['/bussiness-type',],
+                            ],
+                            [
+                                'label' => Yii::t('models', 'Owner'),
+                                'url' => ['/owner',],
+                            ],
+                            [
+                                'label' => Yii::t('models', 'SBU'),
+                                'url' => ['/sbu',],
+                            ],
+                            [
+                                'label' => Yii::t('models', 'Technical Personel'),
+                                'url' => ['/technical-personel',],
+                            ],
+                            [
+                                'label' => Yii::t('models', 'Technical PIC'),
+                                'url' => ['/technical-pic',],
+                            ],
+                        ],
+                    ],
                     ['label' => 'About', 'url' => ['/site/about']],
                     ['label' => 'Contact', 'url' => ['/site/contact']],
                 ],
             ]);
-            
+
             $loggin_menu = Yii::$app->user->isGuest ?
                 ( ['label' => 'Login', 'url' => ['/site/login']] ) :
                 (
