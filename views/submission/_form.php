@@ -141,14 +141,14 @@ $form->field($model, 'technical_personel_id')->dropDownList(
 
         <hr/>
 
-        <?=  $form->errorSummary($model); ?>
+        <?= $form->errorSummary($model); ?>
 
         <?=
         Html::submitButton(
             '<span class="glyphicon glyphicon-check"></span> ' .
             ($model->isNewRecord ? Yii::t('cruds', 'Create') : Yii::t('cruds', 'Save')),
             [
-            'id' => 'save-' . $model->formName(),
+            'id' => 'save-'.$model->formName(),
             'class' => 'btn btn-success'
             ]
         );
