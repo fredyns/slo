@@ -85,6 +85,9 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('View') ?>;
                 ],
                 'dropdown' => [
                     'encodeLabels' => FALSE,
+                    'options' => [
+                        'class' => 'dropdown-menu-right',
+                    ],
                     'items' => [
                         '<li role="presentation" class="divider"></li>',
                         [
