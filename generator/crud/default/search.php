@@ -90,13 +90,10 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
             // $query->where('0=1');
             return $dataProvider;
         }
-<?php if($tableSchema->getColumn('is_deleted') !== null): ?>
-
-        $query->andFilterWhere([static::tableName().'.is_deleted' => $this->is_deleted]);
-<?php endif;?>
 
         <?= implode("\n        ", $searchConditions) ?>
 
         return $dataProvider;
     }
+
 }
