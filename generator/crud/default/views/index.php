@@ -136,13 +136,9 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             ++$count;
 
             if ($count >= $generator->gridMaxColumns) {
-                echo "                /*/";
-            }
-
-            echo "                ".str_replace("\n", "\n                ", $format).",\n";
-
-            if ($count >= $generator->gridMaxColumns) {
-                echo "                //*/";
+                echo "                //".str_replace("\n", "\n                //", $format).",\n"; 
+            } else {
+                echo "                ".str_replace("\n", "\n                ", $format).",\n";                
             }
         }
 ?>
