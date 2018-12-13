@@ -111,9 +111,8 @@ class Generator extends \schmunk42\giiant\generators\crud\Generator
             }
         } else {
             foreach ($table->columns as $column) {
-                // skip unused filter
-                $skipCols = ['created_at', 'updated_at', 'deleted_at'];
-                if (in_array($column->name, $skipCols) == FALSE) {
+                // skip timestamp filter
+                if (strpos($column->name, '_at') === FALSE) {
                     $columns[$column->name] = $column->type;
                 }
             }
@@ -154,7 +153,7 @@ class Generator extends \schmunk42\giiant\generators\crud\Generator
         if (!empty($likeConditions)) {
             $conditions[] = "\$query\n"
                 .str_repeat(' ', 12).implode("\n".str_repeat(' ', 12), $likeConditions)."\n"
-                .str_repeat(' ', 12).";\n";
+                .str_repeat(' ', 8).";\n";
         }
 
         return $conditions;
