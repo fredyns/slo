@@ -320,15 +320,14 @@ EOS;
 
             // max seven columns displayed
             if ($counter > $this->generator->gridRelationMaxColumns) {
-                $columns .= "            /*/\n";
+                if (strpos("\n", $code) !== FALSE) {
+                    $code = "        /*/\n    {$code}            //*/\n";
+                } else {
+                    $code = str_replace(" '", " //'", $code);
+                }
             }
 
             $columns .= "    ".$code.",\n";
-
-            // max seven columns displayed
-            if ($counter > $this->generator->gridRelationMaxColumns) {
-                $columns .= "            //*/\n";
-            }
 
             ++$counter;
         }
