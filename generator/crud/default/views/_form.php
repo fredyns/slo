@@ -67,7 +67,7 @@ foreach ($safeAttributes as $attribute) {
         echo "\n            ".$prepend;
     }
     if ($field) {
-        echo "\n            <?= ".$field.' ?>';
+        echo "\n            <?= ".str_replace("\n","\n                ",$field).' ?>';
     }
     if ($append) {
         echo "\n            ".$append;
