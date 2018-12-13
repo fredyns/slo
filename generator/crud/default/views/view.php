@@ -277,6 +277,37 @@ if ($items){
 }
 ?>
 
-    <hr/><br/>
+    <hr/>
+<?php if ($tableSchema->getColumn('created_at') !== null): ?>
+
+    <div style="font-size: 50%; font-style: italic;">
+        <?= '<?=' ?> Yii::t('timestamp', 'Created') ?>
+        <?= '<?=' ?> Yii::$app->formatter->asDate($model->created_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
+<?php if ($tableSchema->getColumn('created_by') !== null): ?>
+        <?= '<?=' ?> Yii::t('timestamp', 'by') ?>
+        <?= '<?=' ?> ArrayHelper::getValue($model, 'createdBy.username', '-') ?>
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('updated_at') !== null): ?>
+        <br/>
+        <?= '<?=' ?> Yii::t('timestamp', 'Updated') ?>
+        <?= '<?=' ?> Yii::$app->formatter->asDate($model->updated_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
+<?php if ($tableSchema->getColumn('updated_by') !== null): ?>
+        <?= '<?=' ?> Yii::t('timestamp', 'by') ?>
+        <?= '<?=' ?> ArrayHelper::getValue($model, 'updatedBy.username', '-') ?>
+<?php endif; ?>
+<?php endif; ?>
+<?php if ($tableSchema->getColumn('deleted_at') !== null): ?>
+        <?='<?php'?> if ($model->is_deleted): ?>
+            <br/>
+            <?= '<?=' ?> Yii::t('timestamp', 'Deleted') ?>
+            <?= '<?=' ?> Yii::$app->formatter->asDate($model->deleted_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
+<?php if ($tableSchema->getColumn('deleted_by') !== null): ?>
+            <?= '<?=' ?> Yii::t('timestamp', 'by') ?>
+            <?= '<?=' ?> ArrayHelper::getValue($model, 'deletedBy.username', '-') ?>
+<?php endif; ?>
+        <?='<?php'?> endif; ?>
+<?php endif; ?>
+    </div>
+<?php endif; ?>
 
 </div>
