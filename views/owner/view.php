@@ -91,52 +91,60 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     <hr/>
 
-    
+
     <?=
     DetailView::widget([
         'model' => $model,
         'attributes' => [
-                    'address:ntext',
-                    'country_id',
-                    'province_id',
-                    'regency_id',
-                    'name',
+            'name',
+            'address:ntext',
+            [
+                'attribute' => 'regency_id',
+                'format' => 'html',
+                'value' => ArrayHelper::getValue($model, 'regency.name', '<span class="label label-warning">?</span>'),
+            ],
+            [
+                'attribute' => 'province_id',
+                'format' => 'html',
+                'value' => ArrayHelper::getValue($model, 'province.name', '<span class="label label-warning">?</span>'),
+            ],
+            [
+                'attribute' => 'country_id',
+                'format' => 'html',
+                'value' => ArrayHelper::getValue($model, 'country.name', '<span class="label label-warning">?</span>'),
+            ],
         ],
     ]);
     ?>
 
-    
+
     <hr/>
-    
+
     <?php $this->beginBlock('Submissions'); ?>
     <div style='position: relative'>
         <div style='position:absolute; right: 0px; top: 0px;'>
 
             <?=
             Html::a(
-                '<span class="glyphicon glyphicon-list"></span> '.Yii::t('cruds', 'List All').' Submissions',
-                ['submission/index'],
-                ['class'=>'btn text-muted btn-xs']
+                '<span class="glyphicon glyphicon-list"></span> '.Yii::t('cruds', 'List All').' Submissions', ['submission/index'], ['class' => 'btn text-muted btn-xs']
             );
             ?>
 
-        
+
             <?=
             Html::a(
-                '<span class="glyphicon glyphicon-plus"></span> '.Yii::t('cruds', 'New').' Submission',
-                ['submission/create', 'Submission' => ['owner_id' => $model->id]],
-                ['class'=>'btn btn-success btn-xs']
+                '<span class="glyphicon glyphicon-plus"></span> '.Yii::t('cruds', 'New').' Submission', ['submission/create', 'Submission' => ['owner_id' => $model->id]], ['class' => 'btn btn-success btn-xs']
             );
             ?>
         </div>
     </div>
 
-    <?php 
-        Pjax::begin([
-            'id'=>'pjax-Submissions',
-            'enableReplaceState'=> false,
-            'linkSelector'=>'#pjax-Submissions ul.pagination a, th a',
-        ]);
+    <?php
+    Pjax::begin([
+        'id' => 'pjax-Submissions',
+        'enableReplaceState' => false,
+        'linkSelector' => '#pjax-Submissions ul.pagination a, th a',
+    ]);
     ?>
     <?=
     '<div class=\"table-responsive\">'
@@ -146,18 +154,21 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
             'query' => $model->getSubmissions()->andWhere(['is_deleted' => FALSE]),
             'pagination' => [
                 'pageSize' => 20,
-                'pageParam'=>'page-submissions',
+                'pageParam' => 'page-submissions',
             ]
-        ]),
-        'pager'        => [
-            'class'          => yii\widgets\LinkPager::className(),
+            ]),
+        'pager' => [
+            'class' => yii\widgets\LinkPager::className(),
             'firstPageLabel' => Yii::t('cruds', 'First'),
-            'lastPageLabel'  => Yii::t('cruds', 'Last')
+            'lastPageLabel' => Yii::t('cruds', 'Last')
         ],
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
             ],
+            'agenda_number',
+            'instalation_name',
+            'examination_date',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update}',
@@ -165,20 +176,17 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
                 'urlCreator' => function ($action, $model, $key, $index) {
                     // using the column name as key, not mapping to 'id' like the standard generator
                     $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
-                    $params[0] = 'submission/' . $action;
+                    $params[0] = 'submission/'.$action;
                     $params['Submission'] = ['owner_id' => $model->primaryKey()[0]];
                     return $params;
                 },
-                'buttons'    => [
-
+                'buttons' => [
                 ],
                 'controller' => 'submission'
             ],
-
         ],
     ])
-    . '</div>'
-
+    .'</div>'
     ?>
     <?php Pjax::end(); ?>
     <?php $this->endBlock() ?>
@@ -192,10 +200,9 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
         'items' => [
             [
                 'content' => $this->blocks['Submissions'],
-                'label'   => '<small>Submissions <span class="badge badge-default">'. $model->getSubmissions()->count() . '</span></small>',
-                #'active'  => false,
+                'label' => '<small>Submissions <span class="badge badge-default">'.$model->getSubmissions()->count().'</span></small>',
+            #'active'  => false,
             ],
-
         ],
     ]);
     ?>

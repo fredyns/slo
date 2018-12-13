@@ -1,13 +1,25 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
+use yii\helpers\Url;
+use yii\web\JsExpression;
 use dmstr\bootstrap\Tabs;
+use kartik\select2\Select2;
+use kartik\depdrop\DepDrop;
+use fredyns\region\Module;
+use fredyns\region\models\Area;
 
 /* @var $this yii\web\View  */
 /* @var $form yii\widgets\ActiveForm  */
 /* @var $model app\models\OwnerForm  */
+
+// default is indonesia
+if (!$model->country_id) {
+    $model->country_id = 1;
+}
 ?>
 
 <div class="owner-form">
@@ -36,22 +48,97 @@ use dmstr\bootstrap\Tabs;
 
         <p>
 
+            <!-- attribute name -->
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-			<!-- attribute address -->
+            <!-- attribute address -->
             <?= $form->field($model, 'address')->textarea(['rows' => 6]) ?>
 
-			<!-- attribute country_id -->
+            <!-- attribute regency_id -->
+            <?=
+                $form
+                ->field($model, 'regency_id')
+                ->label(FALSE)
+                ->widget(DepDrop::classname(), [
+                    'data' => [],
+                    'type' => DepDrop::TYPE_SELECT2,
+                    'select2Options' => [
+                        'pluginOptions' => [
+                            'multiple' => FALSE,
+                            'allowClear' => TRUE,
+                            //'tags' => TRUE,
+                            //'maximumInputLength' => 255,
+                        ],
+                    ],
+                    'pluginOptions' => [
+                        'initialize' => (bool) $model->province_id,
+                        'placeholder' => Yii::t('label', "Select city or regency"),
+                        'depends' => [$model->formName().'-province_id'],
+                        'url' => Url::to([
+                            "/region/api/area/subregion",
+                            'selected' => $model->regency_id,
+                        ]),
+                        'loadingText' => Yii::t('label', "loading city and regencies..."),
+                    ],
+            ]);
+            ?>
+
+            <!-- attribute province_id -->
+            <?=
+                $form
+                ->field($model, 'province_id')
+                ->label(FALSE)
+                ->widget(DepDrop::classname(), [
+                    'data' => [],
+                    'type' => DepDrop::TYPE_SELECT2,
+                    'select2Options' => [
+                        'pluginOptions' => [
+                            'multiple' => FALSE,
+                            'allowClear' => TRUE,
+                        //'tags' => TRUE,
+                        //'maximumInputLength' => 255,
+                        ],
+                    ],
+                    'pluginOptions' => [
+                        'initialize' => (bool) $model->country_id,
+                        'placeholder' => Yii::t('label', "Select province"),
+                        'depends' => [$model->formName().'-country_id'],
+                        'url' => Url::to([
+                            "/region/api/area/subregion",
+                            'selected' => $model->province_id,
+                        ]),
+                        'loadingText' => Yii::t('label', "loading provinces..."),
+                    ],
+            ]);
+            ?>
+
+            <!-- attribute country_id -->
+            <?=
+                $form
+                ->field($model, 'country_id')
+                ->label(FALSE)
+                ->widget(Select2::classname(), [
+                    'data' => Area::asOptionRoot(),
+                    'pluginOptions' =>
+                    [
+                        'placeholder' => Yii::t('label', "Select country"),
+                        'multiple' => FALSE,
+                        'allowClear' => TRUE,
+                    //'tags' => TRUE,
+                    //'maximumInputLength' => 255,
+                    ],
+            ]);
+            ?>
+
+            <!-- attribute country_id -->
             <?= $form->field($model, 'country_id')->textInput(['maxlength' => true]) ?>
 
-			<!-- attribute province_id -->
+            <!-- attribute province_id -->
             <?= $form->field($model, 'province_id')->textInput(['maxlength' => true]) ?>
 
-			<!-- attribute regency_id -->
+            <!-- attribute regency_id -->
             <?= $form->field($model, 'regency_id')->textInput(['maxlength' => true]) ?>
 
-			<!-- attribute name -->
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            
         </p>
 
         <?php $this->endBlock(); ?>
@@ -73,20 +160,19 @@ use dmstr\bootstrap\Tabs;
 
         <hr/>
 
-        <?=  $form->errorSummary($model); ?>
+        <?= $form->errorSummary($model); ?>
 
         <?=
         Html::submitButton(
-            '<span class="glyphicon glyphicon-check"></span> ' .
-            ($model->isNewRecord ? Yii::t('cruds', 'Create') : Yii::t('cruds', 'Save')),
-            [
-            'id' => 'save-' . $model->formName(),
+            '<span class="glyphicon glyphicon-check"></span> '.
+            ($model->isNewRecord ? Yii::t('cruds', 'Create') : Yii::t('cruds', 'Save')), [
+            'id' => 'save-'.$model->formName(),
             'class' => 'btn btn-success'
             ]
         );
         ?>
 
-        </div>
+    </div>
 
     <?php ActiveForm::end(); ?>
 

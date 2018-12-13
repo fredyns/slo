@@ -4,6 +4,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
+use app\models\Owner;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -12,7 +13,7 @@ use yii\grid\GridView;
 $this->title = $searchModel->getAliasModel(TRUE);
 $this->params['breadcrumbs'][] = $this->title;
 
-Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('cruds', 'New'), ['create'], ['class' => 'btn btn-success']);
+Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> '.Yii::t('cruds', 'New'), ['create'], ['class' => 'btn btn-success']);
 $actionColumnTemplateString = "{view} {update}";
 
 $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
@@ -20,7 +21,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
 <div class="giiant-crud owner-index">
 
     <h1>
-        <?=  $searchModel->getAliasModel(TRUE) ?>
+        <?= $searchModel->getAliasModel(TRUE) ?>
         <small>
             List
         </small>
@@ -31,7 +32,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
         </div>
 
         <div class="pull-right">
-            <?=  Html::a('<span class="glyphicon glyphicon-plus"></span> '.Yii::t('cruds', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> '.Yii::t('cruds', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 
@@ -51,7 +52,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
     ?>
 
     <div class="table-responsive">
-        <?= 
+        <?=
         GridView::widget([
             'dataProvider' => $dataProvider,
             'pager' => [
@@ -61,16 +62,20 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             ],
             'filterModel' => $searchModel,
             'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
-            'headerRowOptions' => ['class'=>'x'],
+            'headerRowOptions' => ['class' => 'x'],
             'columns' => [
                 [
                     'class' => 'yii\grid\SerialColumn',
                 ],
-                'address:ntext',
-                'country_id',
-                'province_id',
-                'regency_id',
                 'name',
+                [
+                    'attribute' => 'regency_name',
+                    'label' => $searchModel->attributeLabels()['regency_id'],
+                    'value' => function($model) {
+                        /* @var $model Owner */
+                        return ArrayHelper::getValue($model, 'regency.name');
+                    },
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => $actionColumnTemplateString,
@@ -87,10 +92,10 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                     'urlCreator' => function($action, $model, $key, $index) {
                         // using the column name as key, not mapping to 'id' like the standard generator
                         $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
-                        $params[0] = Yii::$app->controller->id ? Yii::$app->controller->id . '/' . $action : $action;
+                        $params[0] = Yii::$app->controller->id ? Yii::$app->controller->id.'/'.$action : $action;
                         return Url::toRoute($params);
                     },
-                    'contentOptions' => ['nowrap'=>'nowrap']
+                    'contentOptions' => ['nowrap' => 'nowrap']
                 ],
             ],
         ]);
