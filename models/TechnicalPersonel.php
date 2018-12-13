@@ -69,7 +69,7 @@ class TechnicalPersonel extends BaseTechnicalPersonel
      */
     public function getCountry()
     {
-        return $this->hasOne(Area::className(), ['country_id' => 'id'])->alias(static::ALIAS_COUNTRY);
+        return $this->hasOne(Area::className(), ['id' => 'country_id'])->alias(static::ALIAS_COUNTRY);
     }
 
     /**
@@ -77,7 +77,7 @@ class TechnicalPersonel extends BaseTechnicalPersonel
      */
     public function getProvince()
     {
-        return $this->hasOne(Area::className(), ['province_id' => 'id'])->alias(static::ALIAS_PROVINCE);
+        return $this->hasOne(Area::className(), ['id' => 'province_id'])->alias(static::ALIAS_PROVINCE);
     }
 
     /**
@@ -85,7 +85,7 @@ class TechnicalPersonel extends BaseTechnicalPersonel
      */
     public function getRegency()
     {
-        return $this->hasOne(Area::className(), ['regency_id' => 'id'])->alias(static::ALIAS_REGENCY);
+        return $this->hasOne(Area::className(), ['id' => 'regency_id'])->alias(static::ALIAS_REGENCY);
     }
 
     /**
