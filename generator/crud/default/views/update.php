@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('Edit') ?>;
 <div class="giiant-crud <?= Inflector::camel2id(StringHelper::basename($generator->modelClass), '-', true) ?>-update">
 
     <h1>
-        <?='<?= '?> $model->aliasModel ?>
+        <?='<?= '?>$model->aliasModel ?>
 
         <small>
 <?php            
