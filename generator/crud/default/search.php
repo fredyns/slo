@@ -77,7 +77,6 @@ class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $m
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
 <?php if($tableSchema->getColumn('id') !== null): ?>
-
             'sort' => [
                 'defaultOrder' => ['id' => SORT_DESC],
             ],
