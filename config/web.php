@@ -63,22 +63,25 @@ $config = [
                 'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
-                'giiant*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                ],
                 'cruds*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
-                'models*' => [
+                'dictionaries*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
-                'user*' => [
+                'giiant*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
                 'label*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
+                'models*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
                 'timestamp*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+                'user*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
             ],
