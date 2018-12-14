@@ -19,7 +19,7 @@ abstract class SubmissionProgressStatus
     /**
      * @return array
      */
-    public static function labels()
+    public static function all()
     {
         return [
             static::REQUEST => Yii::t('dictionaries', 'Request'),
@@ -34,7 +34,7 @@ abstract class SubmissionProgressStatus
      */
     public static function getLabel($value)
     {
-        return ArrayHelper::getValue(static::labels(), $value, $value);
+        return ArrayHelper::getValue(static::all(), $value, $value);
     }
 
 }
