@@ -9,25 +9,34 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
-* BussinessTypeSearch represents the model behind the search form about `app\models\BussinessType`.
-*/
+ * BussinessTypeSearch represents the model behind the search form about `app\models\BussinessType`.
+ */
 class BussinessTypeSearch extends BussinessType
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function formName()
+    {
+        return '';
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            /*//
-            'string_filter' => [
-                ['name'],
-                'filter',
-                'filter' => function($value){
-                    return StringCleaner::forPlaintext($value);
-                },
-            ],
-            //*/
+            /* //
+              'string_filter' => [
+              ['name'],
+              'filter',
+              'filter' => function($value){
+              return StringCleaner::forPlaintext($value);
+              },
+              ],
+              // */
             [['id', 'created_by', 'updated_by', 'deleted_by'], 'integer'],
             [['name'], 'safe'],
         ];

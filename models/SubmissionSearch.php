@@ -16,6 +16,14 @@ class SubmissionSearch extends Submission
     /**
      * @inheritdoc
      */
+    public function formName()
+    {
+        return '';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

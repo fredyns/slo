@@ -16,6 +16,14 @@ class TechnicalPicSearch extends TechnicalPic
     /**
      * @inheritdoc
      */
+    public function formName()
+    {
+        return '';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

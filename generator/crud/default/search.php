@@ -35,6 +35,15 @@ use yii\data\ActiveDataProvider;
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
 
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function formName()
+    {
+        return '';
+    }
+
     /**
      * @inheritdoc
      */
