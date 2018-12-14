@@ -75,6 +75,9 @@ $config = [
                 'user*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
+                'label*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
                 'timestamp*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
