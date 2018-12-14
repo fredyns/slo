@@ -9,10 +9,12 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
-* TechnicalPersonelSearch represents the model behind the search form about `app\models\TechnicalPersonel`.
-*/
+ * TechnicalPersonelSearch represents the model behind the search form about `app\models\TechnicalPersonel`.
+ */
 class TechnicalPersonelSearch extends TechnicalPersonel
 {
+    public $regency_name;
+
     /**
      * @inheritdoc
      */
@@ -27,17 +29,14 @@ class TechnicalPersonelSearch extends TechnicalPersonel
     public function rules()
     {
         return [
-            /*//
             'string_filter' => [
-                ['name'],
+                ['name', 'phone', 'email', 'address', 'regency_name'],
                 'filter',
                 'filter' => function($value){
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            //*/
             [['id', 'created_by', 'updated_by', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
-            [['name', 'phone', 'email', 'address'], 'safe'],
         ];
     }
 
@@ -59,7 +58,7 @@ class TechnicalPersonelSearch extends TechnicalPersonel
      */
     public function search($params)
     {
-        $query = TechnicalPersonel::find();
+        $query = TechnicalPersonel::find()->joinWith('regency');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -92,6 +91,7 @@ class TechnicalPersonelSearch extends TechnicalPersonel
             ->andFilterWhere(['like', static::tableName().'.phone', $this->phone])
             ->andFilterWhere(['like', static::tableName().'.email', $this->email])
             ->andFilterWhere(['like', static::tableName().'.address', $this->address])
+            ->andFilterWhere(['like', static::ALIAS_REGENCY.'.search_name', $this->regency_name])
         ;
 
         return $dataProvider;
