@@ -9,10 +9,12 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
-* SubmissionSearch represents the model behind the search form about `app\models\Submission`.
-*/
+ * SubmissionSearch represents the model behind the search form about `app\models\Submission`.
+ */
 class SubmissionSearch extends Submission
 {
+    public $instalation_regency_name;
+
     /**
      * @inheritdoc
      */
@@ -27,17 +29,14 @@ class SubmissionSearch extends Submission
     public function rules()
     {
         return [
-            /*//
             'string_filter' => [
-                ['name'],
+                ['agenda_number', 'examination_date', 'instalation_name', 'instalation_location', 'report_number', 'instalation_regency_name'],
                 'filter',
                 'filter' => function($value){
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            //*/
             [['id', 'created_by', 'updated_by', 'deleted_by', 'progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
-            [['agenda_number', 'examination_date', 'instalation_name', 'instalation_location', 'report_number'], 'safe'],
             [['instalation_latitude', 'instalation_longitude'], 'number'],
         ];
     }
@@ -60,7 +59,7 @@ class SubmissionSearch extends Submission
      */
     public function search($params)
     {
-        $query = Submission::find();
+        $query = Submission::find()->joinWith('instalationRegency');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -106,6 +105,7 @@ class SubmissionSearch extends Submission
             ->andFilterWhere(['like', static::tableName().'.instalation_name', $this->instalation_name])
             ->andFilterWhere(['like', static::tableName().'.instalation_location', $this->instalation_location])
             ->andFilterWhere(['like', static::tableName().'.report_number', $this->report_number])
+            ->andFilterWhere(['like', static::ALIAS_INSTALATIONREGENCY.'.search_name', $this->instalation_regency_name])
         ;
 
         return $dataProvider;
