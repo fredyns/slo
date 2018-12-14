@@ -35,6 +35,6 @@ return [
     'Save' => 'Simpan',
     'Search' => 'Cari',
     'Select' => 'Pilih',
-    'Submissions' => '',
+    'Submissions' => 'Permohonan',
     'View' => 'Lihat',
 ];
