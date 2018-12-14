@@ -234,7 +234,7 @@ foreach ($safeAttributes as $attribute) {
     <?php
         Pjax::begin([
             'id' => 'pjax-{$name}',
-            'enableReplaceState'=> false,
+            'enableReplaceState' => false,
             'linkSelector' => '#pjax-{$name} ul.pagination a, th a',
         ]);
     ?>
