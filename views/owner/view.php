@@ -238,7 +238,7 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     <hr/>
 
-    <div style="font-size: 50%; font-style: italic;">
+    <div style="font-size: 75%; font-style: italic;">
         <?= Yii::t('timestamp', 'Created') ?>
         <?= Yii::$app->formatter->asDate($model->created_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
         <?= Yii::t('timestamp', 'by') ?>

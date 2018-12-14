@@ -280,7 +280,7 @@ if ($items){
     <hr/>
 <?php if ($tableSchema->getColumn('created_at') !== null): ?>
 
-    <div style="font-size: 50%; font-style: italic;">
+    <div style="font-size: 75%; font-style: italic;">
         <?= '<?=' ?> Yii::t('timestamp', 'Created') ?>
         <?= '<?=' ?> Yii::$app->formatter->asDate($model->created_at, "d MMMM Y '".Yii::t('timestamp', 'at')."' HH:mm") ?>
 <?php if ($tableSchema->getColumn('created_by') !== null): ?>
