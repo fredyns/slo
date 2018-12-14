@@ -58,7 +58,6 @@ if (!$model->country_id) {
             <?=
                 $form
                 ->field($model, 'regency_id')
-                ->label(FALSE)
                 ->widget(DepDrop::classname(), [
                     'data' => [],
                     'type' => DepDrop::TYPE_SELECT2,
@@ -73,7 +72,7 @@ if (!$model->country_id) {
                     'pluginOptions' => [
                         'initialize' => (bool) $model->province_id,
                         'placeholder' => Yii::t('label', "Select city or regency"),
-                        'depends' => [$model->formName().'-province_id'],
+                        'depends' => [strtolower($model->formName()).'-province_id'],
                         'url' => Url::to([
                             "/region/api/area/subregion",
                             'selected' => $model->regency_id,
@@ -87,7 +86,6 @@ if (!$model->country_id) {
             <?=
                 $form
                 ->field($model, 'province_id')
-                ->label(FALSE)
                 ->widget(DepDrop::classname(), [
                     'data' => [],
                     'type' => DepDrop::TYPE_SELECT2,
@@ -102,7 +100,7 @@ if (!$model->country_id) {
                     'pluginOptions' => [
                         'initialize' => (bool) $model->country_id,
                         'placeholder' => Yii::t('label', "Select province"),
-                        'depends' => [$model->formName().'-country_id'],
+                        'depends' => [strtolower($model->formName()).'-country_id'],
                         'url' => Url::to([
                             "/region/api/area/subregion",
                             'selected' => $model->province_id,
@@ -116,7 +114,6 @@ if (!$model->country_id) {
             <?=
                 $form
                 ->field($model, 'country_id')
-                ->label(FALSE)
                 ->widget(Select2::classname(), [
                     'data' => Area::asOptionRoot(),
                     'pluginOptions' =>
@@ -129,15 +126,6 @@ if (!$model->country_id) {
                     ],
             ]);
             ?>
-
-            <!-- attribute country_id -->
-            <?= $form->field($model, 'country_id')->textInput(['maxlength' => true]) ?>
-
-            <!-- attribute province_id -->
-            <?= $form->field($model, 'province_id')->textInput(['maxlength' => true]) ?>
-
-            <!-- attribute regency_id -->
-            <?= $form->field($model, 'regency_id')->textInput(['maxlength' => true]) ?>
 
         </p>
 
