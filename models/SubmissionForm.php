@@ -51,6 +51,7 @@ class SubmissionForm extends Submission
             ],
             # default
             # required
+            [['instalation_name'], 'required'],
             # type
             [['progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id'], 'integer'],
             [['instalation_location'], 'string'],

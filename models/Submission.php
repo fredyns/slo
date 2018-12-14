@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use app\dictionaries\SubmissionProgressStatus;
 use app\models\base\Submission as BaseSubmission;
+use fredyns\region\models\Area;
 use fredyns\stringcleaner\StringCleaner;
 use yii\helpers\ArrayHelper;
 
@@ -12,9 +13,15 @@ use yii\helpers\ArrayHelper;
  * This is the model class for table "submission".
  *
  * @property string $aliasModel
+ * @property Area $instalationCountry
+ * @property Area $instalationProvince
+ * @property Area $instalationRegency
  */
 class Submission extends BaseSubmission
 {
+    const ALIAS_INSTALATIONCOUNTRY = 'instalationCountry';
+    const ALIAS_INSTALATIONPROVINCE = 'instalationProvince';
+    const ALIAS_INSTALATIONREGENCY = 'instalationRegency';
 
     /**
      * @inheritdoc
@@ -35,15 +42,6 @@ class Submission extends BaseSubmission
     {
         return [
             # filter
-            /* //
-              'string_filter' => [
-              ['name'],
-              'filter',
-              'filter' => function($value){
-              return StringCleaner::forPlaintext($value);
-              },
-              ],
-              // */
             # default
             # required
             # type
@@ -104,6 +102,30 @@ class Submission extends BaseSubmission
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationCountry()
+    {
+        return $this->hasOne(Area::className(), ['id' => 'country_id'])->alias(static::ALIAS_COUNTRY);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationProvince()
+    {
+        return $this->hasOne(Area::className(), ['id' => 'province_id'])->alias(static::ALIAS_PROVINCE);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationRegency()
+    {
+        return $this->hasOne(Area::className(), ['id' => 'regency_id'])->alias(static::ALIAS_REGENCY);
+    }
+
+    /**
      * Alias name of table for crud views Lists all models.
      * Change the alias name manual if needed later
      * @return string
@@ -136,12 +158,12 @@ class Submission extends BaseSubmission
             'examination_date' => Yii::t('models', 'Examination Date'),
             'owner_id' => Yii::t('models', 'Owner'),
             'instalation_name' => Yii::t('models', 'Instalation Name'),
-            'instalation_location' => Yii::t('models', 'Instalation Location'),
-            'instalation_country_id' => Yii::t('models', 'Instalation Country'),
-            'instalation_province_id' => Yii::t('models', 'Instalation Province'),
-            'instalation_regency_id' => Yii::t('models', 'Instalation Regency'),
-            'instalation_latitude' => Yii::t('models', 'Instalation Latitude'),
-            'instalation_longitude' => Yii::t('models', 'Instalation Longitude'),
+            'instalation_location' => Yii::t('models', 'Location'),
+            'instalation_country_id' => Yii::t('models', 'Country'),
+            'instalation_province_id' => Yii::t('models', 'Province'),
+            'instalation_regency_id' => Yii::t('models', 'Regency'),
+            'instalation_latitude' => Yii::t('models', 'Latitude'),
+            'instalation_longitude' => Yii::t('models', 'Longitude'),
             'bussiness_type_id' => Yii::t('models', 'Bussiness Type'),
             'sbu_id' => Yii::t('models', 'SBU'),
             'technical_pic_id' => Yii::t('models', 'Technical PIC'),
