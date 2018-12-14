@@ -13,6 +13,8 @@ use yii\data\ActiveDataProvider;
 */
 class SbuSearch extends Sbu
 {
+    public $regency_name;
+    
     /**
      * @inheritdoc
      */
@@ -27,17 +29,14 @@ class SbuSearch extends Sbu
     public function rules()
     {
         return [
-            /*//
             'string_filter' => [
-                ['name'],
+                ['name', 'address', 'regency_name'],
                 'filter',
                 'filter' => function($value){
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            //*/
             [['id', 'created_by', 'updated_by', 'deleted_by', 'country_id', 'province_id', 'regency_id'], 'integer'],
-            [['name', 'address'], 'safe'],
         ];
     }
 
@@ -59,7 +58,7 @@ class SbuSearch extends Sbu
      */
     public function search($params)
     {
-        $query = Sbu::find();
+        $query = Sbu::find()->joinWith('regency');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -90,6 +89,7 @@ class SbuSearch extends Sbu
         $query
             ->andFilterWhere(['like', static::tableName().'.name', $this->name])
             ->andFilterWhere(['like', static::tableName().'.address', $this->address])
+            ->andFilterWhere(['like', static::ALIAS_REGENCY.'.search_name', $this->regency_name])
         ;
 
         return $dataProvider;
