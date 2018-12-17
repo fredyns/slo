@@ -126,7 +126,7 @@ use fredyns\region\models\Area;
                         'depends' => [strtolower($model->formName()).'-instalation_country_id'],
                         'url' => Url::to([
                             "/region/api/area/subregion",
-                            'selected' => $model->province_id,
+                            'selected' => $model->instalation_province_id,
                         ]),
                         'loadingText' => Yii::t('label', "loading provinces..."),
                     ],
@@ -154,7 +154,7 @@ use fredyns\region\models\Area;
                         'depends' => [strtolower($model->formName()).'-instalation_province_id'],
                         'url' => Url::to([
                             "/region/api/area/subregion",
-                            'selected' => $model->regency_id,
+                            'selected' => $model->instalation_regency_id,
                         ]),
                         'loadingText' => Yii::t('label', "loading city and regencies..."),
                     ],
@@ -181,7 +181,7 @@ use fredyns\region\models\Area;
 
             <?=
                 $form
-                ->field($model, 'sbu_input')
+                ->field($model, 'sbu_id')
                 ->widget(Select2::classname(), [
                     'initValueText' => $sbu_label,
                     'options' => ['placeholder' => Yii::t('label', 'lookup SBU...')],
