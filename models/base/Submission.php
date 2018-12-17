@@ -26,6 +26,7 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property string $examination_date
  * @property integer $owner_id
  * @property string $instalation_name
+ * @property integer $instalation_type
  * @property string $instalation_location
  * @property string $instalation_country_id
  * @property string $instalation_province_id
@@ -111,7 +112,7 @@ abstract class Submission extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
+            [['progress_status', 'owner_id', 'instalation_type', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
             [['examination_date'], 'safe'],
             [['instalation_location'], 'string'],
             [['instalation_latitude', 'instalation_longitude'], 'number'],
