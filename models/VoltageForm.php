@@ -33,7 +33,6 @@ class VoltageForm extends Voltage
     {
         return [
             # filter
-            /*//
             'string_filter' => [
                 ['name'],
                 'filter',
@@ -41,7 +40,6 @@ class VoltageForm extends Voltage
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            //*/
             # default
             # required
             # type
