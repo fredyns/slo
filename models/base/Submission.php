@@ -50,6 +50,10 @@ use yii2tech\ar\softdelete\SoftDeleteBehavior;
  * @property User $updatedBy
  * @property User $deletedBy
  *
+ * @property \app\models\InstalationDistribution $instalationDistribution
+ * @property \app\models\InstalationGenerator $instalationGenerator
+ * @property \app\models\InstalationTransmission $instalationTransmission
+ * @property \app\models\InstalationUtilization $instalationUtilization
  * @property \app\models\BussinessType $bussinessType
  * @property \app\models\Owner $owner
  * @property \app\models\Sbu $sbu
@@ -148,6 +152,38 @@ abstract class Submission extends \yii\db\ActiveRecord
     public function getDeletedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'deleted_by'])->alias(static::ALIAS_DELETEDBY);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationDistribution()
+    {
+        return $this->hasOne(\app\models\InstalationDistribution::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationGenerator()
+    {
+        return $this->hasOne(\app\models\InstalationGenerator::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationTransmission()
+    {
+        return $this->hasOne(\app\models\InstalationTransmission::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationUtilization()
+    {
+        return $this->hasOne(\app\models\InstalationUtilization::className(), ['submission_id' => 'id']);
     }
 
     /**
