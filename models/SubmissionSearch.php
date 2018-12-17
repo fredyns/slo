@@ -36,7 +36,7 @@ class SubmissionSearch extends Submission
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            [['id', 'created_by', 'updated_by', 'deleted_by', 'progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
+            [['id', 'created_by', 'updated_by', 'deleted_by', 'progress_status', 'owner_id', 'instalation_type', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id', 'report_file_id', 'requested_at', 'requested_by', 'registering_at', 'registering_by', 'registered_at', 'registered_by'], 'integer'],
             [['instalation_latitude', 'instalation_longitude'], 'number'],
         ];
     }
@@ -85,6 +85,7 @@ class SubmissionSearch extends Submission
             static::tableName().'.progress_status' => $this->progress_status,
             static::tableName().'.examination_date' => $this->examination_date,
             static::tableName().'.owner_id' => $this->owner_id,
+            static::tableName().'.instalation_type' => $this->instalation_type,
             static::tableName().'.instalation_country_id' => $this->instalation_country_id,
             static::tableName().'.instalation_province_id' => $this->instalation_province_id,
             static::tableName().'.instalation_regency_id' => $this->instalation_regency_id,
