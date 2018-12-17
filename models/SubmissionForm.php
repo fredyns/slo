@@ -50,6 +50,7 @@ class SubmissionForm extends Submission
                 },
             ],
             # default
+            [['progress_status'], 'default', 'value' => SubmissionProgressStatus::REQUEST],
             # required
             [['instalation_name'], 'required'],
             # type
