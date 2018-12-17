@@ -247,6 +247,99 @@ use fredyns\region\models\Area;
 
         <?php $this->endBlock(); ?>
 
+        <?php $this->beginBlock('instalation'); ?>
+
+        <p>
+
+            <!-- attribute instalation_name -->
+            <?= $form->field($model, 'instalation_name')->textInput(['maxlength' => true]) ?>
+
+            <!-- attribute instalation_location -->
+            <?= $form->field($model, 'instalation_location')->textarea(['rows' => 6]) ?>
+
+            <!-- attribute instalation_regency_id -->
+            <?=
+                $form
+                ->field($model, 'instalation_regency_id')
+                ->widget(DepDrop::classname(), [
+                    'data' => [],
+                    'type' => DepDrop::TYPE_SELECT2,
+                    'select2Options' => [
+                        'pluginOptions' => [
+                            'multiple' => FALSE,
+                            'allowClear' => TRUE,
+                        //'tags' => TRUE,
+                        //'maximumInputLength' => 255,
+                        ],
+                    ],
+                    'pluginOptions' => [
+                        'initialize' => (bool) $model->instalation_province_id,
+                        'placeholder' => Yii::t('label', "Select city or regency"),
+                        'depends' => [strtolower($model->formName()).'-instalation_province_id'],
+                        'url' => Url::to([
+                            "/region/api/area/subregion",
+                            'selected' => $model->instalation_regency_id,
+                        ]),
+                        'loadingText' => Yii::t('label', "loading city and regencies..."),
+                    ],
+            ]);
+            ?>
+
+            <!-- attribute instalation_province_id -->
+            <?=
+                $form
+                ->field($model, 'instalation_province_id')
+                ->widget(DepDrop::classname(), [
+                    'data' => [],
+                    'type' => DepDrop::TYPE_SELECT2,
+                    'select2Options' => [
+                        'pluginOptions' => [
+                            'multiple' => FALSE,
+                            'allowClear' => TRUE,
+                        //'tags' => TRUE,
+                        //'maximumInputLength' => 255,
+                        ],
+                    ],
+                    'pluginOptions' => [
+                        'initialize' => (bool) $model->instalation_country_id,
+                        'placeholder' => Yii::t('label', "Select province"),
+                        'depends' => [strtolower($model->formName()).'-instalation_country_id'],
+                        'url' => Url::to([
+                            "/region/api/area/subregion",
+                            'selected' => $model->instalation_province_id,
+                        ]),
+                        'loadingText' => Yii::t('label', "loading provinces..."),
+                    ],
+            ]);
+            ?>
+
+            <!-- attribute instalation_country_id -->
+            <?=
+                $form
+                ->field($model, 'instalation_country_id')
+                ->widget(Select2::classname(), [
+                    'data' => Area::asOptionRoot(),
+                    'pluginOptions' =>
+                    [
+                        'placeholder' => Yii::t('label', "Select country"),
+                        'multiple' => FALSE,
+                        'allowClear' => TRUE,
+                    //'tags' => TRUE,
+                    //'maximumInputLength' => 255,
+                    ],
+            ]);
+            ?>
+
+            <!-- attribute instalation_latitude -->
+            <?= $form->field($model, 'instalation_latitude')->textInput(['maxlength' => true]) ?>
+
+            <!-- attribute instalation_longitude -->
+            <?= $form->field($model, 'instalation_longitude')->textInput(['maxlength' => true]) ?>
+
+        </p>
+
+        <?php $this->endBlock(); ?>
+
         <?=
         Tabs::widget([
             'encodeLabels' => false,
