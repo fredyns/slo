@@ -2,6 +2,9 @@
 
 namespace app\dictionaries;
 
+use Yii;
+use yii\helpers\ArrayHelper;
+
 /**
  * Description of InstalationType
  *
