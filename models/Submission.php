@@ -106,7 +106,7 @@ class Submission extends BaseSubmission
      */
     public function getInstalationCountry()
     {
-        return $this->hasOne(Area::className(), ['id' => 'country_id'])->alias(static::ALIAS_COUNTRY);
+        return $this->hasOne(Area::className(), ['id' => 'instalation_country_id'])->alias(static::ALIAS_INSTALATIONCOUNTRY);
     }
 
     /**
@@ -114,7 +114,7 @@ class Submission extends BaseSubmission
      */
     public function getInstalationProvince()
     {
-        return $this->hasOne(Area::className(), ['id' => 'province_id'])->alias(static::ALIAS_PROVINCE);
+        return $this->hasOne(Area::className(), ['id' => 'instalation_province_id'])->alias(static::ALIAS_INSTALATIONPROVINCE);
     }
 
     /**
@@ -122,7 +122,7 @@ class Submission extends BaseSubmission
      */
     public function getInstalationRegency()
     {
-        return $this->hasOne(Area::className(), ['id' => 'regency_id'])->alias(static::ALIAS_REGENCY);
+        return $this->hasOne(Area::className(), ['id' => 'instalation_regency_id'])->alias(static::ALIAS_INSTALATIONREGENCY);
     }
 
     /**
