@@ -1,5 +1,6 @@
 <?php
 
+use app\dictionaries\InstalationType;
 use app\dictionaries\SubmissionProgressStatus;
 use app\models\Submission;
 use dmstr\bootstrap\Tabs;
@@ -157,6 +158,11 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
             'model' => $model,
             'attributes' => [
                 'instalation_name',
+                [
+                    'attribute' => 'instalation_type',
+                    'format' => 'html',
+                    'value' => InstalationType::getValue($model->instalation_type),
+                ],
                 'instalation_location:ntext',
                 [
                     'attribute' => 'instalation_regency_id',
