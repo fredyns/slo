@@ -504,6 +504,10 @@ use fredyns\region\models\Area;
                     'label' => Yii::t('models', 'Examination'),
                     'content' => $this->blocks['examination'],
                 ],
+                [
+                    'label' => Yii::t('models', 'Report'),
+                    'content' => $this->blocks['report'],
+                ],
             ],
         ]);
         ?>
