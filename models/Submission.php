@@ -158,6 +158,7 @@ class Submission extends BaseSubmission
             'examination_date' => Yii::t('models', 'Examination Date'),
             'owner_id' => Yii::t('models', 'Owner'),
             'instalation_name' => Yii::t('models', 'Instalation Name'),
+            'instalation_type' => Yii::t('models', 'Type'),
             'instalation_location' => Yii::t('models', 'Location'),
             'instalation_country_id' => Yii::t('models', 'Country'),
             'instalation_province_id' => Yii::t('models', 'Province'),
