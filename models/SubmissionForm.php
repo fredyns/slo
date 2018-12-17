@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\dictionaries\InstalationType;
 use app\dictionaries\SubmissionProgressStatus;
 use app\models\Submission;
 use fredyns\stringcleaner\StringCleaner;
@@ -54,7 +55,7 @@ class SubmissionForm extends Submission
             # required
             [['instalation_name'], 'required'],
             # type
-            [['progress_status', 'owner_id', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id'], 'integer'],
+            [['progress_status', 'owner_id', 'instalation_type', 'instalation_country_id', 'instalation_province_id', 'instalation_regency_id', 'bussiness_type_id', 'sbu_id', 'technical_pic_id', 'technical_personel_id'], 'integer'],
             [['instalation_location'], 'string'],
             [['instalation_latitude', 'instalation_longitude'], 'number'],
             [['agenda_number', 'report_number'], 'string', 'max' => 64],
@@ -68,6 +69,14 @@ class SubmissionForm extends Submission
                     SubmissionProgressStatus::REQUEST,
                     SubmissionProgressStatus::REGISTRATION,
                     SubmissionProgressStatus::REGISTERED,
+                ],
+            ],
+            [
+                ['instalation_type'],
+                'in', 'range' => [
+                    InstalationType::GENERATOR,
+                    InstalationType::TRANSMISSION,
+                    InstalationType::UTILIZATION,
                 ],
             ],
             # constraint
