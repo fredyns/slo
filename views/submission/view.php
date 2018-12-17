@@ -161,7 +161,7 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
                 [
                     'attribute' => 'instalation_type',
                     'format' => 'html',
-                    'value' => InstalationType::getValue($model->instalation_type),
+                    'value' => InstalationType::getLabel($model->instalation_type),
                 ],
                 'instalation_location:ntext',
                 [
