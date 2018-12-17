@@ -9,9 +9,10 @@ namespace app\dictionaries;
  */
 class InstalationType
 {
-    const GENERATOR = 1;
-    const TRANSMISSION = 2;
-    const UTILIZATION = 3;
+    const GENERATOR = 10;
+    const TRANSMISSION = 20;
+    const DISTRIBUTION = 30;
+    const UTILIZATION = 40;
 
     /**
      * @return array
@@ -21,6 +22,7 @@ class InstalationType
         return [
             static::GENERATOR => Yii::t('dictionaries', 'Generator'),
             static::TRANSMISSION => Yii::t('dictionaries', 'Transmission'),
+            static::DISTRIBUTION => Yii::t('dictionaries', 'Distribution'),
             static::UTILIZATION => Yii::t('dictionaries', 'Utilization'),
         ];
     }
