@@ -60,7 +60,7 @@ class SubmissionForm extends Submission
             [['agenda_number', 'report_number'], 'string', 'max' => 64],
             [['instalation_name'], 'string', 'max' => 128],
             # format
-            [['examination_date'], 'date'],
+            [['examination_date'], 'date', 'format' => 'yyyy-MM-dd'],
             # option
             [
                 ['progress_status'],

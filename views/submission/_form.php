@@ -14,6 +14,7 @@ use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 use dmstr\bootstrap\Tabs;
+use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use kartik\depdrop\DepDrop;
 use fredyns\region\Module;
@@ -47,7 +48,7 @@ use fredyns\region\models\Area;
 
     <div class="">
 
-        <?php $this->beginBlock('main'); ?>
+<?php $this->beginBlock('main'); ?>
 
         <p>
 
@@ -224,36 +225,36 @@ use fredyns\region\models\Area;
             ?>
 
             <!-- attribute instalation_location -->
-            <?= $form->field($model, 'instalation_location')->textarea(['rows' => 6]) ?>
+<?= $form->field($model, 'instalation_location')->textarea(['rows' => 6]) ?>
 
             <!-- attribute instalation_latitude -->
-            <?= $form->field($model, 'instalation_latitude')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'instalation_latitude')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute instalation_longitude -->
-            <?= $form->field($model, 'instalation_longitude')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'instalation_longitude')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute agenda_number -->
-            <?= $form->field($model, 'agenda_number')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'agenda_number')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute report_number -->
-            <?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute instalation_name -->
-            <?= $form->field($model, 'instalation_name')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'instalation_name')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute examination_date -->
-            <?= $form->field($model, 'examination_date')->textInput() ?>
+<?= $form->field($model, 'examination_date')->textInput() ?>
 
         </p>
 
         <?php $this->endBlock(); ?>
 
-        <?php $this->beginBlock('submisson'); ?>
+<?php $this->beginBlock('submisson'); ?>
 
         <p>
 
             <!-- attribute agenda_number -->
-            <?= $form->field($model, 'agenda_number')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'agenda_number')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute progress_status -->
             <?=
@@ -266,7 +267,7 @@ use fredyns\region\models\Area;
 
         <?php $this->endBlock(); ?>
 
-        <?php $this->beginBlock('owner'); ?>
+<?php $this->beginBlock('owner'); ?>
 
         <p>
 
@@ -351,15 +352,15 @@ use fredyns\region\models\Area;
 
         <?php $this->endBlock(); ?>
 
-        <?php $this->beginBlock('instalation'); ?>
+<?php $this->beginBlock('instalation'); ?>
 
         <p>
 
             <!-- attribute instalation_name -->
-            <?= $form->field($model, 'instalation_name')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'instalation_name')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute instalation_location -->
-            <?= $form->field($model, 'instalation_location')->textarea(['rows' => 6]) ?>
+<?= $form->field($model, 'instalation_location')->textarea(['rows' => 6]) ?>
 
             <!-- attribute instalation_regency_id -->
             <?=
@@ -435,21 +436,35 @@ use fredyns\region\models\Area;
             ?>
 
             <!-- attribute instalation_latitude -->
-            <?= $form->field($model, 'instalation_latitude')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'instalation_latitude')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute instalation_longitude -->
-            <?= $form->field($model, 'instalation_longitude')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'instalation_longitude')->textInput(['maxlength' => true]) ?>
 
         </p>
 
         <?php $this->endBlock(); ?>
 
-        <?php $this->beginBlock('examination'); ?>
+<?php $this->beginBlock('examination'); ?>
 
         <p>
 
             <!-- attribute examination_date -->
-            <?= $form->field($model, 'examination_date')->textInput() ?>
+            <?=
+                $form
+                ->field($model, 'examination_date')
+                ->textInput()
+                ->widget(
+                    DatePicker::className(), [
+                    'name' => 'examination_date',
+                    'class' => 'form-control',
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd'
+                    ],
+                    ]
+            );
+            ?>
 
             <!-- attribute technical_pic_id -->
             <?=
@@ -469,15 +484,15 @@ use fredyns\region\models\Area;
 
         <?php $this->endBlock(); ?>
 
-        <?php $this->beginBlock('report'); ?>
+<?php $this->beginBlock('report'); ?>
 
         <p>
 
             <!-- attribute report_number -->
-            <?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute report_file -->
-            <?= $form->field($model, 'report_file')->fileInput() ?>
+<?= $form->field($model, 'report_file')->fileInput() ?>
 
         </p>
 
@@ -528,7 +543,7 @@ use fredyns\region\models\Area;
 
     </div>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>
 
