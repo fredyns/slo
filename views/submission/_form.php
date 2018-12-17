@@ -46,6 +46,7 @@ use fredyns\region\models\Area;
     ?>
 
     <div class="">
+
         <?php $this->beginBlock('main'); ?>
 
         <p>
@@ -263,6 +264,116 @@ use fredyns\region\models\Area;
 
             <!-- attribute report_number -->
             <?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
+
+        </p>
+
+        <?php $this->endBlock(); ?>
+
+        <?php $this->beginBlock('owner'); ?>
+
+        <p>
+
+            <!-- attribute owner_id -->
+            <?php
+            $owner_label = $model->owner_id;
+
+            if ($owner_label > 0) {
+                if (($owner = Owner::findOne($owner_label)) !== null) {
+                    $owner_label = $owner->name;
+                }
+            }
+            ?>
+
+            <?=
+                $form
+                ->field($model, 'owner_id')
+                ->widget(Select2::classname(), [
+                    'initValueText' => $owner_label,
+                    'options' => ['placeholder' => Yii::t('label', 'lookup owners...')],
+                    'pluginOptions' => [
+                        //'tags' => true,
+                        'minimumInputLength' => 3,
+                        'language' => [
+                            'errorLoading' => new JsExpression("function () { return '".Yii::t('label', 'waiting results')."'; }"),
+                        ],
+                        'ajax' => [
+                            'url' => Url::to(['/api/owner/list']),
+                            'dataType' => 'json',
+                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                        ],
+                        'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                        'templateResult' => new JsExpression('function(item) { return item.text; }'),
+                        'templateSelection' => new JsExpression('function (item) { return item.text; }'),
+                    ],
+            ]);
+            ?>
+
+            <!-- attribute bussiness_type_id -->
+            <?=
+                $form
+                ->field($model, 'bussiness_type_id')
+                ->dropDownList(ArrayHelper::map(BussinessType::find()->all(), 'id', 'name'), ['prompt' => Yii::t('cruds', 'Select')]);
+            ?>
+
+            <!-- attribute sbu_id -->
+            <?php
+            $sbu_label = $model->sbu_id;
+
+            if ($sbu_label > 0) {
+                if (($sbu = Sbu::findOne($sbu_label)) !== null) {
+                    $sbu_label = $sbu->name;
+                }
+            }
+            ?>
+
+            <?=
+                $form
+                ->field($model, 'sbu_id')
+                ->widget(Select2::classname(), [
+                    'initValueText' => $sbu_label,
+                    'options' => ['placeholder' => Yii::t('label', 'lookup SBU...')],
+                    'pluginOptions' => [
+                        //'tags' => true,
+                        'minimumInputLength' => 3,
+                        'language' => [
+                            'errorLoading' => new JsExpression("function () { return '".Yii::t('label', 'waiting results')."'; }"),
+                        ],
+                        'ajax' => [
+                            'url' => Url::to(['/api/sbu/list']),
+                            'dataType' => 'json',
+                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                        ],
+                        'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                        'templateResult' => new JsExpression('function(item) { return item.text; }'),
+                        'templateSelection' => new JsExpression('function (item) { return item.text; }'),
+                    ],
+            ]);
+            ?>
+
+        </p>
+
+        <?php $this->endBlock(); ?>
+
+        <?php $this->beginBlock('examination'); ?>
+
+        <p>
+
+            <!-- attribute examination_date -->
+            <?= $form->field($model, 'examination_date')->textInput() ?>
+
+            <!-- attribute technical_pic_id -->
+            <?=
+                $form
+                ->field($model, 'technical_pic_id')
+                ->dropDownList(ArrayHelper::map(TechnicalPic::find()->all(), 'id', 'name'), ['prompt' => Yii::t('cruds', 'Select'),]);
+            ?>
+
+            <!-- attribute technical_personel_id -->
+            <?=
+                $form
+                ->field($model, 'technical_personel_id')
+                ->dropDownList(ArrayHelper::map(TechnicalPersonel::find()->all(), 'id', 'name'), ['prompt' => Yii::t('cruds', 'Select'),]);
+            ?>
 
         </p>
 
