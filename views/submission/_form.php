@@ -51,7 +51,11 @@ use fredyns\region\models\Area;
         <p>
 
             <!-- attribute progress_status -->
-            <?= $form->field($model, 'progress_status')->textInput() ?>
+            <?=
+                $form
+                ->field($model, 'progress_status')
+                ->dropDownList(SubmissionProgressStatus::all(), ['prompt' => Yii::t('cruds', 'Select')]);
+            ?>
 
             <!-- attribute owner_id -->
             <?php
