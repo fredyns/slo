@@ -33,7 +33,8 @@
         "cornernote/yii2-returnurl": "dev-master",
         "yii2tech/ar-softdelete": "^1.0@dev",
         "fredyns/stringcleaner": "dev-master",
-        "mdmsoft/yii2-upload-file": "^2.0@dev"
+        "mdmsoft/yii2-upload-file": "^2.0@dev",
+        "kartik-v/yii2-widget-datepicker": "^1.4@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
