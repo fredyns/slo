@@ -252,18 +252,15 @@ use fredyns\region\models\Area;
 
         <p>
 
+            <!-- attribute agenda_number -->
+            <?= $form->field($model, 'agenda_number')->textInput(['maxlength' => true]) ?>
+
             <!-- attribute progress_status -->
             <?=
                 $form
                 ->field($model, 'progress_status')
                 ->dropDownList(SubmissionProgressStatus::all(), ['prompt' => Yii::t('cruds', 'Select')]);
             ?>
-
-            <!-- attribute agenda_number -->
-            <?= $form->field($model, 'agenda_number')->textInput(['maxlength' => true]) ?>
-
-            <!-- attribute report_number -->
-            <?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
 
         </p>
 
@@ -348,31 +345,6 @@ use fredyns\region\models\Area;
                         'templateSelection' => new JsExpression('function (item) { return item.text; }'),
                     ],
             ]);
-            ?>
-
-        </p>
-
-        <?php $this->endBlock(); ?>
-
-        <?php $this->beginBlock('examination'); ?>
-
-        <p>
-
-            <!-- attribute examination_date -->
-            <?= $form->field($model, 'examination_date')->textInput() ?>
-
-            <!-- attribute technical_pic_id -->
-            <?=
-                $form
-                ->field($model, 'technical_pic_id')
-                ->dropDownList(ArrayHelper::map(TechnicalPic::find()->all(), 'id', 'name'), ['prompt' => Yii::t('cruds', 'Select'),]);
-            ?>
-
-            <!-- attribute technical_personel_id -->
-            <?=
-                $form
-                ->field($model, 'technical_personel_id')
-                ->dropDownList(ArrayHelper::map(TechnicalPersonel::find()->all(), 'id', 'name'), ['prompt' => Yii::t('cruds', 'Select'),]);
             ?>
 
         </p>
@@ -467,6 +439,45 @@ use fredyns\region\models\Area;
 
             <!-- attribute instalation_longitude -->
             <?= $form->field($model, 'instalation_longitude')->textInput(['maxlength' => true]) ?>
+
+        </p>
+
+        <?php $this->endBlock(); ?>
+
+        <?php $this->beginBlock('examination'); ?>
+
+        <p>
+
+            <!-- attribute examination_date -->
+            <?= $form->field($model, 'examination_date')->textInput() ?>
+
+            <!-- attribute technical_pic_id -->
+            <?=
+                $form
+                ->field($model, 'technical_pic_id')
+                ->dropDownList(ArrayHelper::map(TechnicalPic::find()->all(), 'id', 'name'), ['prompt' => Yii::t('cruds', 'Select'),]);
+            ?>
+
+            <!-- attribute technical_personel_id -->
+            <?=
+                $form
+                ->field($model, 'technical_personel_id')
+                ->dropDownList(ArrayHelper::map(TechnicalPersonel::find()->all(), 'id', 'name'), ['prompt' => Yii::t('cruds', 'Select'),]);
+            ?>
+
+        </p>
+
+        <?php $this->endBlock(); ?>
+
+        <?php $this->beginBlock('report'); ?>
+
+        <p>
+
+            <!-- attribute report_number -->
+            <?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
+
+            <!-- attribute report_file -->
+            <?= $form->field($model, 'report_file')->fileInput() ?>
 
         </p>
 
