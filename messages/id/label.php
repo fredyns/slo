@@ -22,4 +22,7 @@ return [
     'Select province' => 'Pilih Provinsi',
     'loading city and regencies...' => 'memuat kota dan kabupaten...',
     'loading provinces...' => 'memuat provinsi...',
+    'lookup SBU...' => 'memuat SBU...',
+    'lookup owners...' => 'memuat pemilik...',
+    'waiting results' => 'menunggu hasil',
 ];
