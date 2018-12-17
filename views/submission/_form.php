@@ -247,6 +247,27 @@ use fredyns\region\models\Area;
 
         <?php $this->endBlock(); ?>
 
+        <?php $this->beginBlock('submisson'); ?>
+
+        <p>
+
+            <!-- attribute progress_status -->
+            <?=
+                $form
+                ->field($model, 'progress_status')
+                ->dropDownList(SubmissionProgressStatus::all(), ['prompt' => Yii::t('cruds', 'Select')]);
+            ?>
+
+            <!-- attribute agenda_number -->
+            <?= $form->field($model, 'agenda_number')->textInput(['maxlength' => true]) ?>
+
+            <!-- attribute report_number -->
+            <?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
+
+        </p>
+
+        <?php $this->endBlock(); ?>
+
         <?php $this->beginBlock('instalation'); ?>
 
         <p>
