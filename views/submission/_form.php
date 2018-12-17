@@ -478,8 +478,20 @@ use fredyns\region\models\Area;
             'items' => [
                 [
                     'label' => $model->aliasModel,
-                    'content' => $this->blocks['main'],
+                    'content' => $this->blocks['submisson'],
                     'active' => true,
+                ],
+                [
+                    'label' => Yii::t('models', 'Instalation'),
+                    'content' => $this->blocks['instalation'],
+                ],
+                [
+                    'label' => Yii::t('models', 'Owner'),
+                    'content' => $this->blocks['owner'],
+                ],
+                [
+                    'label' => Yii::t('models', 'Examination'),
+                    'content' => $this->blocks['examination'],
                 ],
             ],
         ]);
