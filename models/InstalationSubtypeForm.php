@@ -33,7 +33,6 @@ class InstalationSubtypeForm extends InstalationSubtype
     {
         return [
             # filter
-            /*//
             'string_filter' => [
                 ['name'],
                 'filter',
@@ -41,7 +40,6 @@ class InstalationSubtypeForm extends InstalationSubtype
                     return StringCleaner::forPlaintext($value);
                 },
             ],
-            //*/
             # default
             # required
             # type
