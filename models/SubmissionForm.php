@@ -11,6 +11,11 @@ use yii\helpers\ArrayHelper;
 
 /**
  * This is the form model class for table "submission".
+ * 
+ * @property \app\models\InstalationDistribution $instalationDistribution
+ * @property \app\models\InstalationGenerator $instalationGenerator
+ * @property \app\models\InstalationTransmission $instalationTransmission
+ * @property \app\models\InstalationUtilization $instalationUtilization
  */
 class SubmissionForm extends Submission
 {
@@ -117,6 +122,38 @@ class SubmissionForm extends Submission
             ],
             # safe
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationDistribution()
+    {
+        return $this->hasOne(InstalationDistributionForm::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationGenerator()
+    {
+        return $this->hasOne(InstalationGeneratorForm::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationTransmission()
+    {
+        return $this->hasOne(InstalationTransmissionForm::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationUtilization()
+    {
+        return $this->hasOne(InstalationUtilizationForm::className(), ['submission_id' => 'id']);
     }
 
 }
