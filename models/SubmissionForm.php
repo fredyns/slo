@@ -12,6 +12,10 @@ use yii\helpers\ArrayHelper;
 /**
  * This is the form model class for table "submission".
  * 
+ * @property \app\models\InstalationDistribution $distribution
+ * @property \app\models\InstalationGenerator $generator
+ * @property \app\models\InstalationTransmission $transmission
+ * @property \app\models\InstalationUtilization $utilization
  * @property \app\models\InstalationDistribution $instalationDistribution
  * @property \app\models\InstalationGenerator $instalationGenerator
  * @property \app\models\InstalationTransmission $instalationTransmission
@@ -154,6 +158,54 @@ class SubmissionForm extends Submission
     public function getInstalationUtilization()
     {
         return $this->hasOne(InstalationUtilizationForm::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return InstalationDistributionForm
+     */
+    public function getDistribution()
+    {
+        if ($this->instalationDistribution) {
+            return $this->instalationDistribution;
+        } else  {
+            return new InstalationDistributionForm(['submission_id' => $this->id]);
+        }
+    }
+
+    /**
+     * @return InstalationGeneratorForm
+     */
+    public function getGenerator()
+    {
+        if ($this->instalationGenerator) {
+            return $this->instalationGenerator;
+        } else  {
+            return new InstalationGeneratorForm(['submission_id' => $this->id]);
+        }
+    }
+
+    /**
+     * @return InstalationTransmissionForm
+     */
+    public function getTransmission()
+    {
+        if ($this->instalationTransmission) {
+            return $this->instalationTransmission;
+        } else  {
+            return new InstalationTransmissionForm(['submission_id' => $this->id]);
+        }
+    }
+
+    /**
+     * @return InstalationUtilizationForm
+     */
+    public function getUtilization()
+    {
+        if ($this->instalationUtilization) {
+            return $this->instalationUtilization;
+        } else  {
+            return new InstalationUtilizationForm(['submission_id' => $this->id]);
+        }
     }
 
 }
