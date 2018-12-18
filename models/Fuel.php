@@ -14,16 +14,26 @@ use yii\helpers\ArrayHelper;
  */
 class Fuel extends BaseFuel
 {
+
+    /**
+     * get all record maps
+     * 
+     * @return array
+     */
+    public static function allMap()
+    {
+        return ArrayHelper::map(static::findAll(['is_deleted' => FALSE]), 'id', 'name');
+    }
+
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return ArrayHelper::merge(
-            parent::behaviors(),
-            [
+                parent::behaviors(), [
                 # custom behaviors
-            ]
+                ]
         );
     }
 
@@ -34,15 +44,15 @@ class Fuel extends BaseFuel
     {
         return [
             # filter
-            /*//
-            'string_filter' => [
-                ['name'],
-                'filter',
-                'filter' => function($value){
-                    return StringCleaner::forPlaintext($value);
-                },
-            ],
-            //*/
+            /* //
+              'string_filter' => [
+              ['name'],
+              'filter',
+              'filter' => function($value){
+              return StringCleaner::forPlaintext($value);
+              },
+              ],
+              // */
             # default
             # required
             # type
@@ -53,7 +63,7 @@ class Fuel extends BaseFuel
             [['name'], 'string', 'max' => 512],
         ];
     }
-    
+
     /**
      * Alias name of table for crud views Lists all models.
      * Change the alias name manual if needed later
@@ -85,4 +95,5 @@ class Fuel extends BaseFuel
             'name' => Yii::t('models', 'Name'),
         ];
     }
+
 }
