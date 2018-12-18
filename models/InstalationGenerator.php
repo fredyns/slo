@@ -14,16 +14,16 @@ use yii\helpers\ArrayHelper;
  */
 class InstalationGenerator extends BaseInstalationGenerator
 {
+
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return ArrayHelper::merge(
-            parent::behaviors(),
-            [
+                parent::behaviors(), [
                 # custom behaviors
-            ]
+                ]
         );
     }
 
@@ -33,37 +33,27 @@ class InstalationGenerator extends BaseInstalationGenerator
     public function rules()
     {
         return [
-            # filter
-            /*//
-            'string_filter' => [
-                ['name'],
-                'filter',
-                'filter' => function($value){
-                    return StringCleaner::forPlaintext($value);
-                },
-            ],
-            //*/
             # default
             # required
-            # type
-            # format
-            # option
-            # constraint
-            # safe
             [['submission_id'], 'required'],
-            [['submission_id', 'subtype_id', 'fuel_id', 'module_quantity', 'inverter_quantity', 'calorific_value_file_id', 'fuel_consumption_rate_file_id'], 'integer'],
+            # type
+            [['submission_id', 'subtype_id', 'fuel_id', 'module_quantity', 'inverter_quantity', 'calorific_value_file_id'], 'integer'],
             [['capacity', 'test_capacity'], 'number'],
             [['capacity_unit', 'test_capacity_unit'], 'string', 'max' => 8],
             [['unit_number'], 'string', 'max' => 32],
             [['turbine_serial_number', 'generator_serial_number', 'each_module_capacity', 'each_inverter_capacity', 'calorific_value', 'fuel_consumption_hhv', 'fuel_consumption_lhv', 'sfc'], 'string', 'max' => 64],
             [['unit'], 'string', 'max' => 128],
+            # format
+            # option
+            # constraint
             [['submission_id'], 'unique'],
             [['fuel_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Fuel::className(), 'targetAttribute' => ['fuel_id' => 'id']],
             [['submission_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Submission::className(), 'targetAttribute' => ['submission_id' => 'id']],
             [['subtype_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\InstalationSubtype::className(), 'targetAttribute' => ['subtype_id' => 'id']],
+            # safe
         ];
     }
-    
+
     /**
      * Alias name of table for crud views Lists all models.
      * Change the alias name manual if needed later
@@ -101,10 +91,11 @@ class InstalationGenerator extends BaseInstalationGenerator
             'each_inverter_capacity' => Yii::t('models', 'Each Inverter Capacity'),
             'calorific_value' => Yii::t('models', 'Calorific Value'),
             'calorific_value_file_id' => Yii::t('models', 'Calorific Value File'),
-            'fuel_consumption_hhv' => Yii::t('models', 'Fuel Consumption Hhv'),
-            'fuel_consumption_lhv' => Yii::t('models', 'Fuel Consumption Lhv'),
+            'fuel_consumption_hhv' => Yii::t('models', 'Fuel Consumption HHV'),
+            'fuel_consumption_lhv' => Yii::t('models', 'Fuel Consumption LHV'),
             'fuel_consumption_rate_file_id' => Yii::t('models', 'Fuel Consumption Rate File'),
-            'sfc' => Yii::t('models', 'Sfc'),
+            'sfc' => Yii::t('models', 'SFC'),
         ];
     }
+
 }
