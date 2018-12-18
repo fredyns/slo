@@ -12,86 +12,27 @@ use dmstr\bootstrap\Tabs;
 
 <div class="instalation-utilization-form">
 
-    <?php
-    $form = ActiveForm::begin([
-            'id' => 'InstalationUtilization',
-            'layout' => 'horizontal',
-            'enableClientValidation' => true,
-            'errorSummaryCssClass' => 'error-summary alert alert-danger',
-            'fieldConfig' => [
-                'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-                'horizontalCssClasses' => [
-                    'label' => 'col-sm-2',
-                    #'offset' => 'col-sm-offset-4',
-                    'wrapper' => 'col-sm-8',
-                    'error' => '',
-                    'hint' => '',
-                ],
-            ],
-    ]);
+    <!-- attribute subtype_id -->
+    <?=
+        $form
+        ->field($model, 'subtype_id')
+        ->dropDownList(\app\models\InstalationSubtype::allMap(), ['prompt' => Yii::t('cruds', 'Select'),]);
     ?>
 
-    <div class="">
-        <?php $this->beginBlock('main'); ?>
+    <!-- attribute medium_voltage_connecting_panel_quantity -->
+    <?= $form->field($model, 'medium_voltage_connecting_panel_quantity')->textInput() ?>
 
-        <p>
+    <!-- attribute low_voltage_connecting_panel_quantity -->
+    <?= $form->field($model, 'low_voltage_connecting_panel_quantity')->textInput() ?>
 
-            <!-- attribute subtype_id -->
-            <?=
-                $form
-                ->field($model, 'subtype_id')
-                ->dropDownList(\app\models\InstalationSubtype::allMap(), ['prompt' => Yii::t('cruds', 'Select'),]);
-            ?>
+    <!-- attribute substation_transformer_kva -->
+    <?= $form->field($model, 'substation_transformer_kva')->textInput(['maxlength' => true]) ?>
 
-            <!-- attribute medium_voltage_connecting_panel_quantity -->
-            <?= $form->field($model, 'medium_voltage_connecting_panel_quantity')->textInput() ?>
+    <!-- attribute connected_power_kva -->
+    <?= $form->field($model, 'connected_power_kva')->textInput(['maxlength' => true]) ?>
 
-            <!-- attribute low_voltage_connecting_panel_quantity -->
-            <?= $form->field($model, 'low_voltage_connecting_panel_quantity')->textInput() ?>
-
-            <!-- attribute substation_transformer_kva -->
-            <?= $form->field($model, 'substation_transformer_kva')->textInput(['maxlength' => true]) ?>
-
-            <!-- attribute connected_power_kva -->
-            <?= $form->field($model, 'connected_power_kva')->textInput(['maxlength' => true]) ?>
-
-            <!-- attribute electricity_provider -->
-            <?= $form->field($model, 'electricity_provider')->textInput(['maxlength' => true]) ?>
-
-        </p>
-
-        <?php $this->endBlock(); ?>
-
-        <?=
-        Tabs::widget([
-            'encodeLabels' => false,
-            'items' => [
-                [
-                    'label' => $model->aliasModel,
-                    'content' => $this->blocks['main'],
-                    'active' => true,
-                ],
-            ],
-        ]);
-        ?>
-
-        <hr/>
-
-        <?= $form->errorSummary($model); ?>
-
-        <?=
-        Html::submitButton(
-            '<span class="glyphicon glyphicon-check"></span> '.
-            ($model->isNewRecord ? Yii::t('cruds', 'Create') : Yii::t('cruds', 'Save')), [
-            'id' => 'save-'.$model->formName(),
-            'class' => 'btn btn-success'
-            ]
-        );
-        ?>
-
-    </div>
-
-    <?php ActiveForm::end(); ?>
+    <!-- attribute electricity_provider -->
+    <?= $form->field($model, 'electricity_provider')->textInput(['maxlength' => true]) ?>
 
 </div>
 
