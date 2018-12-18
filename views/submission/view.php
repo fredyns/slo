@@ -236,7 +236,7 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
                 [
                     'label' => Yii::t('app', "Report File"),
                     'format' => 'raw',
-                    'value' => ($model->report_file_id ? Html::a('download', ['/file', 'id' => $model->report_file_id], ['target' => '_blank']) : '<span class="label label-warning">?</span>'),
+                    'value' => ($model->report_file_id ? Html::a(Yii::t('app', 'download'), ['/file', 'id' => $model->report_file_id], ['target' => '_blank']) : '<span class="label label-warning">?</span>'),
                 ],
             ],
         ]);
