@@ -29,6 +29,7 @@ use app\models\User;
  *
  * @property \app\models\Submission $submission
  * @property \app\models\InstalationSubtype $subtype
+ * @property \app\models\Voltage $voltage
  *
  */
 abstract class InstalationDistribution extends \yii\db\ActiveRecord
@@ -72,6 +73,14 @@ abstract class InstalationDistribution extends \yii\db\ActiveRecord
     public function getSubtype()
     {
         return $this->hasOne(\app\models\InstalationSubtype::className(), ['id' => 'subtype_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVoltage()
+    {
+        return $this->hasOne(\app\models\Voltage::className(), ['id' => 'voltage_id']);
     }
 
 }
