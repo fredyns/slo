@@ -14,16 +14,16 @@ use yii\helpers\ArrayHelper;
  */
 class InstalationUtilization extends BaseInstalationUtilization
 {
+
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return ArrayHelper::merge(
-            parent::behaviors(),
-            [
+                parent::behaviors(), [
                 # custom behaviors
-            ]
+                ]
         );
     }
 
@@ -34,32 +34,30 @@ class InstalationUtilization extends BaseInstalationUtilization
     {
         return [
             # filter
-            /*//
             'string_filter' => [
-                ['name'],
+                ['electricity_provider'],
                 'filter',
                 'filter' => function($value){
                     return StringCleaner::forPlaintext($value);
-                },
+              },
             ],
-            //*/
             # default
             # required
-            # type
-            # format
-            # option
-            # constraint
-            # safe
             [['submission_id'], 'required'],
+            # type
             [['submission_id', 'subtype_id', 'medium_voltage_connecting_panel_quantity', 'low_voltage_connecting_panel_quantity'], 'integer'],
             [['substation_transformer_kva', 'connected_power_kva'], 'number'],
             [['electricity_provider'], 'string', 'max' => 512],
+            # format
+            # restriction
             [['submission_id'], 'unique'],
+            # constraint
             [['submission_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Submission::className(), 'targetAttribute' => ['submission_id' => 'id']],
             [['subtype_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\InstalationSubtype::className(), 'targetAttribute' => ['subtype_id' => 'id']],
+            # safe
         ];
     }
-    
+
     /**
      * Alias name of table for crud views Lists all models.
      * Change the alias name manual if needed later
@@ -82,11 +80,12 @@ class InstalationUtilization extends BaseInstalationUtilization
         return [
             'submission_id' => Yii::t('models', 'Submission'),
             'subtype_id' => Yii::t('models', 'Subtype'),
-            'substation_transformer_kva' => Yii::t('models', 'Substation Transformer Kva'),
-            'connected_power_kva' => Yii::t('models', 'Connected Power Kva'),
+            'substation_transformer_kva' => Yii::t('models', 'Substation Transformer (kVA)'),
+            'connected_power_kva' => Yii::t('models', 'Connected Power (kVA)'),
             'medium_voltage_connecting_panel_quantity' => Yii::t('models', 'Medium Voltage Connecting Panel Quantity'),
             'low_voltage_connecting_panel_quantity' => Yii::t('models', 'Low Voltage Connecting Panel Quantity'),
             'electricity_provider' => Yii::t('models', 'Electricity Provider'),
         ];
     }
+
 }
