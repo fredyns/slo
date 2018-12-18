@@ -17,7 +17,7 @@ class OwnershipStatus
     /**
      * @return array
      */
-    public static function all()
+    public static function allMap()
     {
         return [
             static::RENT_FROM_STATE_ENTERPRISE => Yii::t('dictionaries', 'Rent From State Enterprise'),
@@ -33,7 +33,7 @@ class OwnershipStatus
      */
     public static function getLabel($value)
     {
-        return ArrayHelper::getValue(static::all(), $value, $value);
+        return ArrayHelper::getValue(static::allMap(), $value, $value);
     }
 
 }
