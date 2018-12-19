@@ -571,6 +571,23 @@ use fredyns\region\models\Area;
 
         <?= $form->errorSummary($model); ?>
 
+        <?php
+        switch ($model->instalation_type) {
+            case InstalationType::GENERATOR:
+                echo $form->errorSummary($model->generator);
+                break;
+            case InstalationType::TRANSMISSION:
+                echo $form->errorSummary($model->transmission);
+                break;
+            case InstalationType::DISTRIBUTION:
+                echo $form->errorSummary($model->distribution);
+                break;
+            case InstalationType::UTILIZATION:
+                echo $form->errorSummary($model->utilization);
+                break;
+        }
+        ?>
+
         <?=
         Html::submitButton(
             '<span class="glyphicon glyphicon-check"></span> '.
