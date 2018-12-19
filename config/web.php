@@ -75,6 +75,9 @@ $config = [
                 'label*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
+                'message*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
                 'models*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                 ],
