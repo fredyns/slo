@@ -453,6 +453,34 @@ use fredyns\region\models\Area;
 
         <?php $this->endBlock(); ?>
 
+        <?php $this->beginBlock('technical'); ?>
+
+        <p>
+
+        <div id="generator-form" class="technical-form">
+            <?= $this->render('/instalation-generator/_form', ['model' => $model->generator, 'form' => $form,]); ?>
+        </div>
+
+        <div id="transmission-form" class="technical-form">
+            <?= $this->render('/instalation-transmission/_form', ['model' => $model->transmission, 'form' => $form,]); ?>
+        </div>
+
+        <div id="distribution-form" class="technical-form">
+            <?= $this->render('/instalation-distribution/_form', ['model' => $model->distribution, 'form' => $form,]); ?>
+        </div>
+
+        <div id="utilization-form" class="technical-form">
+            <?= $this->render('/instalation-utilization/_form', ['model' => $model->utilization, 'form' => $form,]); ?>
+        </div>
+
+        <div id="no-technical-form" class="technical-form">
+            <?= Yii::t('message', 'select instalation type first'); ?>
+        </div>
+
+        </p>
+
+        <?php $this->endBlock(); ?>
+
         <?php $this->beginBlock('examination'); ?>
 
         <p>
@@ -520,6 +548,10 @@ use fredyns\region\models\Area;
                     'content' => $this->blocks['instalation'],
                 ],
                 [
+                    'label' => Yii::t('models', 'Technical'),
+                    'content' => $this->blocks['technical'],
+                ],
+                [
                     'label' => Yii::t('models', 'Owner'),
                     'content' => $this->blocks['owner'],
                 ],
@@ -555,3 +587,15 @@ use fredyns\region\models\Area;
 
 </div>
 
+<script>
+    var technical_forms = {
+        "<?= InstalationType::GENERATOR ?>": "generator-form",
+        "<?= InstalationType::TRANSMISSION ?>": "transmission-form",
+        "<?= InstalationType::DISTRIBUTION ?>": "distribution-form",
+        "<?= InstalationType::UTILIZATION ?>": "utilization-form"
+    };
+</script>
+
+<?php
+$js = $this->render('_form.js');
+$this->registerJs($js, \yii\web\View::POS_READY);
