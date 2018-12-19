@@ -14,6 +14,7 @@ use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\web\JsExpression;
+use yii\widgets\DetailView;
 use dmstr\bootstrap\Tabs;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
@@ -528,7 +529,8 @@ use fredyns\region\models\Area;
             <?= $form->field($model, 'report_number')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute report_file -->
-            <?= $form->field($model, 'report_file')->fileInput() ?>
+            <?php $_hint = $model->report_file_id ? Html::a('<i>'.Yii::t('app', 'view saved file').'</i>', ['/file', 'id' => $model->report_file_id], ['target' => '_blank']) : NULL; ?>
+            <?= $form->field($model, 'report_file')->fileInput()->hint($_hint); ?>
 
         </p>
 
