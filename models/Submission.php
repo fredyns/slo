@@ -16,6 +16,14 @@ use yii\helpers\ArrayHelper;
  * @property Area $instalationCountry
  * @property Area $instalationProvince
  * @property Area $instalationRegency
+ * @property InstalationDistribution $distribution
+ * @property InstalationGenerator $generator
+ * @property InstalationTransmission $transmission
+ * @property InstalationUtilization $utilization
+ * @property InstalationDistribution $instalationDistribution
+ * @property InstalationGenerator $instalationGenerator
+ * @property InstalationTransmission $instalationTransmission
+ * @property InstalationUtilization $instalationUtilization
  */
 class Submission extends BaseSubmission
 {
@@ -123,6 +131,86 @@ class Submission extends BaseSubmission
     public function getInstalationRegency()
     {
         return $this->hasOne(Area::className(), ['id' => 'instalation_regency_id'])->alias(static::ALIAS_INSTALATIONREGENCY);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationDistribution()
+    {
+        return $this->hasOne(InstalationDistribution::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationGenerator()
+    {
+        return $this->hasOne(InstalationGenerator::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationTransmission()
+    {
+        return $this->hasOne(InstalationTransmission::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInstalationUtilization()
+    {
+        return $this->hasOne(InstalationUtilization::className(), ['submission_id' => 'id']);
+    }
+
+    /**
+     * @return InstalationDistributionForm
+     */
+    public function getDistribution()
+    {
+        if ($this->instalationDistribution) {
+            return $this->instalationDistribution;
+        } else  {
+            return new InstalationDistributionForm(['submission_id' => $this->id]);
+        }
+    }
+
+    /**
+     * @return InstalationGeneratorForm
+     */
+    public function getGenerator()
+    {
+        if ($this->instalationGenerator) {
+            return $this->instalationGenerator;
+        } else  {
+            return new InstalationGeneratorForm(['submission_id' => $this->id]);
+        }
+    }
+
+    /**
+     * @return InstalationTransmissionForm
+     */
+    public function getTransmission()
+    {
+        if ($this->instalationTransmission) {
+            return $this->instalationTransmission;
+        } else  {
+            return new InstalationTransmissionForm(['submission_id' => $this->id]);
+        }
+    }
+
+    /**
+     * @return InstalationUtilizationForm
+     */
+    public function getUtilization()
+    {
+        if ($this->instalationUtilization) {
+            return $this->instalationUtilization;
+        } else  {
+            return new InstalationUtilizationForm(['submission_id' => $this->id]);
+        }
     }
 
     /**
