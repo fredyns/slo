@@ -33,7 +33,7 @@ use dmstr\bootstrap\Tabs;
     <?= $form->field($model, 'inverter_quantity')->textInput() ?>
 
     <!-- attribute calorific_value_file_id -->
-    <?= $form->field($model, 'calorific_value_file_id')->textInput() ?>
+    <?= $form->field($model, 'calorific_value_file')->fileInput() ?>
 
     <!-- attribute capacity -->
     <?= $form->field($model, 'capacity')->textInput(['maxlength' => true]) ?>
@@ -70,6 +70,9 @@ use dmstr\bootstrap\Tabs;
 
     <!-- attribute fuel_consumption_lhv -->
     <?= $form->field($model, 'fuel_consumption_lhv')->textInput(['maxlength' => true]) ?>
+
+    <!-- attribute fuel_consumption_rate_file_id -->
+    <?= $form->field($model, 'fuel_consumption_rate_file')->fileInput() ?>
 
     <!-- attribute sfc -->
     <?= $form->field($model, 'sfc')->textInput(['maxlength' => true]) ?>
