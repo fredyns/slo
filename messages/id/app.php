@@ -17,15 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Distribution' => 'Distribusi',
-    'Generator' => '',
-    'Owned By Private Company' => 'Milik Swasta',
-    'Owned By State Enterprise' => 'Milik BUMN',
-    'Registered' => 'Teregistrasi',
-    'Registration' => 'Registrasi',
-    'Rent From Private Company' => 'Sewa Swasta',
-    'Rent From State Enterprise' => 'Sewa BUMN',
-    'Request' => 'Permohonan',
-    'Transmission' => 'Transmisi',
-    'Utilization' => 'Pemanfaatan',
+    'Agenda' => '',
+    'Report' => 'Laporan',
+    'Report File' => 'Berkas Laporan',
+    'Status' => '',
+    'Technical' => 'Teknis',
+    'download' => 'unduh',
+    'unknown' => 'tidak diketahui',
 ];
