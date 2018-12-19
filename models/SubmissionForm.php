@@ -130,6 +130,59 @@ class SubmissionForm extends Submission
     }
 
     /**
+     * @inheritdoc
+     */
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        // when no validation required
+
+        if ($runValidation === FALSE) {
+            return parent::save($runValidation, $attributeNames);
+        }
+
+        // validate main form
+
+        if ($this->validate($attributeNames) == FALSE) {
+            return FALSE;
+        }
+
+        // save main form
+
+        if (parent::save(FALSE, $attributeNames) == FALSE) {
+            return FALSE;
+        }
+
+        // select technical form
+
+        switch ($this->instalation_type) {
+            case InstalationType::GENERATOR:
+                $technical_model = $this->generator;
+                break;
+            case InstalationType::TRANSMISSION:
+                $technical_model = $this->transmission;
+                break;
+            case InstalationType::DISTRIBUTION:
+                $technical_model = $this->distribution;
+                break;
+            case InstalationType::UTILIZATION:
+                $technical_model = $this->utilization;
+                break;
+            default:
+                // when no technical form
+                return TRUE;
+        }
+
+        // execute technical form
+
+        /* @var $technical_model \yii\db\ActiveRecord */
+        $technical_model->load(Yii::$app->request->post());
+
+        // save technical form
+
+        return $technical_model->save();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getInstalationDistribution()
