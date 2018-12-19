@@ -12,6 +12,8 @@ use yii\helpers\ArrayHelper;
  */
 class InstalationGeneratorForm extends InstalationGenerator
 {
+    public $calorific_value_file;
+    public $fuel_consumption_rate_file;
 
     /**
      * @inheritdoc
@@ -21,6 +23,22 @@ class InstalationGeneratorForm extends InstalationGenerator
         return ArrayHelper::merge(
                 parent::behaviors(), [
                 # custom behaviors
+                'upload_calorific_value_file' => [
+                    'class' => 'mdm\upload\UploadBehavior',
+                    'attribute' => 'calorific_value_file', // required, use to receive input file
+                    'savedAttribute' => 'calorific_value_file_id', // optional, use to link model with saved file.
+                    'uploadPath' => '@app/content/slo'.DIRECTORY_SEPARATOR.$this->submission_id, // saved directory. default to '@runtime/upload'
+                    'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
+                    'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
+                ],
+                'upload_fuel_consumption_rate_file' => [
+                    'class' => 'mdm\upload\UploadBehavior',
+                    'attribute' => 'fuel_consumption_rate_file', // required, use to receive input file
+                    'savedAttribute' => 'fuel_consumption_rate_file_id', // optional, use to link model with saved file.
+                    'uploadPath' => '@app/content/slo'.DIRECTORY_SEPARATOR.$this->submission_id, // saved directory. default to '@runtime/upload'
+                    'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
+                    'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
+                ],
                 ]
         );
     }
