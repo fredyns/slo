@@ -189,6 +189,33 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     <?php $this->endBlock(); ?>
 
+    <?php $this->beginBlock('technical'); ?>
+
+    <p>
+
+        <?php
+        switch ($model->instalation_type) {
+            case InstalationType::GENERATOR:
+                echo $this->render('/instalation-generator/view', ['model' => $model->generator]);
+                break;
+            case InstalationType::TRANSMISSION:
+                echo $this->render('/instalation-transmission/view', ['model' => $model->transmission]);
+                break;
+            case InstalationType::DISTRIBUTION:
+                echo $this->render('/instalation-distribution/view', ['model' => $model->distribution]);
+                break;
+            case InstalationType::UTILIZATION:
+                echo $this->render('/instalation-utilization/view', ['model' => $model->utilization]);
+                break;
+            default:
+                echo Yii::t('app', "unknown");
+        }
+        ?>
+
+    </p>
+
+    <?php $this->endBlock(); ?>
+
     <?php $this->beginBlock('examination'); ?>
 
     <p>
@@ -258,6 +285,10 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
             [
                 'label' => Yii::t('models', 'Instalation'),
                 'content' => $this->blocks['instalation'],
+            ],
+            [
+                'label' => Yii::t('models', 'Technical'),
+                'content' => $this->blocks['technical'],
             ],
             [
                 'label' => Yii::t('models', 'Owner'),
