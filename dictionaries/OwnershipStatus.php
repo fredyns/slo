@@ -2,6 +2,8 @@
 
 namespace app\dictionaries;
 
+use Yii;
+
 /**
  * Description of OwnershipStatus
  *
