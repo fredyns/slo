@@ -85,6 +85,7 @@ class SubmissionForm extends Submission
                 'in', 'range' => [
                     InstalationType::GENERATOR,
                     InstalationType::TRANSMISSION,
+                    InstalationType::DISTRIBUTION,
                     InstalationType::UTILIZATION,
                 ],
             ],
