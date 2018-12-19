@@ -12,14 +12,14 @@ use yii\helpers\ArrayHelper;
 /**
  * This is the form model class for table "submission".
  * 
- * @property \app\models\InstalationDistribution $distribution
- * @property \app\models\InstalationGenerator $generator
- * @property \app\models\InstalationTransmission $transmission
- * @property \app\models\InstalationUtilization $utilization
- * @property \app\models\InstalationDistribution $instalationDistribution
- * @property \app\models\InstalationGenerator $instalationGenerator
- * @property \app\models\InstalationTransmission $instalationTransmission
- * @property \app\models\InstalationUtilization $instalationUtilization
+ * @property InstalationDistributionForm $distribution
+ * @property InstalationGeneratorForm $generator
+ * @property InstalationTransmissionForm $transmission
+ * @property InstalationUtilizationForm $utilization
+ * @property InstalationDistributionForm $instalationDistribution
+ * @property InstalationGeneratorForm $instalationGenerator
+ * @property InstalationTransmissionForm $instalationTransmission
+ * @property InstalationUtilizationForm $instalationUtilization
  */
 class SubmissionForm extends Submission
 {
