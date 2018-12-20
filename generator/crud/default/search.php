@@ -30,8 +30,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
-* <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
-*/
+ * <?= $searchModelClass ?> represents the model behind the search form about `<?= $generator->modelClass ?>`.
+ */
 class <?= $searchModelClass ?> extends <?= isset($modelAlias) ? $modelAlias : $modelClass ?>
 
 {
