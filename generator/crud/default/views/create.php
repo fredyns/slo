@@ -29,21 +29,21 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="giiant-crud <?= Inflector::camel2id(StringHelper::basename($generator->modelClass), '-', true) ?>-create">
 
-    <h1>
-        <?='<?= '?> $model->aliasModel ?>
-        <small>
-            <?='<?= '?> Yii::t('<?= $generator->modelMessageCategory ?>', 'New') ?>
-        </small>
-    </h1>
-
-    <div class="clearfix crud-navigation">
+    <div class="clearfix crud-navigation" style="padding-top: 30px;">
+        <div class="pull-left">
+            <h1 style="margin-top: 0;">
+                <?= '<?=' ?> $model->aliasModel ?>
+                <small>
+                    <?= '<?= '.$generator->generateString('New') ?> ?>
+                </small>
+            </h1>
         <div class="pull-right">
-            <?='<?= '?> Html::a('<span class="glyphicon glyphicon-remove"></span> '.Yii::t('cruds', 'Cancel'), Url::previous(), ['class' => 'btn btn-default']) ?>
+            <?= '<?=' ?> Html::a('<span class="glyphicon glyphicon-remove"></span> '.Yii::t('cruds', 'Cancel'), Url::previous(), ['class' => 'btn btn-default']) ?>
         </div>
     </div>
 
-    <hr />
+    <hr style="margin-top: 0;" />
 
-    <?= '<?= ' ?>$this->render('_form', ['model' => $model]); ?>
+    <?= '<?=' ?> $this->render('_form', ['model' => $model]); ?>
 
 </div>

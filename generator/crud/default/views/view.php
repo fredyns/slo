@@ -54,24 +54,24 @@ $this->params['breadcrumbs'][] = <?= $generator->generateString('View') ?>;
 ?>
 <div class="giiant-crud <?= Inflector::camel2id(StringHelper::basename($generator->modelClass), '-', true) ?>-view">
 
-    <h1>
-        <?='<?= '?>$model->aliasModel ?>
-        <small>
+    <div class="clearfix crud-navigation" style="padding-top: 30px;">
+        <div class="pull-left">
+            <h1 style="margin-top: 0;">
+                <?= '<?=' ?> $model->aliasModel ?>
+                <small>
 <?php if($haveID):?>
-            #<?='<?= '?>$model->id ?>
+                    #<?= '<?='?> $model->id ?>
 <?php else:?>
-            <?= '<?= Html::encode($model->'.($generator->getModelNameAttribute($generator->modelClass)).") ?>\n" ?>
+                    <?= '<?= Html::encode($model->'.($generator->getModelNameAttribute($generator->modelClass)).") ?>\n" ?>
 <?php endif;?>
 <?php if($softdelete):?>
-            <?='<?php'?> if ($model->is_deleted): ?>
-                <span class="badge">deleted</span>
-            <?='<?php'?> endif; ?>
+                    <?= '<?php' ?> if ($model->is_deleted): ?>
+                        <span class="badge">deleted</span>
+                    <?= '<?php' ?> endif; ?>
 <?php endif;?>
-        </small>
-    </h1>
-
-    <div class="clearfix crud-navigation">
-
+                </small>
+            </h1>
+        </div>
         <!-- menu buttons -->
         <div class='pull-right'>
             <?="<?=\n"?>
@@ -177,9 +177,9 @@ foreach ($safeAttributes as $attribute) {
             '<span class=\"glyphicon glyphicon-link\"></span> '.".$generator->generateString('Attach').".' ".
                 Inflector::singularize(Inflector::camel2words($name)).
                 "', ['".$generator->createRelationRoute($pivotRelation, 'create')."', '".
-                Inflector::singularize($pivotName)."'=>['".key(
+                Inflector::singularize($pivotName)."' => ['".key(
                     $pivotRelation->link
-                )."'=>\$model->{$model->primaryKey()[0]}]],
+                )."' => \$model->{$model->primaryKey()[0]}]],
             ['class' => 'btn btn-info btn-xs']
         ) ?>\n";
         } else {

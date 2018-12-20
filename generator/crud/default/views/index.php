@@ -75,25 +75,23 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
 
 <div class="giiant-crud <?= Inflector::camel2id(StringHelper::basename($generator->modelClass), '-', true) ?>-index">
 
-    <h1>
-        <?= '<?= ' ?>$searchModel->getAliasModel(TRUE) ?>
-        <small>
-            <?= '<?= '.$generator->generateString('List') ?> ?>
-        </small>
-    </h1>
-
-    <div class="clearfix crud-navigation">
+    <div class="clearfix crud-navigation" style="padding-top: 30px;">
         <div class="pull-left">
+            <h1 style="margin-top: 0;">
+                <?= '<?=' ?> $searchModel->getAliasModel(TRUE) ?>
+                <small>
+                    <?= '<?= '.$generator->generateString('List') ?> ?>
+                </small>
+            </h1>
         </div>
-
         <div class="pull-right">
             <?= '<?= ' ?>Html::a('<span class="glyphicon glyphicon-plus"></span> '.Yii::t('cruds', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 
-    <?= '<?php ' ?>// $this->render('_search', ['model' =>$searchModel]); ?>
+    <hr style="margin-top: 0;" />
 
-    <hr />
+    <?= '<?php' ?>//= $this->render('_search', ['model' => $searchModel]); ?>
 
 <?php if ($generator->indexWidgetType === 'grid'): ?>
 <?= "    <?php\n" ?>
@@ -137,9 +135,9 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             ++$count;
 
             if ($count >= $generator->gridMaxColumns) {
-                echo "                //".str_replace("\n", "\n                //", $format).",\n"; 
+                echo "                //".str_replace("\n", "\n                //", $format).",\n";
             } else {
-                echo "                ".str_replace("\n", "\n                ", $format).",\n";                
+                echo "                ".str_replace("\n", "\n                ", $format).",\n";
             }
         }
 ?>
@@ -171,6 +169,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
 
     <?= "<?php "; ?>\yii\widgets\Pjax::end() ?>
 <?php else: ?>
+
     <?= '<?=\n' ?>
     ListView::widget([
         'dataProvider' => $dataProvider,

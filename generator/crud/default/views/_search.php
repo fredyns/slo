@@ -23,11 +23,11 @@ use yii\widgets\ActiveForm;
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass), '-', true) ?>-search">
 
-    <?= '<?php ' ?>
+    <?= "<?php\n" ?>
     $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-    ]); 
+    ]);
     ?>
 
 <?php
@@ -38,15 +38,15 @@ foreach ($generator->getTableSchema()->getColumnNames() as $attribute) {
         echo "        <?= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
         $count++;
     } else {
-        echo "        <?php//= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
+        echo "        <?php //= ".$generator->generateActiveSearchField($attribute)." ?>\n\n";
     }
 }
 ?>
         <div class="form-group">
-            <?= '<?= ' ?>Html::submitButton(<?= $generator->generateString('Search') ?>, ['class' => 'btn btn-primary']) ?>
-            <?= '<?= ' ?>Html::resetButton(<?= $generator->generateString('Reset') ?>, ['class' => 'btn btn-default']) ?>
+            <?= '<?=' ?> Html::submitButton(<?= $generator->generateString('Search') ?>, ['class' => 'btn btn-primary']) ?>
+            <?= '<?=' ?> Html::resetButton(<?= $generator->generateString('Reset') ?>, ['class' => 'btn btn-default']) ?>
         </div>
 
-    <?= '<?php ' ?>ActiveForm::end(); ?>
+    <?= '<?php' ?> ActiveForm::end(); ?>
 
 </div>
