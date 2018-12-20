@@ -1,12 +1,6 @@
-<?php 
-echo "<?php\n";
-?>
+<?= "<?php\n" ?>
 if(false){
-<?php
-foreach($accessDefinitions['roles'] as $roleName => $actions){
-?>
+<?php foreach($accessDefinitions['roles'] as $roleName => $actions): ?>
     echo <?= $generator->generateString($roleName) ?>;
-<?php    
-}
-?>
+<?php endforeach; ?>
 }
