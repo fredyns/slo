@@ -42,10 +42,42 @@ use dmstr\bootstrap\Tabs;
     <?= $form->field($model, 'test_capacity')->textInput(['maxlength' => true]) ?>
 
     <!-- attribute capacity_unit -->
-    <?= $form->field($model, 'capacity_unit')->textInput(['maxlength' => true]) ?>
+    <?=
+        $form
+        ->field($model, 'capacity_unit')
+        ->dropDownList(
+            [
+            "kVA" => "kVA",
+            "kW" => "kW",
+            "MW" => "MW",
+            "MVA" => "MVA",
+            "kWp" => "kWp",
+            "MWp" => "MWp",
+            ], [
+            'prompt' => Yii::t('cruds', 'Select')
+            ]
+        )
+    ;
+    ?>
 
     <!-- attribute test_capacity_unit -->
-    <?= $form->field($model, 'test_capacity_unit')->textInput(['maxlength' => true]) ?>
+    <?=
+        $form
+        ->field($model, 'test_capacity_unit')
+        ->dropDownList(
+            [
+            "kVA" => "kVA",
+            "kW" => "kW",
+            "MW" => "MW",
+            "MVA" => "MVA",
+            "kWp" => "kWp",
+            "MWp" => "MWp",
+            ], [
+            'prompt' => Yii::t('cruds', 'Select')
+            ]
+        )
+    ;
+    ?>
 
     <!-- attribute unit_number -->
     <?= $form->field($model, 'unit_number')->textInput(['maxlength' => true]) ?>
