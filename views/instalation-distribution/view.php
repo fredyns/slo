@@ -1,5 +1,6 @@
 <?php
 
+use app\dictionaries\DistributionRegion;
 use app\dictionaries\OwnershipStatus;
 use app\models\InstalationDistribution;
 use dmstr\bootstrap\Tabs;
@@ -46,7 +47,11 @@ use yii\widgets\Pjax;
             'sutr_length_ms',
             'substation_capacity_kva',
             'short_circuit_capacity_a',
-            'distribution_region',
+            [
+                'attribute' => 'distribution_region',
+                'format' => 'html',
+                'value' => DistributionRegion::getLabel($model->distribution_region),
+            ],
         ],
     ]);
     ?>

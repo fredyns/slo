@@ -64,6 +64,10 @@ use dmstr\bootstrap\Tabs;
     <?= $form->field($model, 'short_circuit_capacity_a')->textInput(['maxlength' => true]) ?>
 
     <!-- attribute distribution_region -->
-    <?= $form->field($model, 'distribution_region')->textInput(['maxlength' => true]) ?>
+    <?=
+        $form
+        ->field($model, 'distribution_region')
+        ->dropDownList(\app\dictionaries\DistributionRegion::map(), ['prompt' => Yii::t('cruds', 'Select'),]);
+    ?>
 
 </div>
