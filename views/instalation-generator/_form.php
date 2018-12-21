@@ -8,6 +8,15 @@ use dmstr\bootstrap\Tabs;
 /* @var $this yii\web\View  */
 /* @var $form yii\widgets\ActiveForm  */
 /* @var $model app\models\InstalationGeneratorForm  */
+
+$unit_options = [
+    "kVA" => "kVA",
+    "kW" => "kW",
+    "MW" => "MW",
+    "MVA" => "MVA",
+    "kWp" => "kWp",
+    "MWp" => "MWp",
+];
 ?>
 
 <div class="instalation-generator-form">
@@ -42,10 +51,18 @@ use dmstr\bootstrap\Tabs;
     <?= $form->field($model, 'test_capacity')->textInput(['maxlength' => true]) ?>
 
     <!-- attribute capacity_unit -->
-    <?= $form->field($model, 'capacity_unit')->textInput(['maxlength' => true]) ?>
+    <?=
+        $form
+        ->field($model, 'capacity_unit')
+        ->dropDownList($unit_options, ['prompt' => Yii::t('cruds', 'Select')]);
+    ?>
 
     <!-- attribute test_capacity_unit -->
-    <?= $form->field($model, 'test_capacity_unit')->textInput(['maxlength' => true]) ?>
+    <?=
+        $form
+        ->field($model, 'test_capacity_unit')
+        ->dropDownList($unit_options, ['prompt' => Yii::t('cruds', 'Select')]);
+    ?>
 
     <!-- attribute unit_number -->
     <?= $form->field($model, 'unit_number')->textInput(['maxlength' => true]) ?>
