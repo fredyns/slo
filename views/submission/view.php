@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     <hr/>
 
-    <?php $this->beginBlock('submisson'); ?>
+    <h3><?= Yii::t('label/submission', "Agenda"); ?></h3>
 
     <p>
 
@@ -113,9 +113,8 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     </p>
 
-    <?php $this->endBlock(); ?>
-
-    <?php $this->beginBlock('owner'); ?>
+    <br/>
+    <h3><?= Yii::t('label/submission', "Owner"); ?></h3>
 
     <p>
 
@@ -147,9 +146,8 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     </p>
 
-    <?php $this->endBlock(); ?>
-
-    <?php $this->beginBlock('instalation'); ?>
+    <br/>
+    <h3><?= Yii::t('label/submission', "Instalation"); ?></h3>
 
     <p>
 
@@ -187,9 +185,8 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     </p>
 
-    <?php $this->endBlock(); ?>
-
-    <?php $this->beginBlock('technical'); ?>
+    <br/>
+    <h3><?= Yii::t('label/submission', "Technical"); ?></h3>
 
     <p>
 
@@ -214,9 +211,8 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     </p>
 
-    <?php $this->endBlock(); ?>
-
-    <?php $this->beginBlock('examination'); ?>
+    <br/>
+    <h3><?= Yii::t('label/submission', "Inspection"); ?></h3>
 
     <p>
 
@@ -249,9 +245,8 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
 
     </p>
 
-    <?php $this->endBlock(); ?>
-
-    <?php $this->beginBlock('report'); ?>
+    <br/>
+    <h3><?= Yii::t('label/submission', "Report"); ?></h3>
 
     <p>
 
@@ -270,42 +265,6 @@ $this->params['breadcrumbs'][] = Yii::t('cruds', 'View');
         ?>
 
     </p>
-
-    <?php $this->endBlock(); ?>
-
-    <?=
-    Tabs::widget([
-        'encodeLabels' => false,
-        'items' => [
-            [
-                'label' => $model->aliasModel,
-                'content' => $this->blocks['submisson'],
-                'active' => true,
-            ],
-            [
-                'label' => Yii::t('models', 'Instalation'),
-                'content' => $this->blocks['instalation'],
-            ],
-            [
-                'label' => Yii::t('models', 'Technical'),
-                'content' => $this->blocks['technical'],
-            ],
-            [
-                'label' => Yii::t('models', 'Owner'),
-                'content' => $this->blocks['owner'],
-            ],
-            [
-                'label' => Yii::t('models', 'Examination'),
-                'content' => $this->blocks['examination'],
-            ],
-            [
-                'label' => Yii::t('models', 'Report'),
-                'content' => $this->blocks['report'],
-            ],
-        ],
-    ]);
-    ?>
-
 
     <hr/>
 
