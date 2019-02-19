@@ -34,7 +34,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
         </div>
 
         <div class="pull-right">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> '.Yii::t('cruds', 'New'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> '.Yii::t('label/submission', 'Apply New Request'), ['apply-request'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 

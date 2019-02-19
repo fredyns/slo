@@ -23,6 +23,8 @@ use yii\helpers\ArrayHelper;
  */
 class SubmissionForm extends Submission
 {
+    const SCENARIO_APPLY_REQUEST = 'apply-request';
+
     public $report_file;
 
     /**
@@ -127,6 +129,51 @@ class SubmissionForm extends Submission
             ],
             # safe
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+
+        $scenarios[static::SCENARIO_APPLY_REQUEST] = [
+            'examination_date',
+            'instalation_type',
+            'owner_id',
+            'instalation_name',
+            'instalation_location',
+            'instalation_country_id',
+            'instalation_province_id',
+            'instalation_regency_id',
+        ];
+
+        return $scenarios;
+    }
+
+    /**
+     * save new request application
+     * 
+     * @return boolean
+     */
+    public function applyRequest()
+    {
+        $this->scenario = static::SCENARIO_APPLY_REQUEST;
+
+        if ($this->load(Yii::$app->request->post()) == FALSE) {
+            return FALSE;
+        }
+
+        if ($this->validate() == FALSE) {
+            return FALSE;
+        }
+
+        $this->progress_status = SubmissionProgressStatus::REQUEST;
+        $this->requested_by = Yii::$app->user->id;
+        $this->requested_at = time();
+
+        return $this->save(FALSE);
     }
 
     /**
